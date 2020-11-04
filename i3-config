@@ -1,5 +1,5 @@
 # ln -s [THISFILE] ~/.config/i3/config
-set $mod Mod4
+set $mod Mod1
 
 font pango:monospace 8
 
