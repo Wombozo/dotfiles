@@ -1,17 +1,5 @@
 """" Enable Vundle: vim plugin manager
 
-" required before Vundle initialization
- set nocompatible        " disable compatibility mode with vi
- filetype off            " disable filetype detection (but re-enable later, see
-" below)
-"
-" " set the runtime path to include Vundle, and initialize
- set rtp+=~/.vim/bundle/Vundle.vim
- call vundle#begin()
- Plugin 'VundleVim/Vundle.vim'
-" Plugin 'scrooloose/nerdtree'
-" Plugin 'vim-fugitive'
- call vundle#end()
  filetype plugin on
 "
 "
@@ -29,7 +17,7 @@
 " window)
  set ruler               " show line and column number of the cursor on right
  "side of statusline
- set visualbell          " blink cursor on error, instead of beeping
+" set visualbell          " blink cursor on error, instead of beeping
 "
 "
 " """" Key Bindings
