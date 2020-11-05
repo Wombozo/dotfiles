@@ -23,8 +23,8 @@
 " """" Key Bindings
 "
 " " move vertically by visual line (don't skip wrapped lines)
-" nmap j gj
-" nmap k gk
+nmap <C-j> <C-]>
+
 "
 "
 " """" Vim Appearance
