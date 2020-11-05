@@ -57,7 +57,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+p focus parent
@@ -110,6 +110,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 
 # Screenshot region
 bindsym --release Print exec "scrot -s ~/Images/%s_%H%M_%d.%m.%Y_$wx$h.png"
+
+# Language
+bindsym $mod+space exec ~/custom-confs/i3/keyboard_layout cycle fr ru
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
