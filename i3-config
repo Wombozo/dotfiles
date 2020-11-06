@@ -7,7 +7,7 @@ gaps inner 20
 gaps outer 5
 
 # Compton (display compositor)
-exec --no-startup-id picom --config ~/custom-confs/compton.conf
+exec --no-startup-id compton --config ~/custom-confs/compton.conf
 
 # Wallpaper
 exec --always feh --bg-scale ~/custom-confs/wallpapers/2.jpg
