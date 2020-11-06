@@ -1,7 +1,22 @@
 # ln -s [THISFILE] ~/.config/i3/config
+
+# Comment if not using i3w-gaps
+for_window [class=".$"] border pixel 0
+smart_gaps on
+gaps inner 20
+gaps outer 5
+
+# Compton (display compositor)
+exec --no-startup-id picom --config ~/custom-confs/compton.conf
+
+# Wallpaper
+exec --always feh --bg-scale ~/custom-confs/wallpapers/2.jpg
+
+# Mod key
 set $mod Mod4
 
-font pango:hasklig 8
+# Font
+font pango:hasklig 14
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -165,3 +180,4 @@ bar {
         separator #757575
     }
 }
+
