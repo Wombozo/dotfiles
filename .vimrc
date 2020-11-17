@@ -9,6 +9,7 @@
  Plugin 'ryanoasis/vim-devicons'
  Plugin 'preservim/nerdtree'
  Plugin 'wincent/terminus'
+ Plugin 'junegunn/vim-peekaboo'
  call vundle#end()
  filetype plugin indent on
 
