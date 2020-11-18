@@ -115,6 +115,17 @@ ${top_mem name 2} ${goto 180}${top_mem mem 2}${alignr}${top_mem mem_res 2}
 ${top_mem name 3} ${goto 180}${top_mem mem 3}${alignr}${top_mem mem_res 3}
 ${top_mem name 4} ${goto 180}${top_mem mem 4}${alignr}${top_mem mem_res 4}
 ${top_mem name 5} ${goto 180}${top_mem mem 5}${alignr}${top_mem mem_res 5}
+##------------+
+## DISKS
+##------------+
+${voffset 10}${color1}${font :size=14:bold}DISKS ${hr 2}${font}
+${voffset 10}${color1}/home  ${stippled_hr 3 3}
+${voffset 2}${color1}Read: ${color3}${diskio_read /dev/sda2}${goto 200}${color1}Write:${goto 250}${color3}${diskio_write /dev/sda2}
+${color2}${diskiograph_read /dev/sda2 40,130} ${alignr}${diskiograph_write /dev/sda2 40,130}
+
+${voffset 10}${color1}/  ${stippled_hr 3 3}
+${voffset 2}${color1}Read: ${color3}${diskio_read /dev/sdb3}${goto 200}${color1}Write:${goto 250}${color3}${diskio_write /dev/sdb3}
+${color2}${diskiograph_read /dev/sdb3 40,130} ${alignr}${diskiograph_write /dev/sdb3 40,130}
 #------------+
 # GPU
 #------------+
@@ -123,12 +134,6 @@ ${voffset 5}${color1}GPU :$alignr${color3}${execi 6000 nvidia-smi --query-gpu=gp
 ${color1}Driver :$alignr${color3}${execi 6000 nvidia-smi --query-gpu=driver_version --format=csv,noheader,nounits}
 ${color1}Utilization :$alignr${color3}${exec nvidia-smi -i 0 | grep % | cut -c 61-63} %
 ${color1}VRAM Utilization :$alignr${color3}${exec nvidia-smi -i 0| grep % | cut -c 37-40} MB
-##------------+
-## DISK
-##------------+
-${voffset 10}${color1}${font :size=14:bold}DISK ${hr 2}${font}
-${voffset 2}${color1}Read: ${color3}${diskio_read /dev/sda2}${goto 200}${color1}Write:${goto 250}${color3}${diskio_write /dev/sda2}
-${color2}${diskiograph_read /dev/sda2 40,130} ${alignr}${diskiograph_write /dev/sda2 40,130}
 #------------+
 # NETWORK
 #------------+
