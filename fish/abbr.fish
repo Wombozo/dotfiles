@@ -1,6 +1,5 @@
 abbr l 'exa -l' 
-abbr b 'batcat'
-abbr fd fdfind
+abbr b 'bat'
 abbr gr grep -rIin -e
 
 abbr g git 

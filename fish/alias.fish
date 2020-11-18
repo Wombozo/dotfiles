@@ -1,33 +1,9 @@
-function b
-    /usr/bin/batcat $argv
-end
-
-function fd
-    /usr/bin/fdfind $argv
-end
-
-function gr
-    grep -rIin -e $argv
-end
-
-function g
-    git $argv
-end
-
-function l
-    exa -l $argv
-end
-
 function top
     ytop
 end
 
 function ps
     procs
-end
-
-function xo
-    xdg-open .
 end
 
 function funcdel
@@ -39,4 +15,4 @@ function funcdel
     end
 end
 
-funcsave funcdel cdb cdbb cdbm fd b gr g l top ps xo
+funcsave funcdel top ps
