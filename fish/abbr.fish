@@ -8,3 +8,5 @@ abbr ga git add
 abbr gc git commit
 abbr gcm git commit -m 
 
+abbr cdd cd ~/dotfiles
+abbr cdc cd ~/.config

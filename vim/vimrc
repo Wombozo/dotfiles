@@ -31,7 +31,7 @@
 " set visualbell         " blink cursor on error, instead of beeping
 
 " Key Bindings
- source ~/custom-confs/vim/no_arrows.vim
+ source ~/dotfiles/vim/no_arrows.vim
 
 " NerdTree
  nmap <C-f> :NERDTreeToggle<CR>
@@ -43,7 +43,7 @@
 
 
 " Cscope
- source ~/custom-confs/vim/cscope_maps.vim
+ source ~/dotfiles/vim/cscope_maps.vim
 
 " Vim Appearance
 "

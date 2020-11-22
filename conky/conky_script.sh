@@ -1,3 +1,3 @@
 #!/bin/bash
 
-conky -c ~/custom-confs/conky/conkyrc
+conky -c ~/dotfiles/conky/conkyrc
