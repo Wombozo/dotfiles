@@ -61,6 +61,13 @@
  set autoindent          " copy indent from current line when starting a new line
  set smartindent         " even better autoindent (e.g. add indent after '{')
 
+" MRU
+nnoremap <C-e> :MRU<CR>
+
+" source .vimrc's if present in working directories
+set exrc
+set secure
+
 function! s:DiffWithSaved()
   let filetype=&ft
   diffthis
@@ -72,3 +79,7 @@ com! DiffSaved call s:DiffWithSaved()
 
 " Syntax for some file extensions
 autocmd BufNewFile,BufRead *.bb* set syntax=sh
+augroup project
+  autocmd!
+  autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
+augroup END
