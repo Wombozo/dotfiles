@@ -79,7 +79,5 @@ com! DiffSaved call s:DiffWithSaved()
 
 " Syntax for some file extensions
 autocmd BufNewFile,BufRead *.bb* set syntax=sh
-augroup project
-  autocmd!
-  autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
-augroup END
+autocmd BufNewFile,BufRead *.pgn set syntax=pgn
+autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
