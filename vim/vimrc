@@ -45,6 +45,9 @@
 " Cscope
  source ~/dotfiles/vim/cscope_maps.vim
 
+ " YCM
+ " let g:ycm_global_ycm_extra_conf = '$HOME/dotfiles/vim/.ycm_extra_conf.py'
+
 " Vim Appearance
 "
 " put colorscheme files in ~/.vim/colors/
