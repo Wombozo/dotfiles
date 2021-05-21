@@ -10,6 +10,10 @@
  Plugin 'preservim/nerdtree'
  Plugin 'wincent/terminus'
  Plugin 'junegunn/vim-peekaboo'
+ Plugin 'neoclide/coc.nvim'
+ Plugin 'itchyny/lightline.vim'
+ Plugin 'bfrg/vim-cpp-modern'
+ Plugin 'kshenoy/vim-signature'
  call vundle#end()
  filetype plugin indent on
 
@@ -41,6 +45,10 @@
  nmap <C-k> <C-w>k
  nmap <C-j> <C-w>j
 
+" Marks
+noremap ç `
+noremap é [
+noremap è ]
 
 " Cscope
  source ~/dotfiles/vim/cscope_maps.vim
@@ -64,6 +72,10 @@
  set autoindent          " copy indent from current line when starting a new line
  set smartindent         " even better autoindent (e.g. add indent after '{')
 
+" Lists
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+noremap <C-l> :set list!<CR>
+
 " MRU
 nnoremap <C-e> :MRU<CR>
 
@@ -81,6 +93,11 @@ endfunction
 com! DiffSaved call s:DiffWithSaved()
 
 " Syntax for some file extensions
-autocmd BufNewFile,BufRead *.bb* set syntax=sh
 autocmd BufNewFile,BufRead *.pgn set syntax=pgn
 autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
+
+" Lightline
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+     \ }
