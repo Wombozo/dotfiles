@@ -6,8 +6,14 @@ killall -q polybar
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
+#for m in `xrandr --query | grep " connected"|cut -d " " -f1`; do
+#    MONITOR="$m" polybar -c ~/dotfiles/polybar/config.ini mybar &
+#done
+
+
 for m in `xrandr --query | grep " connected"|cut -d " " -f1`; do
-    MONITOR="$m" polybar -c ~/dotfiles/polybar/config.ini mybar &
+    MONITOR="$m" ~/.config/polybar/launch.sh --cuts &
 done
+
 
 echo "Polybar launched..."
