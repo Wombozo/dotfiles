@@ -6,20 +6,24 @@ exec_always --no-startup-id ~/dotfiles/polybar/launch.sh &
 #exec_always --no-startup-id /usr/bin/xrandr --output HDMI1 --above eDP1
 #exec_always --no-startup-id /usr/bin/xrandr --output HDMI1 --right-of eDP1
 exec_always --no-startup-id /usr/bin/xrandr --output HDMI-1 --left-of eDP-1
+exec_always --no-startup-id /usr/bin/ntpd -qg
 
 # Comment if not using i3w-gaps
-#for_window [class=".$"] border pixel 2
-#smart_gaps on
-#gaps inner 10
-#gaps outer 1
-#smart_borders no_gaps
+for_window [class=".$"] border pixel 2
+smart_gaps on
+gaps inner 10
+gaps outer 1
+smart_borders no_gaps
 #workspace 1 gaps right 300
+
+exec_always --no-startup-id ~/dotfiles/i3/layout.sh
 
 # Conky
 #exec --no-startup-id ~/dotfiles/conky/conky_script.sh
 
 # Compton (display compositor)
-exec --no-startup-id compton --config ~/dotfiles/compton.conf
+#exec --no-startup-id compton --config ~/dotfiles/compton.conf
+exec_always --no-startup-id picom --config ~/dotfiles/picom.conf
 
 # Wallpaper
 exec --no-startup-id feh --bg-scale ~/dotfiles/wallpaper.jpg
@@ -39,8 +43,7 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run -i -nb '#3E479B' -nf '#FFFFFF' -fn 'Hasklig Bold' -sb '#831783'
 #bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -show-icons -icon-theme hicolor
-bindsym $mod+d exec --no-startup-id rofi -show drun
-#-theme ~/dotfiles/rofi/arthur.rasi
+bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/dotfiles/rofi/arthur.rasi
 bindsym $mod+Shift+d exec --no-startup-id rofi -show run
 
 # start firefox
@@ -237,10 +240,15 @@ set $brd-focused-color   #542f37
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $brd-focused-color $brd-focused-color $text-color          #00ff00
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          #00ff00
+#client.focused          $brd-focused-color $brd-focused-color $text-color          #00ff00
+#client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+#client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+#client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          #00ff00
+
+client.focused #5e81ac #81a1c1 #88c0d0 #8fbcbb
+client.focused_inactive #2C2C2C #2C2C2C #ffffff #2C2C2C
+client.unfocused #4c566a #434c5e #3b4252 #2e3440
+client.urgent #cc4380 #d668c2 #e55bb7 #f767eb
 
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
