@@ -1,0 +1,123 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "pixel",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "x": 0,
+       "y": 0
+    },
+    "marks": [],
+    "name": "~ - fish",
+    "percent": 0.414414414414414,
+    "swallows": [
+       {
+       "class": "^Termite$",
+       "instance": "^terminalL$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "border": "pixel",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "x": 0,
+       "y": 0
+    },
+    "marks": [],
+    "name": "~ - fish",
+    "percent": 0.333333333333333,
+    "swallows": [
+       {
+       "class": "^Termite$",
+       "instance": "^terminalR$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    // splitv split container with 2 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "marks": [],
+    "percent": 0.252252252252252,
+    "type": "con",
+    "nodes": [
+        {
+            // splitv split container with 2 children
+            "border": "normal",
+            "floating": "auto_off",
+            "layout": "splitv",
+            "marks": [],
+            "percent": 0.4,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "x": 0,
+                       "y": 0
+                    },
+                    "marks": [],
+                    "name": "cava",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                        "class": "^Termite$",
+                        "instance": "^cava$"
+                       }
+                    ],
+                    "type": "con"
+                },
+                {
+                    "border": "pixel",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 530,
+                       "width": 816,
+                       "x": 0,
+                       "y": 0
+                    },
+                    "marks": [],
+                    "name": "clock",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                        "class": "^Termite$",
+                        "instance": "^clock$"
+                       }
+                    ],
+                    "type": "con"
+                }
+            ]
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "x": 0,
+               "y": 0
+            },
+            "marks": [],
+            "name": "/usr/bin/ranger",
+            "percent": 0.6,
+            "swallows": [
+               {
+               "class": "^Termite$",
+               "instance": "^ranger$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

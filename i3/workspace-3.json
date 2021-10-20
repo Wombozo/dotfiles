@@ -1,0 +1,51 @@
+// vim:ts=4:sw=4:et
+{
+    // tabbed split container with 2 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "tabbed",
+    "marks": [],
+    "percent": 1,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "x": 0,
+               "y": 0
+            },
+            "marks": [],
+            "name": "CODE FIRMWARE | Microsoft Teams",
+            "percent": 0.5,
+            "swallows": [
+               {
+                "class": "^Microsoft\\ Teams\\ \\-\\ Preview$",
+                "instance": "^microsoft\\ teams\\ \\-\\ preview$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "x": 0,
+               "y": 0
+            },
+            "marks": [],
+            "name": "Inbox - Mozilla Thunderbird",
+            "percent": 0.5,
+            "swallows": [
+               {
+               "class": "^Thunderbird$",
+               "instance": "^Mail$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
