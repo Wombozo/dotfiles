@@ -3,15 +3,15 @@
 function ws1() {
     i3-msg "workspace 1; append_layout ~/dotfiles/i3/workspace-1.json"
     sleep 0.1
-    exec /usr/bin/termite --name=terminalR -e /usr/bin/fish &
+    exec /usr/bin/kitty --name=terminalR /usr/bin/fish &
     sleep 0.1
-    exec /usr/bin/termite --name=cava -e /usr/bin/cava &
+    exec /usr/bin/kitty --name=cava /usr/bin/cava &
     sleep 0.1
-    exec /usr/bin/termite --name=clock -e '/usr/bin/tty-clock -Dc' &
+    exec /usr/bin/kitty --name=clock /usr/bin/tty-clock -Dc &
     sleep 0.1
-    exec /usr/bin/termite --name=ranger -e /usr/bin/ranger &
+    exec /usr/bin/kitty --name=ranger /usr/bin/ranger &
     sleep 0.1
-    exec /usr/bin/termite --name=terminalL -e /usr/bin/fish &
+    exec /usr/bin/kitty --name=terminalL /usr/bin/fish &
 }
 
 function ws2() {

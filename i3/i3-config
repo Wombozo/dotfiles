@@ -35,7 +35,7 @@ font pango:hasklig 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite -e /usr/bin/fish
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -98,7 +98,7 @@ bindsym $mod+space floating toggle
 
 # focus the child container
 #bindsym $mod+o focus child
-bindsym $mod+o exec termite -e ranger
+bindsym $mod+o exec kitty ranger
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
