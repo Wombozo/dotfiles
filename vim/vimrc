@@ -3,18 +3,18 @@
  set nocompatible              " be iMproved, required
  filetype off                  " required
 
- set rtp+=~/.vim/bundle/Vundle.vim
- call vundle#begin()
- Plugin 'VundleVim/Vundle.vim'
- Plugin 'ryanoasis/vim-devicons'
- Plugin 'preservim/nerdtree'
- Plugin 'wincent/terminus'
- Plugin 'junegunn/vim-peekaboo'
- Plugin 'neoclide/coc.nvim'
- Plugin 'itchyny/lightline.vim'
- Plugin 'bfrg/vim-cpp-modern'
- Plugin 'kshenoy/vim-signature'
- call vundle#end()
+ call plug#begin('~/.vim/plugged')
+ Plug 'ryanoasis/vim-devicons'
+ Plug 'preservim/nerdtree'
+ Plug 'wincent/terminus'
+ Plug 'junegunn/vim-peekaboo'
+ Plug 'itchyny/lightline.vim'
+ Plug 'junegunn/goyo.vim'
+ Plug 'kshenoy/vim-signature'
+ Plug 'cohama/lexima.vim'
+ Plug 'rust-lang/rust.vim'
+ Plug 'rhysd/rust-doc.vim'
+ call plug#end()
  filetype plugin indent on
 
 " Basic Behavior
@@ -39,6 +39,7 @@
 
 " NerdTree
  nmap <C-f> :NERDTreeToggle<CR>
+ let g:NERDTreeWinPos = "left"
  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Quit vim if only NERTTree tab remains
  nmap <C-h> <C-w>h
  nmap <C-l> <C-w>l
@@ -53,13 +54,14 @@ noremap è ]
 " Cscope
  source ~/dotfiles/vim/cscope_maps.vim
 
- " YCM
- " let g:ycm_global_ycm_extra_conf = '$HOME/dotfiles/vim/.ycm_extra_conf.py'
-
 " Vim Appearance
-"
-" put colorscheme files in ~/.vim/colors/
- colorscheme slate 
+ "colorscheme slate 
+ " colorscheme wombat256grf 
+ "colorscheme archman 
+ "colorscheme peachpuff 
+ "colorscheme koehler
+ colorscheme delek 
+ 
 
 " use filetype-based syntax highlighting, ftplugins, and indentation
  syntax enable
@@ -74,10 +76,12 @@ noremap è ]
 
 " Lists
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
-noremap <C-l> :set list!<CR>
+noremap <C-i> :set list!<CR>
 
 " MRU
 nnoremap <C-e> :MRU<CR>
+
+" Shift escape for normal mode
 
 " source .vimrc's if present in working directories
 set exrc
@@ -101,3 +105,15 @@ set noshowmode
 let g:lightline = {
       \ 'colorscheme': 'wombat',
      \ }
+
+" RustAnalyzer
+let g:LanguageClient_serverCommands = {
+\ 'rust': ['rust-analyzer'],
+\ }
+
+let g:rustfmt_autosave = 1
+
+
+nnoremap <C-t> :so /opt/edevice.vim<CR>
+" Goyo
+nnoremap <C-g> :Goyo<CR>
