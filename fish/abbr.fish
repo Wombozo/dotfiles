@@ -4,7 +4,7 @@ abbr bd 'bat --style=changes'
 abbr cat 'bat -p --wrap=never --paging=never'
 
 abbr g git 
-abbr gs git status
+abbr gs git status --short
 abbr ga git add 
 abbr gc git commit
 abbr gcm git commit -m 
