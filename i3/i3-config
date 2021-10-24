@@ -253,3 +253,4 @@ client.urgent #cc4380 #d668c2 #e55bb7 #f767eb
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
 exec --no-startup-id xset s noblank
+exec --no-startup-id xset r rate 200 45
