@@ -1,45 +1,25 @@
-" Enable Vundle: vim plugin manager
- filetype plugin on
- set nocompatible              " be iMproved, required
- filetype off                  " required
-
- call plug#begin('~/.vim/plugged')
- Plug 'ryanoasis/vim-devicons'
- Plug 'preservim/nerdtree'
- Plug 'wincent/terminus'
- Plug 'junegunn/vim-peekaboo'
- Plug 'itchyny/lightline.vim'
- Plug 'kshenoy/vim-signature'
- Plug 'cohama/lexima.vim'
- Plug 'rust-lang/rust.vim'
- Plug 'rhysd/rust-doc.vim'
- Plug 'neoclide/coc.nvim'
- "Plug 'prabirshrestha/vim-lsp'
- "Plug 'neovim/nvim-lspconfig'
- Plug 'jackguo380/vim-lsp-cxx-highlight'
- Plug 'wsdjeg/FlyGrep.vim'
- Plug 'lvht/mru'
- call plug#end()
-
-
- filetype plugin indent on
+" Plugins
+call plug#begin('~/.vim/plugged')
+ Plug 'ryanoasis/vim-devicons' " Set of icons
+ Plug 'preservim/nerdtree' " Tree Navigation
+ Plug 'wincent/terminus' " Paste option and cursor shape
+ Plug 'junegunn/vim-peekaboo' " Marks on the side
+ Plug 'kshenoy/vim-signature' " Display marks
+ Plug 'itchyny/lightline.vim' " Bottom fancy line
+ Plug 'cohama/lexima.vim' " Autoclose parenthesis
+ Plug 'rust-lang/rust.vim' " Syntax highlighting, formatting
+ Plug 'neovim/nvim-lspconfig' " Configure nvim LSP
+ Plug 'jackguo380/vim-lsp-cxx-highlight'  " Sementic highlighting using LSP
+ Plug 'wsdjeg/FlyGrep.vim' " Recurse grep
+ Plug 'lvht/mru' " Recent files navigation
+ Plug 'xolox/vim-misc' " Dependency for vim-notes
+ Plug 'xolox/vim-notes' " Taking notes
+call plug#end()
+filetype plugin indent on
 
 " Basic Behavior
- set number              " show line numbers
- set relativenumber      " relative lines
- set wrap                " wrap lines
- set encoding=utf8       " set encoding to UTF-8 (default was "latin1")
- set mouse=a             " enable mouse support (might not work well on Mac OS
-" X)
- set wildmenu            " visual autocomplete for command menu
- set lazyredraw          " redraw screen only when we need to
- set showmatch           " highlight matching parentheses / brackets [{()}]
- set laststatus=2        " always show statusline (even with only single
- set nopaste
-" window)
- set ruler               " show line and column number of the cursor on right
-" side of statusline
-" set visualbell         " blink cursor on error, instead of beeping
+ set number              " Show line numbers
+ set relativenumber      " Relative lines
 
 " Key Bindings
  source ~/dotfiles/vim/no_arrows.vim
@@ -53,75 +33,66 @@
  nmap <C-k> <C-w>k
  nmap <C-j> <C-w>j
 
-" Marks
-noremap ç `
-noremap é [
-noremap è ]
-
-" Cscope
- source ~/dotfiles/vim/cscope_maps.vim
-
 " Vim Appearance
- "colorscheme slate 
- " colorscheme wombat256grf 
- "colorscheme archman 
- "colorscheme peachpuff 
- "colorscheme koehler
  colorscheme delek 
- 
-
-" use filetype-based syntax highlighting, ftplugins, and indentation
- syntax enable
 
 " Tab settings
- set tabstop=4           " number of spaces per <TAB>
- set expandtab           " convert <TAB> key-presses to spaces
- set shiftwidth=4        " set a <TAB> key-press equal to 4 spaces
-
- set autoindent          " copy indent from current line when starting a new line
- set smartindent         " even better autoindent (e.g. add indent after '{')
+ set tabstop=4           " Number of spaces per <TAB>
+ set expandtab           " Convert <TAB> key-presses to spaces
+ set shiftwidth=4        " Set a <TAB> key-press equal to 4 spaces
+ set autoindent          " Copy indent from current line when starting a new line
+ set smartindent         " Even better autoindent (e.g. add indent after '{')
 
 " Lists
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+ nmap <C-t> :set list!<CR>
+
+" LSP config
+lua << EOF
+ require'lspconfig'.ccls.setup{
+     init_options = {
+         cache = {
+           directory = "/tmp/ccls";
+         },
+         highlight = {
+             lsRanges  = true;
+             }
+         }
+ }
+EOF
+
+" pmenu
+ highlight Pmenu ctermbg=gray guibg=gray
 
 " MRU
-nnoremap <C-e> :Mru<CR>
+ nnoremap <C-e> :Mru<CR>
 
 " Shift escape for normal mode
 
-" source .vimrc's if present in working directories
-set exrc
-set secure
+" TODO
+ set exrc
+ set secure
 
-function! s:DiffWithSaved()
-  let filetype=&ft
-  diffthis
-  vnew | r # | normal! 1Gdd
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-endfunction
-com! DiffSaved call s:DiffWithSaved()
+" :DiffSaved (:diffoff to get out)
+ function! s:DiffWithSaved()
+   let filetype=&ft
+   diffthis
+   vnew | r # | normal! 1Gdd
+   diffthis
+   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+ endfunction
+ com! DiffSaved call s:DiffWithSaved()
 
 " Syntax for some file extensions
-autocmd BufNewFile,BufRead *.pgn set syntax=pgn
-"autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
+" autocmd BufNewFile,BufRead *.pgn set syntax=pgn
 
 " Lightline
-set noshowmode
-let g:lightline = {
-      \ 'colorscheme': 'one',
-     \ }
+ set noshowmode
+ let g:lightline = {
+       \ 'colorscheme': 'one',
+      \ }
 
-" RustAnalyzer
-let g:LanguageClient_serverCommands = {
-\ 'rust': ['rust-analyzer'],
-\ }
-
-let g:rustfmt_autosave = 1
-
-
-nnoremap <C-t> :so /opt/edevice.vim<CR>
 " FlyGrep
-nnoremap <C-g> :FlyGrep<CR>
+ nnoremap <C-g> :FlyGrep<CR>
 
 
