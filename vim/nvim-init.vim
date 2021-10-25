@@ -32,6 +32,7 @@ filetype plugin indent on
  nmap <C-l> <C-w>l
  nmap <C-k> <C-w>k
  nmap <C-j> <C-w>j
+ let NERDTreeQuitOnOpen=1
 
 " Vim Appearance
  colorscheme delek 
@@ -45,7 +46,7 @@ filetype plugin indent on
 
 " Lists
  set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
- nmap <C-t> :set list!<CR>
+ nnoremap <C-t> :set list!<CR>
 
 " LSP config
 lua << EOF
@@ -95,4 +96,5 @@ EOF
 " FlyGrep
  nnoremap <C-g> :FlyGrep<CR>
 
-
+" Notes
+ nnoremap <C-n> :Note 
