@@ -31,8 +31,7 @@ exec --no-startup-id feh --bg-scale ~/dotfiles/wallpaper.jpg
 # Font
 font pango:hasklig 12
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# Use Mouse+$mod to drag floating windows to their wanted position floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec kitty
@@ -166,6 +165,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym --release Print exec "scrot -s ~/Images/%s_%H%M_%d.%m.%Y_$wx$h.png"
 bindsym --release Shift+Print exec "/usr/local/bin/ss_clipboard.sh"
 
+# Spotify
+bindsym $mod+slash exec playerctl play-pause -p spotify
+
 # Language
 bindsym $mod+Shift+space exec ~/dotfiles/i3/keyboard_layout cycle fr us ru
 
@@ -253,4 +255,3 @@ client.urgent #cc4380 #d668c2 #e55bb7 #f767eb
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
 exec --no-startup-id xset s noblank
-exec --no-startup-id xset r rate 200 45
