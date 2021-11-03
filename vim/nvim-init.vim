@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
  Plug 'ryanoasis/vim-devicons' " Set of icons
  Plug 'preservim/nerdtree' " Tree Navigation
  Plug 'wincent/terminus' " Paste option and cursor shape
+ Plug 'nvim-treesitter/nvim-treesitter' " More highlighting
  Plug 'junegunn/vim-peekaboo' " Marks on the side
  Plug 'kshenoy/vim-signature' " Display marks
  Plug 'itchyny/lightline.vim' " Bottom fancy line
@@ -10,6 +11,7 @@ call plug#begin('~/.vim/plugged')
  Plug 'rust-lang/rust.vim' " Syntax highlighting, formatting
  Plug 'neovim/nvim-lspconfig' " Configure nvim LSP
  Plug 'jackguo380/vim-lsp-cxx-highlight'  " Sementic highlighting using LSP
+ Plug 'hrsh7th/nvim-compe' " Auto-complete
  Plug 'wsdjeg/FlyGrep.vim' " Recurse grep
  Plug 'lvht/mru' " Recent files navigation
  Plug 'xolox/vim-misc' " Dependency for vim-notes
@@ -20,9 +22,6 @@ filetype plugin indent on
 " Basic Behavior
  set number              " Show line numbers
  set relativenumber      " Relative lines
-
-" Key Bindings
- source ~/dotfiles/vim/no_arrows.vim
 
 " NerdTree
  nmap <C-f> :NERDTree<CR>
@@ -35,7 +34,8 @@ filetype plugin indent on
  let NERDTreeQuitOnOpen=1
 
 " Vim Appearance
- colorscheme delek 
+ set termguicolors
+ colorscheme default
 
 " Tab settings
  set tabstop=4           " Number of spaces per <TAB>
@@ -48,31 +48,11 @@ filetype plugin indent on
  set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
  nnoremap <C-t> :set list!<CR>
 
-" LSP config
-lua << EOF
- require'lspconfig'.ccls.setup{
-     init_options = {
-         cache = {
-           directory = "/tmp/ccls";
-         },
-         highlight = {
-             lsRanges  = true;
-             }
-         }
- }
-EOF
-
 " pmenu
  highlight Pmenu ctermbg=gray guibg=gray
 
 " MRU
  nnoremap <C-e> :Mru<CR>
-
-" Shift escape for normal mode
-
-" TODO
- set exrc
- set secure
 
 " :DiffSaved (:diffoff to get out)
  function! s:DiffWithSaved()
