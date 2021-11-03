@@ -63,7 +63,7 @@ M.plugins = {
       bufferline = true, -- list open buffers up the top, easy switching too
       colorizer = true, -- color RGB, HEX, CSS, NAME color codes
       comment = true, -- easily (un)comment code, language aware
-      dashboard = false, -- NeoVim 'home screen' on open
+      dashboard = true, -- NeoVim 'home screen' on open
       esc_insertmode = true, -- map to <ESC> with no lag
       feline = true, -- statusline
       gitsigns = true, -- gitsigns in statusline
@@ -79,7 +79,7 @@ M.plugins = {
          setup_lspconf = "core/lsp_setup", -- path of file containing setups of different lsps
       },
       nvimtree = {
-         enable_git = 0,
+         enable_git = 1,
       },
       luasnip = {
          snippet_path = {},
@@ -156,6 +156,8 @@ M.mappings.plugins = {
    bufferline = {
       next_buffer = "<TAB>", -- next buffer
       prev_buffer = "<S-Tab>", -- previous buffer
+      move_next_buffer = "b]", -- move next buffer
+      move_prev_buffer = "b[" -- move previous buffer
    },
    -- easily (un)comment code, language aware
    comment = {
@@ -184,9 +186,9 @@ M.mappings.plugins = {
       find_files = "<leader>ff",
       find_hiddenfiles = "<leader>fa",
       git_commits = "<leader>cm",
-      git_status = "<leader>gt",
+      git_status = "<leader>gs",
       help_tags = "<leader>fh",
-      live_grep = "<leader>fw",
+      live_grep = "<leader>fg",
       oldfiles = "<leader>fo",
       themes = "<leader>th", -- NvChad theme picker
       -- media previews within telescope finders

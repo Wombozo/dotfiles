@@ -43,10 +43,10 @@ for  row in $(echo "$JSON" | jq -r '.[] | @base64'); do
     ws+=$WS
 done
 
-if [[ ! ${ws[*]} =~ 1 ]]; then
-    ws1
-    sleep 1
-fi
+#if [[ ! ${ws[*]} =~ 1 ]]; then
+#    ws1
+#    sleep 1
+#fi
 if [[ ! ${ws[*]} =~ 2 ]]; then
     ws2
     sleep 1

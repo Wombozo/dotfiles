@@ -22,8 +22,7 @@ exec_always --no-startup-id ~/dotfiles/i3/layout.sh
 #exec --no-startup-id ~/dotfiles/conky/conky_script.sh
 
 # Compton (display compositor)
-#exec --no-startup-id compton --config ~/dotfiles/compton.conf
-exec_always --no-startup-id picom --config ~/dotfiles/picom.conf
+#exec_always --no-startup-id picom --config ~/dotfiles/picom.conf
 
 # Wallpaper
 exec --no-startup-id feh --bg-scale ~/dotfiles/wallpaper.jpg
