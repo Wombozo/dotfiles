@@ -28,7 +28,11 @@ function ws3() {
     exec /usr/bin/thunderbird &
 }
 
-JSON=$(i3-msg -t get_workspaces|jq  . -c)
+
+i3-msg 'focus output HDMI-1'
+i3-msg 'workspace 8'
+i3-msg '[class=".*"]' move workspace to output primary
+JSON=$(i3-msg -t get_workspaces | jq 'del(.[]| select ( .output != "eDP-1"))' |jq -r 'sort_by(.num)[]'|jq -s -c .)
 
 declare -a ws
 for  row in $(echo "$JSON" | jq -r '.[] | @base64'); do
@@ -41,12 +45,15 @@ done
 
 if [[ ! ${ws[*]} =~ 1 ]]; then
     ws1
+    sleep 1
 fi
 if [[ ! ${ws[*]} =~ 2 ]]; then
     ws2
+    sleep 1
 fi
 if [[ ! ${ws[*]} =~ 3 ]]; then
     ws3
+    sleep 1
 fi
 
 
