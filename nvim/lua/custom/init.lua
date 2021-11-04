@@ -21,10 +21,9 @@ local hooks = require "core.hooks"
 -- you can set one or many mappings
 -- example below:
 
--- hooks.add("setup_mappings", function(map)
---    map("n", "<leader>cc", "gg0vG$d", opt) -- example to delete the buffer
---    .... many more mappings ....
--- end)
+hooks.add("setup_mappings", function(map)
+   map("n", "<leader>gs", ":G <CR>", opt) -- example to delete the buffer
+end)
 
 -- To add new plugins, use the "install_plugin" hook,
 -- NOTE: we heavily suggest using Packer's lazy loading (with the 'event' field)
