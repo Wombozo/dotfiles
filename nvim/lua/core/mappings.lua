@@ -128,6 +128,7 @@ M.bufferline = function()
    map("n", m.prev_buffer, ":BufferLineCyclePrev <CR>")
    map("n", m.move_next_buffer, ":BufferLineMoveNext <CR>")
    map("n", m.move_prev_buffer, ":BufferLineMovePrev <CR>")
+   map("n", m.pick_close_buffer, ":BufferLinePickClose <CR>")
 end
 
 M.comment = function()

@@ -157,7 +157,8 @@ M.mappings.plugins = {
       next_buffer = "<TAB>", -- next buffer
       prev_buffer = "<S-Tab>", -- previous buffer
       move_next_buffer = "b]", -- move next buffer
-      move_prev_buffer = "b[" -- move previous buffer
+      move_prev_buffer = "b[", -- move previous buffer
+      pick_close_buffer = "bc" -- pick and close buffer
    },
    -- easily (un)comment code, language aware
    comment = {
