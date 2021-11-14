@@ -169,8 +169,8 @@ M.mappings.plugins = {
       bookmarks = "<leader>bm",
       new_file = "<leader>fn", -- basically create a new buffer
       open = "<leader>db", -- open dashboard
-      session_load = "<leader>l", -- load a saved session
-      session_save = "<leader>s", -- save a session
+      session_load = "<leader>sl", -- load a saved session
+      session_save = "<leader>ss", -- save a session
    },
    -- map to <ESC> with no lag
    better_escape = { -- <ESC> will still work

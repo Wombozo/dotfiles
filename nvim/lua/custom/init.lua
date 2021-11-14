@@ -22,9 +22,12 @@ local hooks = require "core.hooks"
 -- example below:
 
 hooks.add("setup_mappings", function(map)
-   map("n", "<leader>gs", ":G <CR>", opt) -- example to delete the buffer
+   map("n", "<leader>sd", ":SymbolsOutline <CR>", opt)
 end)
 
+hooks.add("setup_mappings", function(map)
+   map("n", "<leader>gs", ":G <CR>", opt)
+end)
 -- To add new plugins, use the "install_plugin" hook,
 -- NOTE: we heavily suggest using Packer's lazy loading (with the 'event' field)
 -- see: https://github.com/wbthomason/packer.nvim
@@ -33,6 +36,9 @@ end)
 hooks.add("install_plugins", function(use)
    use {
       "tpope/vim-fugitive",
+   }
+   use {
+     'simrat39/symbols-outline.nvim',
    }
 end)
 

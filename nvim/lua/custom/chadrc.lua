@@ -16,7 +16,7 @@ M.options = {
 }
 
 M.ui = {
-  theme = "onenord"
+  theme = "everforest"
 }
 
 -- NvChad included plugin options & overrides
