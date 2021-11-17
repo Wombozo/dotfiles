@@ -1,105 +1,72 @@
+# i3 config file
 # ln -s [THISFILE] ~/.config/i3/config
 
 # Mod key
 set $mod Mod1
-exec_always --no-startup-id ~/dotfiles/polybar/launch.sh &
-#exec_always --no-startup-id /usr/bin/xrandr --output HDMI1 --above eDP1
-#exec_always --no-startup-id /usr/bin/xrandr --output HDMI1 --right-of eDP1
-exec_always --no-startup-id /usr/bin/xrandr --output HDMI-1 --left-of eDP-1
-exec_always --no-startup-id /usr/bin/ntpd -qg
 
-# Comment if not using i3w-gaps
-for_window [class=".$"] border pixel 2
+# i3 gaps special
+for_window [class=".$"] border pixel 1
 smart_gaps on
-gaps inner 10
+smart_borders on
+gaps inner 20
 gaps outer 1
-smart_borders no_gaps
-#workspace 1 gaps right 300
-
-exec_always --no-startup-id ~/dotfiles/i3/layout.sh
-
-# Conky
-#exec --no-startup-id ~/dotfiles/conky/conky_script.sh
-
-# Picom (display compositor)
-exec_always --no-startup-id picom --config ~/dotfiles/picom.conf
-
-# Wallpaper
-exec --no-startup-id feh --bg-scale ~/dotfiles/wallpaper.jpg
 
 # Font
 font pango:hasklig 12
 
-# Use Mouse+$mod to drag floating windows to their wanted position floating_modifier $mod
+## Layout on start
+#exec_always --no-startup-id ~/dotfiles/i3/layout.sh
 
-# start a terminal
+# Wallpaper
+exec --no-startup-id feh --bg-scale ~/dotfiles/wallpaper.jpg
+
+## Picom (display compositor)
+exec_always --no-startup-id picom --config ~/dotfiles/picom.conf
+
+# Polybar
+exec_always --no-startup-id ~/dotfiles/polybar/launch.sh &
+
+# Monitor
+exec_always --no-startup-id /usr/bin/xrandr --output HDMI-1 --left-of eDP-1
+
+# ntpd
+exec_always --no-startup-id /usr/bin/ntpd -qg
+
+# Start a terminal
 bindsym $mod+Return exec kitty
 
-# kill focused window
+# Kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec --no-startup-id dmenu_run -i -nb '#3E479B' -nf '#FFFFFF' -fn 'Hasklig Bold' -sb '#831783'
-#bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -show-icons -icon-theme hicolor
+# Launcher
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/dotfiles/rofi/everforest.rasi
 bindsym $mod+Shift+d exec --no-startup-id rofi -show run
 
-# start firefox
+# Start firefox
 bindsym $mod+Shift+f exec --no-startup-id /usr/bin/firefox
 
-# change focus
+# Change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
-#bindsym $mod+Left focus left
-#bindsym $mod+Down focus down
-#bindsym $mod+Up focus up
-#bindsym $mod+Right focus right
-
-# move focused window
+# Move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
-#bindsym $mod+Shift+Left move left
-#bindsym $mod+Shift+Down move down
-#bindsym $mod+Shift+Up move up
-#bindsym $mod+Shift+Right move right
-
-# split in horizontal orientation
+# Layouts
 bindsym $mod+b split h
-
-# split in vertical orientation
 bindsym $mod+n split v
-
-# enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+z layout tabbed
 bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
 bindsym $mod+space floating toggle
 
-# change focus between tiling / floating windows
-#bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-#bindsym $mod+p focus parent
-
-# focus the child container
-#bindsym $mod+o focus child
-bindsym $mod+o exec kitty ranger
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+# Defining workspaces
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -111,7 +78,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# switch to workspace
+# Switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+ampersand workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -132,10 +99,8 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+ccedilla workspace $ws9
 bindsym $mod+0 workspace $ws10
 bindsym $mod+agrave workspace $ws10
-bindsym $mod+Tab move workspace to output right
-#bindsym $mod+Tab move workspace to output up
 
-# move focused container to workspace
+# Move focused container to workspace
 bindsym $mod+Shift+ampersand move container to workspace $ws1
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+eacute move container to workspace $ws2
@@ -154,11 +119,15 @@ bindsym $mod+Shift+ccedilla move container to workspace $ws9
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+agrave move container to workspace $ws10
 bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Tab move workspace to output right
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+
+# Ranger
+bindsym $mod+o exec kitty ranger
 
 # Screenshot region
 bindsym --release Print exec "scrot -s ~/Images/%s_%H%M_%d.%m.%Y_$wx$h.png"
@@ -170,27 +139,24 @@ bindsym $mod+slash exec playerctl play-pause -p spotify
 # Language
 bindsym $mod+Shift+space exec ~/dotfiles/i3/keyboard_layout cycle fr us ru
 
-# reload the configuration file
+# Reload
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-set $Locker i3lock && sleep 1
-# system mode
+# System mode
+bindsym $mod+Shift+s mode "system"
 mode "system" {
     bindsym l exec --no-startup-id i3lock -c 535268, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym s exec --no-startup-id systemctl poweroff -i, mode "default"  
 
-    # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-bindsym $mod+Shift+s mode "system"
-
-# resize window (you can also use the mouse for that)
+# Resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
 mode "resize" {
         # Pressing down will grow the window’s height.
         bindsym h resize shrink width 10 px or 10 ppt
@@ -198,62 +164,32 @@ mode "resize" {
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        #bindsym Left resize shrink width 10 px or 10 ppt
-        #bindsym Down resize grow height 10 px or 10 ppt
-        #bindsym Up resize shrink height 10 px or 10 ppt
-        #bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+m mode "move" focus floating
-mode "move" {
-    bindsym $mod+Tab focus right
-
-    bindsym Left  move left
-    bindsym Down  move down
-    bindsym Up    move up
-    bindsym Right move right
-
-    bindsym h     move left
-    bindsym j     move down
-    bindsym k     move up
-    bindsym l     move right
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym $mod+r mode "resize"
-
-
-# Defining colors
-
-set $ef-bg0    #2B3339
-set $ef-bg1    #323D43
-set $ef-bg2    #A7C080
-set $ef-bg3    #DBBC7F
-set $ef-fg0    #D3C6AA
-set $ef-fg1    #F3F4F5
-
-#                       border              background         text                 indicator
-#Nord :
-client.focused #5e81ac #81a1c1 #88c0d0 #8fbcbb
-client.focused_inactive #2C2C2C #2C2C2C #ffffff #2C2C2C
-client.unfocused #4c566a #434c5e #3b4252 #2e3440
-client.urgent #cc4380 #d668c2 #e55bb7 #f767eb
+# Colors : border background text indicator
+##Nord :
+#client.focused #5e81ac #81a1c1 #88c0d0 #8fbcbb
+#client.focused_inactive #2C2C2C #2C2C2C #ffffff #2C2C2C
+#client.unfocused #4c566a #434c5e #3b4252 #2e3440
+#client.urgent #cc4380 #d668c2 #e55bb7 #f767eb
 
 #Everforest :
-client.focused $ef-bg2 $ef-bg2 $ef-fg1 #8fbcbb
-client.focused_inactive $ef-bg1 $ef-bg1 $ef-fg0 #2C2C2C
-client.unfocused $ef-bg0 $ef-bg0 $ef-fg0 #2e3440
-client.urgent $ef-bg3 $ef-bg3 $ef-fg0 #f767eb
-#
+client.focused #e78a4e #e78a4e #F3F4F5 #8fbcbb
+client.focused_inactive #323D43 #323D43 #D3C6AA #2C2C2C
+client.unfocused #2B3339 #323D43 #D3C6AA #2e3440
+client.urgent #DBBC7F #DBBC7F #D3C6AA #f767eb
+
+## Nothing
+#client.focused #e78a4e #e78a4e #f767eb #8fbcbb #e78a4e
+#client.focused_inactive #131416 #131416 #131416 #131416
+#client.unfocused #131416 #131416 #131416 #131416
+#client.urgent $ef_bg3 $ef_bg3 #D3C6AA #f767eb
+
+# xset properties
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
 exec --no-startup-id xset s noblank
+exec --no-startup-id xset r rate 200 60
