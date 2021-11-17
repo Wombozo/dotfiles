@@ -21,9 +21,9 @@ local hooks = require "core.hooks"
 -- you can set one or many mappings
 -- example below:
 
-hooks.add("setup_mappings", function(map)
-   map("n", "<leader>sd", ":SymbolsOutline <CR>", opt)
-end)
+ hooks.add("setup_mappings", function(map)
+    map("n", "<leader>sd", ":Vista!! <CR>", opt)
+ end)
 
 hooks.add("setup_mappings", function(map)
    map("n", "<leader>gs", ":G <CR>", opt)
@@ -35,10 +35,9 @@ end)
 
 hooks.add("install_plugins", function(use)
    use {
-      "tpope/vim-fugitive",
-   }
-   use {
-     'simrat39/symbols-outline.nvim',
+     'tpope/vim-fugitive',
+     'karb94/neoscroll.nvim',
+     'liuchengxu/vista.vim',
    }
 end)
 
