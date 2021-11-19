@@ -5,9 +5,10 @@
 set $mod Mod1
 
 # i3 gaps special
-for_window [class=".$"] border pixel 1
+for_window [class=".$"] border pixel 0
 smart_gaps on
 smart_borders on
+default_border none
 gaps inner 20
 gaps outer 1
 
@@ -18,10 +19,10 @@ font pango:hasklig 12
 #exec_always --no-startup-id ~/dotfiles/i3/layout.sh
 
 # Wallpaper
-exec --no-startup-id feh --bg-scale ~/dotfiles/wallpaper.jpg
+exec_always --no-startup-id feh --bg-scale ~/dotfiles/wallpaper.jpg
 
 ## Picom (display compositor)
-exec_always --no-startup-id picom --config ~/dotfiles/picom.conf
+exec_always --no-startup-id picom --experimental-backends --config ~/dotfiles/picom.conf
 
 # Polybar
 exec_always --no-startup-id ~/dotfiles/polybar/launch.sh &
@@ -65,6 +66,10 @@ bindsym $mod+s layout stacking
 bindsym $mod+z layout tabbed
 bindsym $mod+e layout toggle split
 bindsym $mod+space floating toggle
+
+# Reload
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
 
 # Defining workspaces
 set $ws1 "1"
@@ -127,7 +132,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
 # Ranger
-bindsym $mod+o exec kitty ranger
+bindsym $mod+o exec kitty nnn -e
 
 # Screenshot region
 bindsym --release Print exec "scrot -s ~/Images/%s_%H%M_%d.%m.%Y_$wx$h.png"
@@ -137,11 +142,8 @@ bindsym --release Shift+Print exec "/usr/local/bin/ss_clipboard.sh"
 bindsym $mod+slash exec playerctl play-pause -p spotify
 
 # Language
-bindsym $mod+Shift+space exec ~/dotfiles/i3/keyboard_layout cycle fr us ru
-
-# Reload
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
+exec --no-startup-id ~/dotfiles/i3/keyboard_layout set us
+bindsym $mod+Shift+space exec ~/dotfiles/i3/keyboard_layout cycle us fr ru
 
 # System mode
 bindsym $mod+Shift+s mode "system"
@@ -176,11 +178,11 @@ mode "resize" {
 #client.unfocused #4c566a #434c5e #3b4252 #2e3440
 #client.urgent #cc4380 #d668c2 #e55bb7 #f767eb
 
-#Everforest :
-client.focused #e78a4e #e78a4e #F3F4F5 #8fbcbb
-client.focused_inactive #323D43 #323D43 #D3C6AA #2C2C2C
-client.unfocused #2B3339 #323D43 #D3C6AA #2e3440
-client.urgent #DBBC7F #DBBC7F #D3C6AA #f767eb
+##Everforest :
+#client.focused #e78a4e #e78a4e #F3F4F5 #8fbcbb
+#client.focused_inactive #323D43 #323D43 #D3C6AA #2C2C2C
+#client.unfocused #2B3339 #323D43 #D3C6AA #2e3440
+#client.urgent #DBBC7F #DBBC7F #D3C6AA #f767eb
 
 ## Nothing
 #client.focused #e78a4e #e78a4e #f767eb #8fbcbb #e78a4e
