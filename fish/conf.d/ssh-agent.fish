@@ -61,8 +61,7 @@ function ssh_agent_init
     # If at this point we still haven't located an agent, it's time to
     # start a new one
     if [ $AGENTFOUND = 0 ] ;
-	echo need to start a new agent
-	eval (ssh-agent -c)
+	eval (ssh-agent -c) > /dev/null
     end
 
     # Finally, show what keys are currently in the agent
