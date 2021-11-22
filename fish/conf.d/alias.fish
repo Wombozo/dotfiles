@@ -15,4 +15,13 @@
 #    end
 #end
 #
+function l
+  exa -lT --icons -L 1 $argv[1]
+end
+
+function cat
+  bat -p --wrap=never --paging=never $argv[1]
+end
+
+funcsave l cat
 #funcsave funcdel top ps
