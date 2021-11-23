@@ -1,0 +1,50 @@
+echo "\uE0A0 \uE0A1 \uE0A2 \uE0A3 \uE0B0 \uE0B1 \uE0B2 \uE0B3"
+      
+      
+      
+     
+      
+      
+      
+
+
+echo "\uE0B4 \uE0B5 \uE0B6 \uE0B7 \uE0B8 \uE0B9 \uE0BA \uE0BB"
+      
+      
+      
+      
+      
+      
+      
+
+
+echo "\uE0BC \uE0BD \uE0BE \uE0BF \uE0C0 \uE0C1 \uE0C2 \uE0C3"
+      
+      
+      
+      
+       
+    
+       
+
+
+echo "\uE0C4 \uE0C5 \uE0C6 \uE0C7 \uE0C8 \uE0CA \uE0CC \uE0CD"
+     
+       
+      
+      
+     
+       
+      
+
+
+echo "\uE0CE \uE0CF \uE0D0 \uE0D1 \uE0D2 \uE0D4"
+       
+      
+      
+      
+      
+      
+▓▒░
+
+ 
