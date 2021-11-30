@@ -3,6 +3,7 @@ require('plugins.nvimtree')
 require('plugins.lspconfig')
 require('plugins.bufferline')
 require('plugins.cmp')
+require('plugins.dashboard')
 
 --Set statusbar
 vim.g.lightline = {
