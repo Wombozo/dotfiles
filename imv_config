@@ -62,4 +62,4 @@ r = reset
 t = slideshow +1
 <Shift+T> = slideshow -1
 
-bg = exec feh --bg-scale $imv_current_file && ln -sf $imv_current_file ~/dotfiles/wallpaper.jpg
+bg = exec wal -i $imv_current_file

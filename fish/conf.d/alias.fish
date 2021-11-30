@@ -23,5 +23,9 @@ function cat
   bat -p --wrap=never --paging=never $argv[1]
 end
 
-funcsave l cat
+function tree
+  exa -lT --icons $argv
+end
+
+funcsave l cat tree
 #funcsave funcdel top ps

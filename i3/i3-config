@@ -19,7 +19,7 @@ font pango:hasklig 12
 #exec_always --no-startup-id ~/dotfiles/i3/layout.sh
 
 # Wallpaper
-exec_always --no-startup-id feh --bg-scale ~/dotfiles/wallpaper.jpg
+#exec_always --no-startup-id feh --bg-scale ~/dotfiles/wallpaper.jpg
 
 ## Picom (display compositor)
 exec_always --no-startup-id picom --experimental-backends --config ~/dotfiles/picom.conf
@@ -40,7 +40,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # Launcher
-bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/dotfiles/rofi/everforest.rasi
+bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/dotfiles/rofi/config.rasi
 bindsym $mod+Shift+d exec --no-startup-id rofi -show run
 
 # Start firefox
@@ -146,16 +146,17 @@ exec --no-startup-id ~/dotfiles/i3/keyboard_layout set us
 bindsym $mod+Shift+space exec ~/dotfiles/i3/keyboard_layout cycle us fr ru
 
 # System mode
-bindsym $mod+Shift+s mode "system"
-mode "system" {
-    bindsym l exec --no-startup-id i3lock -c 535268, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym s exec --no-startup-id systemctl poweroff -i, mode "default"  
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+bindsym $mod+Shift+s exec --no-startup-id rofi -show p -modi p:~/dotfiles/rofi/rofi-power -theme ~/dotfiles/rofi/everforest.rasi -lines 6~/dotfiles/rofi/rofi-power
+#bindsym $mod+Shift+s mode "system"
+#mode "system" {
+#    bindsym l exec --no-startup-id i3lock -c 535268, mode "default"
+#    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+#    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+#    bindsym s exec --no-startup-id systemctl poweroff -i, mode "default"  
+#
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#}
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -185,12 +186,25 @@ mode "resize" {
 #client.urgent #DBBC7F #DBBC7F #D3C6AA #f767eb
 
 ## Nothing
-#client.focused #e78a4e #e78a4e #f767eb #8fbcbb #e78a4e
-#client.focused_inactive #131416 #131416 #131416 #131416
-#client.unfocused #131416 #131416 #131416 #131416
-#client.urgent $ef_bg3 $ef_bg3 #D3C6AA #f767eb
+#client.focused #e78a4e #e78a4e #f3f4f5 #8fbcbb #e78a4e
+#client.focused_inactive #372C2B #372C2B #f3f4f5 #5e81ac
+#client.unfocused #372C2B #372C2B #f3f4f5 #5e81ac
+#client.urgent #5e81ac #5e81ac #D3C6AA #f767eb
+
+set_from_resource $bg i3wm.color0
+set_from_resource $fg i3wm.color1
+
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
 
 # xset properties
+exec --no-startup-id wal -R
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
 exec --no-startup-id xset s noblank
