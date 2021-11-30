@@ -31,6 +31,8 @@ require('packer').startup(function()
   use 'akinsho/bufferline.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'liuchengxu/vista.vim'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/nvim-cmp'
 end)
 
 require('options')
