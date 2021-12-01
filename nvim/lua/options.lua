@@ -32,6 +32,11 @@ vim.o.termguicolors = false
 vim.g.onedark_terminal_italics = 2
 vim.cmd [[colorscheme wal]]
 
+vim.o.expandtab = true
+vim.o.shiftwidth = 2
+vim.o.smartindent = true
+vim.o.tabstop = 4
+
 --Remap space as leader key
 vim.g.mapleader = '\\'
 

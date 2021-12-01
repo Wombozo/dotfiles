@@ -33,11 +33,11 @@ require('packer').startup(function()
   use 'liuchengxu/vista.vim'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/nvim-cmp'
+  use 'ObserverOfTime/coloresque.vim'
 end)
 
 require('options')
 require('plugins')
-require("better_escape").setup()
 
 vim.api.nvim_set_keymap('n', '<leader>h', ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>", {})
 vim.api.nvim_set_keymap('t','jk', '<C-\\><C-n>', {})

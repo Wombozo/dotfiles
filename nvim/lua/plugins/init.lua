@@ -5,7 +5,7 @@ require('plugins.bufferline')
 require('plugins.cmp')
 require('plugins.dashboard')
 
---Set statusbar
+-- Set statusbar
 vim.g.lightline = {
   colorscheme = 'wal',
   active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
