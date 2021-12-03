@@ -42,6 +42,8 @@ require('plugins')
 vim.api.nvim_set_keymap('n', '<leader>h', ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>", {})
 vim.api.nvim_set_keymap('t','jk', '<C-\\><C-n>', {})
 
+vim.api.nvim_set_keymap('n','<leader>sd', ':Vista!! <CR>', {})
+
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {})
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {})
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {})

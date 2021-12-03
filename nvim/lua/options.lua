@@ -2,10 +2,11 @@
 vim.o.inccommand = 'nosplit'
 
 --Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 --Make line numbers default
 vim.wo.relativenumber = true
+vim.wo.number = true
 
 --Do not save when switching buffers (note: this is now a default on master)
 vim.o.hidden = true
