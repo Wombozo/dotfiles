@@ -1,0 +1,1 @@
+../../slanted-colorblocks/scripts/scroll_spotify_status.sh
