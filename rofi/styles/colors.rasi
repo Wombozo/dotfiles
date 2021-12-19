@@ -1,0 +1,12 @@
+/* colors */
+
+* {
+    background:                     #212121ff;
+    al:              	#1D2021;
+    background-alt:              	            #404552;
+    background-bar:                 #151515FF;
+    foreground:                     #EDEDEDFF;
+    accent:			            	#EDEDED4d;
+    border:		               		#1A73E9FF;
+    selected:               		#151515ff;
+}

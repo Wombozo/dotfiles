@@ -1,11 +1,15 @@
 enable_audio_bell no
 listen_on unix:@moo
 allow_remote_control yes
+disable_ligatures cursor
+font_features FiraCode-Retina +zero
+font_family FuraCode Nerd Font
+
 
 #window_padding_width 9
 
 
 # BEGIN_KITTY_THEME
-# Alien Blood
+# One Dark
 include current-theme.conf
 # END_KITTY_THEME

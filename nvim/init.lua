@@ -20,8 +20,6 @@ require('packer').startup(function()
   use 'itchyny/lightline.vim'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
   use 'glepnir/dashboard-nvim'
   use 'terrortylor/nvim-comment'
   use 'dylanaraps/wal.vim'
@@ -34,6 +32,11 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/nvim-cmp'
   use 'ObserverOfTime/coloresque.vim'
+-- Themes
+  use 'NLKNguyen/papercolor-theme'
+  use 'joshdick/onedark.vim'
+  use 'jaredgorski/spacecamp'
+  use 'ayu-theme/ayu-vim'
 end)
 
 require('options')

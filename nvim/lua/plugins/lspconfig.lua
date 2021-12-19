@@ -35,9 +35,28 @@ nvim_lsp['sumneko_lua'].setup{
 }
 
 nvim_lsp['ccls'].setup {
-  on_attach = attach,
+  on_attach = on_attach,
   capabilities = capabilities,
   flags = {
         debounce_text_changes = 150,
      },
 }
+
+nvim_lsp.rust_analyzer.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        ["rust-analyzer"] = {
+            assist = {
+                importGranularity = "module",
+                importPrefix = "by_self",
+            },
+            cargo = {
+                loadOutDirsFromCheck = true
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+})

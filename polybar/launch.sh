@@ -15,7 +15,7 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 #done
 
 for m in `xrandr --query | grep " connected"|cut -d " " -f1`; do
-    MONITOR="$m" polybar -c ~/dotfiles/polybar/qtile/config.ini main &
+    MONITOR="$m" polybar -c ~/dotfiles/polybar/openbox/config.ini main &
 done
 
 

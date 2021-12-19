@@ -29,9 +29,10 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 --Set colorscheme (order is important here)
-vim.o.termguicolors = false
+vim.o.termguicolors = true
 vim.g.onedark_terminal_italics = 2
-vim.cmd [[colorscheme wal]]
+vim.g.ayucolor="mirage"
+vim.cmd [[colorscheme ayu]]
 
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
