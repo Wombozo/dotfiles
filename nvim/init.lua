@@ -26,7 +26,7 @@ require('packer').startup(function()
   use 'kyazdani42/nvim-tree.lua'
   use 'nvim-treesitter/nvim-treesitter'
   use 'max397574/better-escape.nvim'
-  use 'akinsho/bufferline.nvim'
+  use 'romgrk/barbar.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'liuchengxu/vista.vim'
   use 'hrsh7th/cmp-nvim-lsp'

@@ -1,7 +1,8 @@
 require('plugins.telescope')
 require('plugins.nvimtree')
 require('plugins.lspconfig')
-require('plugins.bufferline')
+--require('plugins.bufferline')
+require('plugins.barbar')
 require('plugins.cmp')
 require('plugins.dashboard')
 

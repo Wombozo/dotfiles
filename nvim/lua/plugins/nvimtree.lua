@@ -71,4 +71,19 @@ require('nvim-tree').setup {
       timeout = 500,
    }
 }
-vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', {})
+
+local view = require'nvim-tree.view'
+
+function toggle_tree()
+  if view.win_open() then
+    require'nvim-tree'.close()
+    require'bufferline.state'.set_offset(0)
+  else
+    require'bufferline.state'.set_offset(31, 'File Explorer')
+    require'nvim-tree'.find_file(true)
+  end
+end
+
+
+--vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', {})
+vim.api.nvim_set_keymap('n', '<C-n>', ":lua toggle_tree()<CR>", {})
