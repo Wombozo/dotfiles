@@ -183,17 +183,59 @@
         <command>openbox --reconfigure</command>
       </action>
     </keybind>
-    <keybind key="A-Right"><action name="DesktopRight"/></keybind>
-    <keybind key="A-Left"><action name="GoToDesktop"><to>left</to></action></keybind>
-    <keybind key="A-Tab"><action name="NextWindow"/></keybind>
-    <keybind key="A-S-Tab"><action name="PreviousWindow"/></keybind>
-    <keybind key="S-A-Left"><action name="SendToDesktopLeft"/></keybind>
-    <keybind key="S-A-Right"><action name="SendToDesktopRight"/></keybind>
-    <keybind key="A-1"><action name="GoToDesktop"><to>1</to></action></keybind>
-    <keybind key="A-2"><action name="GoToDesktop"><to>2</to></action></keybind>
-    <keybind key="A-3"><action name="GoToDesktop"><to>3</to></action></keybind>
-    <keybind key="A-4"><action name="GoToDesktop"><to>4</to></action></keybind>
-    <keybind key="A-5"><action name="GoToDesktop"><to>5</to></action></keybind>
+    <keybind key="A-Right">
+      <action name="DesktopRight"/>
+    </keybind>
+    <keybind key="A-l">
+      <action name="DesktopRight"/>
+    </keybind>
+    <keybind key="A-Left">
+      <action name="GoToDesktop">
+        <to>left</to>
+      </action>
+    </keybind>
+    <keybind key="A-h">
+      <action name="GoToDesktop">
+        <to>left</to>
+      </action>
+    </keybind>
+    <keybind key="A-Tab">
+      <action name="NextWindow"/>
+    </keybind>
+    <keybind key="A-S-Tab">
+      <action name="PreviousWindow"/>
+    </keybind>
+    <keybind key="S-A-Left">
+      <action name="SendToDesktopLeft"/>
+    </keybind>
+    <keybind key="S-A-Right">
+      <action name="SendToDesktopRight"/>
+    </keybind>
+    <keybind key="A-1">
+      <action name="GoToDesktop">
+        <to>1</to>
+      </action>
+    </keybind>
+    <keybind key="A-2">
+      <action name="GoToDesktop">
+        <to>2</to>
+      </action>
+    </keybind>
+    <keybind key="A-3">
+      <action name="GoToDesktop">
+        <to>3</to>
+      </action>
+    </keybind>
+    <keybind key="A-4">
+      <action name="GoToDesktop">
+        <to>4</to>
+      </action>
+    </keybind>
+    <keybind key="A-5">
+      <action name="GoToDesktop">
+        <to>5</to>
+      </action>
+    </keybind>
     <keybind key="A-space">
       <action name="ShowMenu">
         <menu>client-menu</menu>
@@ -229,16 +271,6 @@
         <command>playerctl next</command>
       </action>
     </keybind>
-    <keybind key="F6">
-      <action name="Execute">
-        <command>xbacklight +10</command>
-      </action>
-    </keybind>
-    <keybind key="F5">
-      <action name="Execute">
-        <command>xbacklight -10</command>
-      </action>
-    </keybind>
     <keybind key="Print">
       <action name="Execute">
         <command>scrot 'ArcoLinux_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)'</command>
@@ -247,11 +279,6 @@
     <keybind key="A-Print">
       <action name="Execute">
         <command>scrot -d 5 'ArcoLinux_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)'</command>
-      </action>
-    </keybind>
-    <keybind key="A-F3">
-      <action name="Execute">
-        <command>xfce4-appfinder</command>
       </action>
     </keybind>
     <keybind key="A-p">
@@ -272,7 +299,7 @@
     <keybind key="A-F4">
       <action name="Close"/>
     </keybind>
-    <keybind key="A-h">
+    <keybind key="W-h">
       <action name="ToggleDecorations"/>
     </keybind>
     <keybind key="W-d">
@@ -298,6 +325,9 @@
         <width>50%</width>
       </action>
       <action name="MoveToEdgeWest"/>
+    </keybind>
+    <keybind key="W-p">
+      <action name="ToggleOmnipresent"/>
     </keybind>
     <keybind key="W-Up">
       <action name="MaximizeFull"/>
@@ -343,9 +373,9 @@
         <command>obconf</command>
       </action>
     </keybind>
-    <keybind key="C-A-F">
+    <keybind key="A-S-F">
       <action name="Execute">
-        <command>firefox</command>
+        <command>qutebrowser</command>
       </action>
     </keybind>
   </keyboard>
@@ -746,19 +776,39 @@
     <!-- show the manage desktops section in the client-list-(combined-)menu -->
   </menu>
   <applications>
-    <application name="oblogout">
-      <position force="no">
-        <monitor>1</monitor>
-      </position>
-      <fullscreen>yes</fullscreen>
-    </application>
     <application name="slimlock">
       <position force="no">
         <monitor>1</monitor>
       </position>
     </application>
-      <application class="*">
-        <decor>no</decor>
-      </application>
+    <application class="*">
+      <maximized>no</maximized>
+      <decor>no</decor>
+    </application>
+    <application class="firefox">
+      <desktop>2</desktop>
+      <maximized>yes</maximized>
+    </application>
+    <application class="qutebrowser">
+      <desktop>2</desktop>
+      <maximized>yes</maximized>
+    </application>
+    <application class="Microsoft Teams - Preview">
+      <desktop>3</desktop>
+      <maximized>yes</maximized>
+    </application>
+    <application class="Thunderbird">
+      <maximized>yes</maximized>
+      <desktop>3</desktop>
+    </application>
+    <application class="TelegramDesktop">
+      <desktop>4</desktop>
+    </application>
+    <application class="discord">
+      <desktop>4</desktop>
+    </application>
+    <application class="Spotify">
+      <desktop>4</desktop>
+    </application>
   </applications>
 </openbox_config>

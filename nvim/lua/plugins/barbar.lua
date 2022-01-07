@@ -2,11 +2,11 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 -- Move to previous/next
-map('n', '<S-Left>', ':BufferPrevious<CR>', opts)
-map('n', '<S-Right>', ':BufferNext<CR>', opts)
+map('n', '<TAB>', ':BufferNext<CR>', opts)
+map('n', '<S-TAB>', ':BufferPrev<CR>', opts)
 -- Re-order to previous/next
-map('n', '<S-h>', ':BufferMovePrevious<CR>', opts)
-map('n', '<S-l>', ' :BufferMoveNext<CR>', opts)
+map('n', 'bh', ':BufferMovePrevious<CR>', opts)
+map('n', 'bl', ' :BufferMoveNext<CR>', opts)
 ---- Goto buffer in position...
 --map('n', '<S-1>', ':BufferGoto 1<CR>', opts)
 --map('n', '<S-2>', ':BufferGoto 2<CR>', opts)
@@ -19,7 +19,7 @@ map('n', '<S-l>', ' :BufferMoveNext<CR>', opts)
 --map('n', '<S-9>', ':BufferGoto 9<CR>', opts)
 --map('n', '<S-0>', ':BufferLast<CR>', opts)
 -- Close buffer
-map('n', '<S-c>', ':BufferClose<CR>', opts)
+map('n', 'bc', ':BufferClose<CR>', opts)
 -- Wipeout buffer
 --                 :BufferWipeout<CR>
 -- Close commands
@@ -27,7 +27,7 @@ map('n', '<S-c>', ':BufferClose<CR>', opts)
 --                 :BufferCloseBuffersLeft<CR>
 --                 :BufferCloseBuffersRight<CR>
 -- Magic buffer-picking mode
-map('n', '<S-p>', ':BufferPick<CR>', opts)
+map('n', 'bp', ':BufferPick<CR>', opts)
 -- Sort automatically by...
 
 -- Other:

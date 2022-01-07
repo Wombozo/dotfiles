@@ -39,6 +39,17 @@ vim.o.shiftwidth = 2
 vim.o.smartindent = true
 vim.o.tabstop = 4
 
+--vim.opt.listchars = { extends = ">", eol = "¬", trail = "~", space = "␣", tab = ">." }
+vim.opt.listchars = {
+  extends = ">",
+  eol = "¬",
+  tab = ">.",
+  lead = ".",
+  trail = "␣",
+}
+vim.opt.listchars.tab = ">"
+vim.api.nvim_set_keymap('n', '<C-t>', ':set list!<CR>', {})
+
 --Remap space as leader key
 vim.g.mapleader = '\\'
 

@@ -13,23 +13,23 @@ vim.g.lightline = {
   component_function = { gitbranch = 'fugitive#head' },
 }
 
--- Blankline
-require("indent_blankline").setup {
-      indentLine_enabled = 1,
-      char = "▏",
-      filetype_exclude = {
-         "help",
-         "terminal",
-         "dashboard",
-         "packer",
-         "lspinfo",
-         "TelescopePrompt",
-         "TelescopeResults",
-      },
-      buftype_exclude = { "terminal" },
-      show_trailing_blankline_indent = false,
-      show_first_indent_level = false,
-   }
+---- Blankline
+--require("indent_blankline").setup {
+--      indentLine_enabled = 1,
+--      char = "▏",
+--      filetype_exclude = {
+--         "help",
+--         "terminal",
+--         "dashboard",
+--         "packer",
+--         "lspinfo",
+--         "TelescopePrompt",
+--         "TelescopeResults",
+--      },
+--      buftype_exclude = { "terminal" },
+--      show_trailing_blankline_indent = false,
+--      show_first_indent_level = false,
+--   }
 
 -- Treesitter configuration
 require('nvim-treesitter.configs').setup {

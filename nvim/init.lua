@@ -18,7 +18,6 @@ require('packer').startup(function()
   use 'tpope/vim-fugitive'
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use 'itchyny/lightline.vim'
-  use 'lukas-reineke/indent-blankline.nvim'
   use 'neovim/nvim-lspconfig'
   use 'glepnir/dashboard-nvim'
   use 'terrortylor/nvim-comment'
@@ -29,9 +28,10 @@ require('packer').startup(function()
   use 'romgrk/barbar.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'liuchengxu/vista.vim'
-  use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/nvim-cmp'
-  use 'ObserverOfTime/coloresque.vim'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-path'
+  use 'editorconfig/editorconfig-vim'
 -- Themes
   use 'NLKNguyen/papercolor-theme'
   use 'joshdick/onedark.vim'

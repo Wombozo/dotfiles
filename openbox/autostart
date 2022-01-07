@@ -1,6 +1,6 @@
 #
 # Set background image
-#nitrogen --restore
+nitrogen --restore
 xrandr --output HDMI1 --left-of eDP1
 xrandr --output HDMI1 --primary
 
@@ -23,7 +23,7 @@ xset b off
 xset r rate 100 60
 
 ## Enable power management
-xfce4-power-manager &
+#xfce4-power-manager &
 
 ##Clipboard Manager
 #(xfce4-clipman) &
@@ -34,9 +34,15 @@ xfce4-power-manager &
 #(nm-applet) &
 
 (~/dotfiles/polybar/launch.sh) &
-(plank) &
 (picom --config ~/dotfiles/picom.conf) &
 
-#discord &
-#teams &
-#thunderbird &
+conky &
+
+discord &
+telegram-desktop &
+spotify &
+teams &
+thunderbird &
+sleep 1
+wmctrl -r Spotify -t 3
+plank &

@@ -30,8 +30,19 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 nvim_lsp['bashls'].setup{}
+--nvim_lsp['sumneko_lua'].setup{
+--  cmd = {"lua-language-server", "-E", "/usr/lib/lua-language-server"};
+--}
+
 nvim_lsp['sumneko_lua'].setup{
-  cmd = {"lua-language-server", "-E", "/usr/lib/lua-language-server"};
+  cmd = {"lua-language-server", "-E", "/usr/lib/lua-language-server"},
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {'vim'},
+      },
+    },
+  },
 }
 
 nvim_lsp['ccls'].setup {
