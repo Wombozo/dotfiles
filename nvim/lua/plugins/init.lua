@@ -1,10 +1,11 @@
 require('plugins.telescope')
 require('plugins.nvimtree')
 require('plugins.lspconfig')
---require('plugins.bufferline')
 require('plugins.barbar')
 require('plugins.cmp')
 require('plugins.dashboard')
+require('plugins.term')
+require('plugins.neoclip')
 
 -- Set statusbar
 vim.g.lightline = {
@@ -12,24 +13,6 @@ vim.g.lightline = {
   active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
   component_function = { gitbranch = 'fugitive#head' },
 }
-
----- Blankline
---require("indent_blankline").setup {
---      indentLine_enabled = 1,
---      char = "▏",
---      filetype_exclude = {
---         "help",
---         "terminal",
---         "dashboard",
---         "packer",
---         "lspinfo",
---         "TelescopePrompt",
---         "TelescopeResults",
---      },
---      buftype_exclude = { "terminal" },
---      show_trailing_blankline_indent = false,
---      show_first_indent_level = false,
---   }
 
 -- Treesitter configuration
 require('nvim-treesitter.configs').setup {
@@ -39,4 +22,13 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
+-- Better escape
 require("better_escape").setup()
+
+-- Comments
+require('nvim_comment').setup()
+vim.api.nvim_set_keymap('n', '<C-_>', ':CommentToggle <CR>', {})
+vim.api.nvim_set_keymap('v', '<C-_>', ':CommentToggle <CR>', {})
+
+-- Vista
+vim.api.nvim_set_keymap('n','<leader>sd', ':Vista!! <CR>', {})

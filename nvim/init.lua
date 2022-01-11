@@ -8,7 +8,7 @@ end
 vim.cmd [[
   augroup Packer
     autocmd!
-    autocmd BufWritePost init.lua PackerCompile
+    autocmd BufWritePost init.lua PackerSync
   augroup end
 ]]
 
@@ -21,17 +21,25 @@ require('packer').startup(function()
   use 'neovim/nvim-lspconfig'
   use 'glepnir/dashboard-nvim'
   use 'terrortylor/nvim-comment'
-  use 'dylanaraps/wal.vim'
   use 'kyazdani42/nvim-tree.lua'
   use 'nvim-treesitter/nvim-treesitter'
   use 'max397574/better-escape.nvim'
   use 'romgrk/barbar.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'liuchengxu/vista.vim'
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-path'
   use 'editorconfig/editorconfig-vim'
+  use "akinsho/toggleterm.nvim"
+  use 'L3MON4D3/LuaSnip'
+  use { "AckslD/nvim-neoclip.lua", requires = {{'nvim-telescope/telescope.nvim'}, 'tami5/sqlite.lua', module = 'sqlite'}}
+  use 'kevinhwang91/nvim-hlslens'
+  use 'dstein64/nvim-scrollview'
+-- cmp
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-cmdline"
+  use "saadparwaiz1/cmp_luasnip"
 -- Themes
   use 'NLKNguyen/papercolor-theme'
   use 'joshdick/onedark.vim'
@@ -42,12 +50,12 @@ end)
 require('options')
 require('plugins')
 
-vim.api.nvim_set_keymap('n', '<leader>h', ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>", {})
 vim.api.nvim_set_keymap('t','jk', '<C-\\><C-n>', {})
 
-vim.api.nvim_set_keymap('n','<leader>sd', ':Vista!! <CR>', {})
 
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {})
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {})
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {})
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {})
+
+vim.api.nvim_set_keymap('n', '<CR>', ':', {noremap = true})
