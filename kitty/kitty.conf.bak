@@ -6,10 +6,10 @@ font_features FiraCode-Retina +zero
 font_family FuraCode Nerd Font
 
 
-#window_padding_width 9
+window_padding_width 5
 
 
 # BEGIN_KITTY_THEME
-# One Dark
+# Ayu Mirage
 include current-theme.conf
 # END_KITTY_THEME

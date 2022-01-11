@@ -48,6 +48,3 @@ end
 function ExecToggle()
   term_float:toggle()
 end
-
-vim.api.nvim_set_keymap("n", "<leader>tg", "<cmd>lua GitToggle()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>te", "<cmd>lua ExecToggle()<CR>", {noremap = true, silent = true})

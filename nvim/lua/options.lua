@@ -1,3 +1,4 @@
+local options = { }
 --Incremental live completion (note: this is now a default on master)
 vim.o.inccommand = 'nosplit'
 
@@ -31,8 +32,8 @@ vim.wo.signcolumn = 'yes'
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
 vim.g.onedark_terminal_italics = 2
-vim.g.ayucolor="mirage"
-vim.cmd [[colorscheme ayu]]
+vim.cmd [[ silent! colorscheme PaperColor ]]
+options.lightline_theme='PaperColor'
 
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
@@ -48,7 +49,6 @@ vim.opt.listchars = {
   trail = "␣",
 }
 vim.opt.listchars.tab = ">"
-vim.api.nvim_set_keymap('n', '<C-t>', ':set list!<CR>', {})
 
 --Remap space as leader key
 vim.g.mapleader = '\\'
@@ -62,3 +62,5 @@ vim.cmd [[
 ]]
 
 vim.opt.splitbelow = true
+
+return options;

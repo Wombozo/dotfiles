@@ -39,4 +39,3 @@ require('neoclip').setup({
         },
       },
     })
-vim.api.nvim_set_keymap('n', ';', ":lua require('telescope').extensions.neoclip.neoclip() <CR>", {})

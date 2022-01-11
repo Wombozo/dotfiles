@@ -72,19 +72,6 @@ require('nvim-tree').setup {
    }
 }
 
---
---function toggle_tree()
---  if view.win_open() then
---    print('OPEN')
---    require'nvim-tree'.close()
---    require'bufferline.state'.set_offset(0)
---  else
---    print('CLOSE')
---    require'bufferline.state'.set_offset(31, 'File Explorer')
---    require'nvim-tree'.find_file(true)
---  end
---end
-
 
 local nvim_tree = require'nvim-tree'
 local view = require'nvim-tree.view'
@@ -100,6 +87,3 @@ function toggle_tree()
     nvim_tree.find_file(true)
   end
 end
-
---vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', {})
-vim.api.nvim_set_keymap('n', '<C-n>', ":lua toggle_tree()<CR>", {})
