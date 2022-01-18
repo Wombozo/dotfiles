@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pkill polybar
+MONITOR="HDMI1" polybar -c ~/dotfiles/polybar/openbox-v2/config.ini main
+
