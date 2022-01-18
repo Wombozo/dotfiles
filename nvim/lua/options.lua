@@ -1,4 +1,20 @@
 local options = { }
+
+--Set colorscheme (order is important here)
+vim.o.termguicolors = true
+local theme = 'onedark'
+-- vim.cmd [[ silent! colorscheme everforest ]]
+vim.cmd('silent! colorscheme ' .. theme)
+options.lightline_theme='onedark'
+
+--papercolor
+--onedark
+--spacecamp
+--ayu
+--everforest
+--melange
+--badwolf
+
 --Incremental live completion (note: this is now a default on master)
 vim.o.inccommand = 'nosplit'
 
@@ -28,12 +44,6 @@ vim.o.smartcase = true
 --Decrease update time
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
-
---Set colorscheme (order is important here)
-vim.o.termguicolors = true
-vim.g.onedark_terminal_italics = 2
-vim.cmd [[ silent! colorscheme onedark ]]
-options.lightline_theme='onedark'
 
 vim.o.expandtab = true
 vim.o.shiftwidth = 2

@@ -4,7 +4,7 @@ local use = require('packer').use
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   use 'tpope/vim-fugitive'
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  use {'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use 'itchyny/lightline.vim'
   use 'neovim/nvim-lspconfig'
   use 'glepnir/dashboard-nvim'
@@ -16,11 +16,12 @@ require('packer').startup(function()
   use 'kyazdani42/nvim-web-devicons'
   use 'liuchengxu/vista.vim'
   use 'editorconfig/editorconfig-vim'
-  use "akinsho/toggleterm.nvim"
+  use 'akinsho/toggleterm.nvim'
   use 'L3MON4D3/LuaSnip'
-  use { "AckslD/nvim-neoclip.lua", requires = {{'nvim-telescope/telescope.nvim'}, 'tami5/sqlite.lua', module = 'sqlite'}}
+  use {'AckslD/nvim-neoclip.lua', requires = {{'nvim-telescope/telescope.nvim'}, 'tami5/sqlite.lua', module = 'sqlite'}}
   use 'kevinhwang91/nvim-hlslens'
   use 'dstein64/nvim-scrollview'
+  use {'sudormrfbin/cheatsheet.nvim', requires = { {'nvim-telescope/telescope.nvim'}, {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}}
 -- cmp
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-path'
@@ -33,6 +34,9 @@ require('packer').startup(function()
   use 'joshdick/onedark.vim'
   use 'jaredgorski/spacecamp'
   use 'ayu-theme/ayu-vim'
+  use 'sainnhe/everforest'
+  use 'savq/melange'
+  use 'sjl/badwolf'
 end)
 
 require('plugins.telescope')
@@ -45,3 +49,4 @@ require('plugins.neoclip')
 require('plugins.lightline')
 require('plugins.treesitter')
 require('plugins.comment')
+require('plugins.vista')

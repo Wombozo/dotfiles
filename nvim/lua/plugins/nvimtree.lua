@@ -36,6 +36,17 @@ g.nvim_tree_icons = {
       symlink_open = "",
    },
 }
+
+g.nvim_tree_window_picker_exclude = {
+  filetype = {
+    'notify',
+    'packer',
+    'vista'
+    },
+  buftype = {
+    'terminal'
+    }
+}
 require('nvim-tree').setup {
     diagnostics = {
       enable = false,
@@ -55,6 +66,7 @@ require('nvim-tree').setup {
    auto_close = true,
    open_on_tab = false,
    hijack_cursor = true,
+   autoclose = true,
    update_cwd = true,
    update_focused_file = {
       enable = true,

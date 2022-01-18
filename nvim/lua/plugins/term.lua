@@ -1,22 +1,21 @@
 require("toggleterm").setup{
-  open_mapping = [[<leader>tt]],
-  hide_numbers = true,
-  shade_filetypes = {},
-  shade_terminals = true,
-  start_in_insert = true,
-  insert_mappings = true,
-  persist_size = true,
-  direction = 'horizontal',
-  close_on_exit = true,
-  shell = vim.o.shell,
+  shading_factor = 0
 }
 
 
 local Terminal  = require('toggleterm.terminal').Terminal
 
-local term_float = Terminal:new({
+local reg_term = Terminal:new({
+  direction = 'horizontal',
+  highlights = {
+    border = "Normal",
+    background = "Normal",
+  }
+})
+local exec_float = Terminal:new({
   direction = 'float',
-  cmd = './.nvim_exec',
+  --cmd = './.nvim_exec',
+  cmd = '~/.local/bin/nvim_exec.sh',
   close_on_exit = true,
   float_opts = {
     width = 100,
@@ -28,6 +27,24 @@ local term_float = Terminal:new({
     }
   }
 })
+
+-- #~/.local/bin/nvim_exec.sh :
+-- #!/bin/bash
+-- 
+-- path=$(pwd)
+-- 
+-- while [[ "${path}" != "/" ]]; do
+--   if [[ -x "${path}/.nvim_exec" ]]; then
+--     ${path}/.nvim_exec
+--     read
+--     exit 0
+--   fi
+--   path=$(dirname $path)
+-- done
+-- 
+-- echo "No .nvim_exec found.. Press <Return> to exit"
+-- read
+
 local git = Terminal:new({
   cmd = "gitui",
   dir = "git_dir",
@@ -42,9 +59,30 @@ local git = Terminal:new({
   end,
 })
 
+local float_term = Terminal:new({
+  direction = 'float',
+  float_opts = {
+    width = 100,
+    height = 40,
+    winblend = 3,
+    highlights = {
+      border = "Normal",
+      background = "Normal",
+    }
+  }
+})
+
 function GitToggle()
   git:toggle()
 end
 function ExecToggle()
-  term_float:toggle()
+  exec_float:toggle()
+end
+
+function TermToggle()
+  reg_term:toggle()
+end
+
+function FloatToggle()
+  float_term:toggle()
 end
