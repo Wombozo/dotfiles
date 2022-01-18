@@ -32,8 +32,8 @@ vim.wo.signcolumn = 'yes'
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
 vim.g.onedark_terminal_italics = 2
-vim.cmd [[ silent! colorscheme PaperColor ]]
-options.lightline_theme='PaperColor'
+vim.cmd [[ silent! colorscheme onedark ]]
+options.lightline_theme='onedark'
 
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
