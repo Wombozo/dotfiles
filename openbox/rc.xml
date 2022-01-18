@@ -40,7 +40,7 @@
                     'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Adapta-Nokto</name>
+    <name>Arc-Aqua</name>
     <titleLayout>DLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -256,7 +256,12 @@
         <command>amixer set Master toggle</command>
       </action>
     </keybind>
-    <keybind key="F9">
+    <keybind key="F5">
+      <action name="Execute">
+        <command>/home/guillaume/dotfiles/openbox/eww_toggle.sh</command>
+      </action>
+    </keybind>
+    <!--<keybind key="F9">
       <action name="Execute">
         <command>playerctl play-pause</command>
       </action>
@@ -270,10 +275,10 @@
       <action name="Execute">
         <command>playerctl next</command>
       </action>
-    </keybind>
+    </keybind>-->
     <keybind key="Print">
       <action name="Execute">
-        <command>scrot 'ArcoLinux_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)'</command>
+        <command>"/usr/local/bin/ss_clipboard.sh"</command>
       </action>
     </keybind>
     <keybind key="A-Print">
@@ -331,6 +336,7 @@
     </keybind>
     <keybind key="W-Up">
       <action name="MaximizeFull"/>
+      <action name="Undecorate"/>
     </keybind>
     <keybind key="W-Down">
       <action name="UnmaximizeFull"/>
@@ -339,6 +345,7 @@
         <height>80%</height>
       </action>
       <action name="MoveToCenter"/>
+      <action name="Decorate"/>
     </keybind>
     <keybind key="A-r">
       <action name="Resize"/>
@@ -783,7 +790,6 @@
     </application>
     <application class="*">
       <maximized>no</maximized>
-      <decor>no</decor>
     </application>
     <application class="firefox">
       <desktop>2</desktop>

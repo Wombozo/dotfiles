@@ -36,8 +36,7 @@ xset r rate 100 60
 (~/dotfiles/polybar/launch.sh) &
 (picom --config ~/dotfiles/picom.conf) &
 
-conky &
-
+eww daemon &
 discord &
 telegram-desktop &
 spotify &
