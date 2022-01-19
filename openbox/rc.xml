@@ -296,6 +296,11 @@
         <command>rofi -show drun -theme /home/guillaume/dotfiles/rofi/launch.rasi -display-drun "Launch"</command>
       </action>
     </keybind>
+    <keybind key="A-s">
+      <action name="Execute">
+        <command>/home/guillaume/dotfiles/rofi/powermenu.sh</command>
+      </action>
+    </keybind>
     <keybind key="A-Return">
       <action name="Execute">
         <command>kitty</command>
