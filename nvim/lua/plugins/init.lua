@@ -22,6 +22,7 @@ require('packer').startup(function()
   use 'kevinhwang91/nvim-hlslens'
   use 'dstein64/nvim-scrollview'
   use {'sudormrfbin/cheatsheet.nvim', requires = { {'nvim-telescope/telescope.nvim'}, {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}}
+  use 'ellisonleao/glow.nvim'
 -- cmp
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-path'
