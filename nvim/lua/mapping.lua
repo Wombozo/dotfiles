@@ -53,3 +53,9 @@ map('n', 'bl', ' <cmd>BufferMoveNext<CR>')
 --map('n', '<S-0>', '<cmd>BufferLast<CR>')
 map('n', 'bc', '<cmd>BufferClose<CR>')
 map('n', 'bp', '<cmd>BufferPick<CR>')
+
+-- Keymaps -----------------------
+map('n', '<leader>?', '<cmd>Telescope keymaps<CR>')
+
+-- Marks -------------------------
+map('n', '<leader>\'', '<cmd>Telescope marks<CR>')
