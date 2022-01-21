@@ -42,6 +42,6 @@ telegram-desktop &
 spotify &
 teams &
 thunderbird &
-sleep 1
+picom --config ~/dotfiles/picom.conf &
+sleep 3
 wmctrl -r Spotify -t 3
-plank &

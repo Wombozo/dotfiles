@@ -9,7 +9,8 @@
         <!-- Profile vars -->
         <var name="IMAGE">images/profile.jpg</var>
         <var name="NAME">Guillaume LAVIGNE</var>
-		<script-var name="UNAME" interval="5m">whoami</script-var>
+		<var name="UNAME">@wombozo</var>
+        <script-var name="MONITOR">~/.config/eww/scripts/get_monitor</script-var>
 
         <!-- System vars -->
 		<script-var name="HOST" interval="5s">hostname</script-var>
@@ -286,7 +287,15 @@
     <windows>
 
 		<!-- background -->
-		<window name="background" stacking="fg" focusable="false" screen="1">
+		<window name="background" stacking="fg" focusable="false" screen="2">
+			<geometry x="0" y="0" width="1920px" height="1080px"/>
+			<widget>
+				<bg/>
+			</widget>
+		</window>
+
+		<!-- background -->
+		<window name="background2" stacking="fg" focusable="false" screen="1">
 			<geometry x="0" y="0" width="1920px" height="1080px"/>
 			<widget>
 				<bg/>
@@ -294,7 +303,7 @@
 		</window>
 
 		<!-- profile -->
-		<window name="profile" stacking="fg" focusable="false" screen="1">
+		<window name="profile" stacking="fg" focusable="false" screen="2">
 			<geometry x="150" y="150" width="350" height="440"/>
 			<widget>
 				<user/>
@@ -302,7 +311,7 @@
 		</window>
 
 		<!-- system -->
-		<window name="system" stacking="fg" focusable="false" screen="1">
+		<window name="system" stacking="fg" focusable="false" screen="2">
 			<geometry x="150" y="605" width="350" height="325"/>
 			<widget>
 				<system/>
@@ -310,7 +319,7 @@
 		</window>
 
 		<!-- clock -->
-		<window name="clock" stacking="fg" focusable="false" screen="1">
+		<window name="clock" stacking="fg" focusable="false" screen="2">
 			<geometry x="515" y="150" width="350" height="155"/>
 			<widget>
 				<clock/>
@@ -318,7 +327,7 @@
 		</window>
 
 		<!-- uptime -->
-		<window name="uptime" stacking="fg" focusable="false" screen="1">
+		<window name="uptime" stacking="fg" focusable="false" screen="2">
 			<geometry x="515" y="320" width="350" height="155"/>
 			<widget>
 				<uptime/>
@@ -326,7 +335,7 @@
 		</window>
 
 		<!-- music -->
-		<window name="music" stacking="fg" focusable="false" screen="1">
+		<window name="music" stacking="fg" focusable="false" screen="2">
 			<geometry x="515" y="490" width="610" height="280"/>
 			<widget>
 				<music/>
@@ -334,7 +343,7 @@
 		</window>
 
 		<!-- gitlab -->
-		<window name="gitlab" stacking="fg" focusable="false" screen="1">
+		<window name="gitlab" stacking="fg" focusable="false" screen="2">
 			<geometry x="515" y="785" width="141" height="145"/>
 			<widget>
 				<gitlab/>
@@ -342,7 +351,7 @@
 		</window>
 
 		<!-- reddit -->
-		<window name="reddit" stacking="fg" focusable="false" screen="1">
+		<window name="reddit" stacking="fg" focusable="false" screen="2">
 			<geometry x="671" y="785" width="141" height="145"/>
 			<widget>
 				<reddit/>
@@ -350,7 +359,7 @@
 		</window>
 
 		<!-- twitter -->
-		<window name="twitter" stacking="fg" focusable="false" screen="1">
+		<window name="twitter" stacking="fg" focusable="false" screen="2">
 			<geometry x="827" y="785" width="141" height="145"/>
 			<widget>
 				<twitter/>
@@ -358,7 +367,7 @@
 		</window>
 
 		<!-- youtube -->
-		<window name="youtube" stacking="fg" focusable="false" screen="1">
+		<window name="youtube" stacking="fg" focusable="false" screen="2">
 			<geometry x="983" y="785" width="142" height="145"/>
 			<widget>
 				<youtube/>
@@ -366,7 +375,7 @@
 		</window>
 
 		<!-- weather -->
-		<window name="weather" stacking="fg" focusable="false" screen="1">
+		<window name="weather" stacking="fg" focusable="false" screen="2">
 			<geometry x="880" y="150" width="550" height="325"/>
 			<widget>
 				<weather/>
@@ -374,7 +383,7 @@
 		</window>
 
 		<!-- apps -->
-		<window name="apps" stacking="fg" focusable="false" screen="1">
+		<window name="apps" stacking="fg" focusable="false" screen="2">
 			<geometry x="1140" y="490" width="290" height="280"/>
 			<widget>
 				<apps/>
@@ -382,7 +391,7 @@
 		</window>
 
 		<!-- mail -->
-		<window name="mail" stacking="fg" focusable="false" screen="1">
+		<window name="mail" stacking="fg" focusable="false" screen="2">
 			<geometry x="1140" y="785" width="290" height="145"/>
 			<widget>
 				<mail/>
@@ -390,7 +399,7 @@
 		</window>
 
 		<!-- logout -->
-		<window name="logout" stacking="fg" focusable="false" screen="1">
+		<window name="logout" stacking="fg" focusable="false" screen="2">
 			<geometry x="1445" y="150" width="155" height="155"/>
 			<widget>
 				<logout/>
@@ -398,7 +407,7 @@
 		</window>
 
 		<!-- sleep -->
-		<window name="sleep" stacking="fg" focusable="false" screen="1">
+		<window name="sleep" stacking="fg" focusable="false" screen="2">
 			<geometry x="1615" y="150" width="155" height="155"/>
 			<widget>
 				<sleep/>
@@ -406,7 +415,7 @@
 		</window>
 
 		<!-- reboot -->
-		<window name="reboot" stacking="fg" focusable="false" screen="1">
+		<window name="reboot" stacking="fg" focusable="false" screen="2">
 			<geometry x="1445" y="320" width="155" height="155"/>
 			<widget>
 				<reboot/>
@@ -414,7 +423,7 @@
 		</window>
 
 		<!-- poweroff -->
-		<window name="poweroff" stacking="fg" focusable="false" screen="1">
+		<window name="poweroff" stacking="fg" focusable="false" screen="2">
 			<geometry x="1615" y="320" width="155" height="155"/>
 			<widget>
 				<poweroff/>
@@ -422,7 +431,7 @@
 		</window>
 
 		<!-- folders -->
-		<window name="folders" stacking="fg" focusable="false" screen="1">
+		<window name="folders" stacking="fg" focusable="false" screen="2">
 			<geometry x="1445" y="490" width="325" height="440"/>
 			<widget>
 				<folders/>
