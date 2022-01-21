@@ -258,7 +258,8 @@
     </keybind>
     <keybind key="F5">
       <action name="Execute">
-        <command>/home/guillaume/dotfiles/openbox/eww_toggle.sh</command>
+        <!-- <command>/home/guillaume/dotfiles/openbox/eww_toggle.sh</command> -->
+        <command>/home/guillaume/dotfiles/eww/launch_eww</command>
       </action>
     </keybind>
     <!--<keybind key="F9">
@@ -346,8 +347,8 @@
     <keybind key="W-Down">
       <action name="UnmaximizeFull"/>
       <action name="MoveResizeTo">
-        <width>80%</width>
-        <height>80%</height>
+        <width>40%</width>
+        <height>40%</height>
       </action>
       <action name="MoveToCenter"/>
       <action name="Decorate"/>

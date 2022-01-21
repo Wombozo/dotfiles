@@ -1,443 +1,377 @@
+/** Global *******************************************/
 *{
-  all: unset;
-}
-window {
-  background-color: #121212;
-/*  background-color: #000000; */
-	color: #ffd5cd;
-  font-family: Museo Sans;
-}
-
-button {
-  all: unset;
-  background-color: #121212;
-  padding: 10px;
-}
-
-.musicart {
-  background-size: 260px;
-  min-height: 260px;
-  min-width: 260px;
-  margin: 20px;
-  border-radius: 10px;
-  // padding: 10px;
-}
-
-.musictitle {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.musicartist {
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
-.musicbtn button {
-  font-size: 12px;
-}
-
-.musicbtn button:hover {
-  color: #D35D6E;
-}
-
-.volume scale trough {
 	all: unset;
-	background-color: #4e4e4e;
-	border-radius: 50px;
-	min-height: 5px;
-  min-width: 240px;
-  margin-bottom: 20px;
+	font-family: feather;
+	font-family: Iosevka;
 }
 
-.volume scale trough highlight {
+/** Background ***************************************/
+.bg {
+	background-image: url("images/bg.png");
+	background-color: #474D59;
+	opacity: 1;
+}
+
+/** Generic window ***********************************/
+.genwin {
+	background-color: #2E3440;
+	border-radius: 16px;
+}
+
+/** Profile ******************************************/
+.face {
+	background-size: 200px;
+	min-height: 200px;
+	min-width: 200px;
+	margin: 65px 0px 0px 0px;
+	border-radius: 100%;
+}
+
+.fullname {
+	color: #D46389;
+	font-size : 30px;
+	font-weight : bold;
+}
+
+.username {
+	color: #8FBCBB;
+	font-size : 22px;
+	font-weight : bold;
+	margin : -15px 0px 0px 0px;
+}
+
+/** System ********************************************/
+.iconcpu, .iconmem, .iconbright, .iconbat {
+	font-size : 32px;
+	font-weight : normal;
+}
+.iconcpu {
+	color: #BF616A;
+}
+.iconmem {
+	color: #A3BE8C;
+}
+.iconbright {
+	color: #EBCB8B;
+}
+.iconbat {
+	color: #88C0D0;
+}
+
+.cpu_bar, .mem_bar, .bright_bar, .bat_bar, scale trough {
 	all: unset;
-	background-color: #ffd5cd;
-	color: #000000;
+	background-color: #3A404C;
+	border-radius: 16px;
+	min-height: 28px;
+	min-width: 240px;
+}
+
+.cpu_bar, .mem_bar, .bright_bar, .bat_bar, scale trough highlight {
+	all: unset;
+	border-radius: 16px;
+}
+
+.cpu_bar scale trough highlight {
+	background-color: #BF616A;
+}
+.mem_bar scale trough highlight {
+	background-color: #A3BE8C;
+}
+.bright_bar scale trough highlight {
+	background-color: #EBCB8B;
+}
+.bat_bar scale trough highlight {
+	background-color: #88C0D0;
+}
+
+/** Clock ********************************************/
+.time_hour, .time_min {
+	color: #81A1C1;
+	font-size : 70px;
+	font-weight : bold;
+}
+.time_hour {
+	margin : 20px 0px 0px 25px;
+}
+.time_min {
+	margin : 0px 0px 10px 0px;
+}
+
+.time_mer {
+	color: #A3BE8C;
+	font-size : 40px;
+	font-weight : bold;
+	margin : 20px 0px 0px 0px;
+}
+
+.time_day {
+	color: #EBCB8B;
+	font-size : 30px;
+	font-weight : normal;
+	margin : 0px 0px 0px 25px;
+}
+
+/** Uptime ********************************************/
+.icontimer {
+	color: #B48EAD;
+	font-size : 90px;
+	font-weight : normal;
+}
+
+.uphour {
+	color: #E5E9F0;
+	font-size : 42px;
+	font-weight : bold;
+}
+
+.upmin {
+	color: #E5E9F0;
+	font-size : 32px;
+	font-weight : bold;
+}
+
+/** Music ***************************************/
+.album_art {
+	background-size: 240px;
+	min-height: 240px;
+	min-width: 240px;
+	margin: 20px;
+	border-radius: 14px;
+}
+
+.song {
+	color: #8FBCBB;
+	font-size : 24px;
+	font-weight : bold;
+	margin : 40px 0px 0px 0px;
+}
+
+.artist {
+	color: #EBCB8B;
+	font-size : 16px;
+	font-weight : normal;
+	margin : 0px 0px 15px 0px;
+}
+
+.btn_prev, .btn_play, .btn_next {
+	font-family: Iosevka Nerd Font;
+}
+.btn_prev {
+	color: #EBCB8B;
+	font-size : 32px;
+	font-weight : normal;
+}
+.btn_play {
+	color: #A3BE8C;
+	font-size : 48px;
+	font-weight : bold;
+}
+.btn_next {
+	color: #EBCB8B;
+	font-size : 32px;
+	font-weight : normal;
+}
+
+.music_bar scale trough highlight {
+	all: unset;
+	background-color: #B48EAD;
+	border-radius: 8px;
+}
+.music_bar scale trough {
+	all: unset;
+	background-color: #3A404C;
+	border-radius: 8px;
+	min-height: 20px;
+	min-width: 310px;
+	margin : 10px 0px 0px 0px;
+}
+
+/** Weather ***************************************/
+.iconweather {
+	font-family: Iosevka Nerd Font;
+	font-size : 120px;
+	font-weight : normal;
+	margin : 15px 0px 0px 30px;
+}
+
+.label_temp {
+	color : #A6D1DD;
+	font-size : 80px;
+	font-weight : bold;
+	margin : -15px 30px 0px 0px;
+}
+
+.label_stat {
+	color : #BF616A;
+	font-size : 38px;
+	font-weight : bold;
+}
+
+.label_quote {
+	color : #E5E5E5;
+	font-size : 18px;
+	font-weight : normal;
+}
+
+/** Applications ***************************************/
+.appbox {
+	margin : 15px 0px 0px 25px;
+}
+
+.app_fox, .app_telegram, .app_discord, .app_terminal,
+.app_files, .app_geany, .app_code, .app_gimp, .app_vbox {
+    background-repeat: no-repeat;
+	background-size: 64px;
+	min-height: 64px;
+	min-width: 64px;
+	margin: 8px 8px 0px 8px;
+}
+
+.app_fox {}
+.app_telegram {}
+.app_discord {}
+.app_terminal {}
+.app_files {}
+.app_geany {}
+.app_code {}
+.app_gimp {}
+.app_vbox {}
+
+/** Links ***************************************/
+.iconweb, .iconmail {
+	color: #FFFFFF;
+	font-family: Iosevka Nerd Font;
+	font-size : 70px;
+	font-weight : normal;
+}
+.iconmail {
+	color: #DF584E;
+}
+
+.github {
+	background-color: #24292E;
+	border-radius: 16px;
+}
+.reddit {
+	background-color: #E46231;
+	border-radius: 16px;
+}
+.twitter {
+	background-color: #61AAD6;
+	border-radius: 16px;
+}
+.youtube {
+	background-color: #DF584E;
+	border-radius: 16px;
+}
+.mail {
+	background-color: #FFFFFF;
+	border-radius: 16px;
+}
+
+.mailbox {
+	background-color: #E5E5E5;
 	border-radius: 10px;
+	margin: 48px 0px 48px 0px;
+}
+.label_mails {
+	color: #404040;
+	font-size : 32px;
+	font-weight : bold;
+	margin: 0px 12px 0px 12px;
 }
 
-.volume slider {
-  all: unset;
-  color: #ffd5cd;
+/** Power buttons ***************************************/
+.btn_logout, .btn_sleep, .btn_reboot, .btn_poweroff {
+	font-size : 48px;
+	font-weight : bold;
 }
 
-.number_day {
-  padding-top: 10px;
-  font-size: 35px;
-  color: #D35D6E;
+.btn_logout {
+	color: #BF616A;
+}
+.btn_sleep {
+	color: #A3BE8C;
+}
+.btn_reboot {
+	color: #EBCB8B;
+}
+.btn_poweroff {
+	color: #88C0D0;
 }
 
-.month {
-  font-weight: bold;
-  // color: #c47eb7;
-}
-
-.weather-icon-side {
-  font-size: 45px;
-  font-family: Iosevka;
-  margin: 5px 30px 5px 30px;
-}
-.weather-stat-side {
-  font-size: 16px;
-  padding-top: 10px;
-  padding-bottom: 5px;
-  font-weight: bold;
-  color: #D35D6E;
-}
-
-.temperature-side {
-  font-size: 16px;
-  font-weight: 900;
-  padding-top: 15px;
-  padding-left: 10px;
-  // color: #c47eb7;
-}
-
-.musicart-side {
-  // background-image: url("/tmp/xmonad/spotify/cover.png");
-  background-size: 80px;
-  min-height: 70px;
-  min-width: 80px;
-  margin: 15px;
-  border-radius: 6px;
-}
-.musicinfo-side {
-  font-size: 15px;
-  margin-top: 25px;
-  margin-left: 5px;
-  font-weight: bold;
-  // margin: 20px;
-  border-radius: 10px;
-  // border: 1px solid white;
-  min-width: 40px;
-}
-.musicbtn-side {
-  padding-left: 20px;
-  padding-top: 8px;
-  padding-bottom: 5px;
-}
-.musicbtn-side button {
-  font-size: 16px;
-  padding-right: 30px;
-}
-
-.musicbtn-side button:hover {
-  color: #D35D6E;
-}
-.pause-play-side {
-  color: #D35D6E;
-}
-.pause-play-side:hover {
-  color: #ffd5cd;
-}
-
-.time-side {
-  margin: 20px 65px 0px 65px;
-  font-size: 60px;
-}
-.minute-side {
-  color: #D35D6E;
-}
-.day-side {
-  font-size: 16px;
-  font-weight: bold;
-  color: #90c861;
-}
-
-
-
-
-.sliders-side slider {
-  all: unset;
-  color: #ffd5cd;
-}
-.slider-vol-side {
-  margin-top: 10px;
-}
-.slider-vol-side scale trough highlight {
-	all: unset;
-	background-color: #c47eb7;
-	color: #000000;
+/** Home folders ***************************************/
+.hddbox {
+	background-color: #3A404C;
 	border-radius: 10px;
+	margin : 15px;
 }
-.slider-bright-side scale trough highlight {
-  all: unset;
-	background-color: #84afdb;
-	color: #000000;
-	border-radius: 10px;
+.hddicon {
+	color: #81A1C1;
+	font-family: Iosevka Nerd Font;
+	font-size : 70px;
+	font-weight : normal;
+	margin : 25px 20px 25px 40px;
 }
-.slider-ram-side scale trough highlight {
-  all: unset;
-	background-color: #D35D6E;;
-	color: #000000;
-	border-radius: 10px;
+.hdd_label {
+	color: #E5E9F0;
+	font-size : 48px;
+	font-weight : bold;
+	margin : 0px 0px 0px 15px;
 }
-.slider-battery-side scale trough highlight {
-  all: unset;
-	background-color: #90c861;
-	color: #000000;
-	border-radius: 10px;
-}
-.slider-vol-side scale trough {
-	all: unset;
-	background-color: #4e4e4e;
-	border-radius: 50px;
-	min-height: 5px;
-  min-width: 170px;
-  margin-top: 10px;
-  margin-left: 20px;
-}
-.slider-bright-side scale trough {
-	all: unset;
-	background-color: #4e4e4e;
-	border-radius: 50px;
-	min-height: 5px;
-  min-width: 170px;
-  margin-top: 10px;
-  margin-left: 16px;
-}
-.slider-ram-side scale trough {
-	all: unset;
-	background-color: #4e4e4e;
-	border-radius: 50px;
-	min-height: 5px;
-  min-width: 170px;
-  margin-top: 10px;
-  margin-left: 17px;
-}
-.slider-battery-side scale trough {
-	all: unset;
-	background-color: #4e4e4e;
-	border-radius: 50px;
-	min-height: 5px;
-  min-width: 170px;
-  margin-top: 10px;
-  margin-left: 13px;
+.fs_sep {
+	color: #2E3440;
+	font-size : 36px;
+	font-weight : bold;
 }
 
-.label-battery-side, .label-bright-side, .label-ram-side, .label-vol-side{
-  margin-top: 10px;
-  font-family: Iosevka;
-  margin-left: 35px;
-  font-size: 25px;
+.iconfolder1, .iconfolder2, .iconfolder3, .iconfolder4, .iconfolder5, .iconfolder6  {
+	font-family: Iosevka Nerd Font;
+	font-size : 32px;
+	font-weight : normal;
+	margin : 0px 0px 0px 75px;
 }
-.label-bright-side {
-  color: #84afdb;
+.iconfolder1 {
+	color: #BF616A;
 }
-.label-ram-side {
-  font-size: 30px;
-  color: #D35D6E;
+.iconfolder2 {
+	color: #A3BE8C;
 }
-.label-battery-side {
-  font-size: 18px;
-  color: #90c861;
+.iconfolder3 {
+	color: #EBCB8B;
 }
-.label-vol-side {
-  color: #c47eb7;
+.iconfolder4 {
+	color: #81A1C1;
 }
-
-.search-side {
-  border-radius: 12px;
-  background-color: #272626;
-  margin: 20px 30px 20px 30px;
+.iconfolder5 {
+	color: #B48EAD;
 }
-.search-side:hover {
-  color: #D35D6E;
-}
-.sysbtn button {
-  font-size: 30px;
-}
-.shutdown-side ~ button:hover {
-  color: #D35D6E;
-}
-.shutdown-side{
-  color: #D35D6E;
-}
-.shutdown-side:hover{
-  color: #ffd5cd;
-}
-.reboot-side{
-  color: #84afdb;
-}
-.lock-side{
-  color: #ffd5cd;
-}
-.suspend-side{
-  color: #c47eb7;
-}
-.logout-side{
-  color: #90c861;
+.iconfolder6 {
+	color: #88C0D0;
 }
 
-
-// .calendar {
-//   margin: 20px;
-//   font-size: 16px;
-// }
-.calendar_title {
-  margin: 20px 20px 0px 20px;
-  font-size: 16px;
+.label_folder1, .label_folder2, .label_folder3, .label_folder4, .label_folder5, .label_folder6  {
+	font-size : 22px;
+	font-weight : normal;
+	margin : 0px 0px 0px 30px;
+}
+.label_folder1 {
+	color: #BF616A;
+}
+.label_folder2 {
+	color: #A3BE8C;
+}
+.label_folder3 {
+	color: #EBCB8B;
+}
+.label_folder4 {
+	color: #81A1C1;
+}
+.label_folder5 {
+	color: #B48EAD;
+}
+.label_folder6 {
+	color: #88C0D0;
 }
 
-.search-full {
-  font-size: 50px;
-  margin-right: 5px;
-}
-.search-full:hover {
-  color: #D35D6E;
-}
-.power-full {
-  font-size: 60px;
-  color: #D35D6E;
-}
-.power-full:hover {
-  color: #ffd5cd;
-}
-.reboot-full {
-  font-size: 60px;
-  color: #84afdb
-}
-.reboot-full:hover {
-  color: #D35D6E
-}
-.lock-full {
-  font-size: 60px;
-  color: #ffd5cd
-}
-.lock-full:hover {
-  color: #D35D6E
-}
-.suspend-full {
-  font-size: 60px;
-  color: #c47eb7
-}
-.suspend-full:hover {
-  color: #D35D6E
-}
-.logout-full {
-  font-size: 60px;
-  color: #90c861
-}
-.logout-full:hover {
-  color: #D35D6E
-}
-
-.pfp {
-  background-image: url("~/.config/eww/images/p.png");
-  background-repeat: no-repeat;
-  background-size: 200px;
-  min-height: 200px;
-  min-width: 200px;
-  margin: 80px 20px 0px 65px;
-  border-radius: 500px;
-}
-.pfptxt {
-  margin-top: 100px;
-  color: #D35D6E;
-  font-size: 36px;
-}
-.subpfptxt {
-  margin-top: 10px;
-  font-size: 24px;
-}
-
-.weather-icon {
-  font-size: 120px;
-  margin: 0px 0px 0px 40px;
-  font-family: Iosevka;
-}
-.weather-stat {
-  font-size: 30px;
-  padding-top: 50px;
-  padding-bottom: 25px;
-  font-weight: bold;
-  color: #D35D6E;
-}
-
-.temperature {
-  font-size: 48px;
-  font-weight: 900;
-}
-.weather-quote {
-  margin: 25px 10px 40px 10px;
-  font-size: 20px;
-}
-.weather-quote-head, .weather-quote-tail {
-  font-size: 18px;
-  // font-weight: bold;
-  // color: #90c861
-}
-
-.l1, .l2, .l3, .l4, .l5, .l6 {
-  font-size: 25px;
-  font-weight: 600;
-}
-.home-dir {
-  margin: 10px;
-}
-.home-dir button:hover {
-  color: #ffd5cd;
-}
-.l1 {
- color: #84afdb;
-}
-.l2 {
-//  color: #90c861;
-}
-.l3 {
- color: #c47eb7;
-}
-.l4 {
- color: #D35D6E;
-}
-.l5 {
-  // color: #90c861;
-}
-.l6 {
-color: #84afdb;
-}
-
-.quote-main {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 20px;
-  // margin-bottom: 20px;
-  margin-left: 20px;
-  color: #A5b3c0;
-}
-.quote-author {
-  font-size: 18px;
-  margin-right: 30px;
-  margin-bottom: 10px;
-  color: #84afdb;
-}
-.quote-tail {
-  font-size: 18px;
-  font-weight: bold;
-  // margin-top: 20px;
-  margin-bottom: 10px;
-  margin-left: 20px;
-  color: #A5b3c0;
-}
-
-.screenshot-icon {
-  color: #ffd5cd;
-  font-size: 60px;
-  margin-right: 5px;
-  font-family: Iosevka;
-}
-
-.vpn-icon {
-  font-size: 60px;
-  margin-right: 5px;
-}
-.incognito-icon {
-  font-size: 60px;
-  margin-right: 10px;
-  color: #c47eb7;
-}
-.quote-box {
-  // margin: 5px;
-}
+/** EOF *************************************************/
