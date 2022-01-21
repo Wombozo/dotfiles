@@ -219,7 +219,7 @@
 }
 
 .app_fox, .app_telegram, .app_discord, .app_terminal,
-.app_files, .app_geany, .app_code, .app_gimp, .app_vbox {
+.app_files, .app_teams, .app_spotify, .app_anki, .app_vbox {
     background-repeat: no-repeat;
 	background-size: 64px;
 	min-height: 64px;
@@ -232,14 +232,13 @@
 .app_discord {}
 .app_terminal {}
 .app_files {}
-.app_geany {}
-.app_code {}
-.app_gimp {}
+.app_teams {}
+.app_spotify {}
+.app_anki {}
 .app_vbox {}
 
 /** Links ***************************************/
 .iconweb, .iconmail {
-	color: #FFFFFF;
 	font-family: Iosevka Nerd Font;
 	font-size : 70px;
 	font-weight : normal;
@@ -248,8 +247,8 @@
 	color: #DF584E;
 }
 
-.github {
-	background-color: #24292E;
+.gitlab {
+	background-color: #534284;
 	border-radius: 16px;
 }
 .reddit {

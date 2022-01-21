@@ -19,7 +19,7 @@ run_eww() {
 		   clock \
 		   uptime \
 		   music \
-		   github \
+		   gitlab \
 		   reddit \
 		   twitter \
 		   youtube \

@@ -5,13 +5,13 @@ FILE="$HOME/.cache/eww_launch.xyz"
 EWW="$HOME/.bin/eww"
 
 if [[ "$1" == "--ff" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && firefox &
+	${EWW} close-all && rm -rf "$FILE" && wmctrl -a qutebrowser
 
 elif [[ "$1" == "--tg" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && telegram-desktop &
+	${EWW} close-all && rm -rf "$FILE" && wmctrl -a telegram-desktop
 
 elif [[ "$1" == "--dc" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && discord &
+	${EWW} close-all && rm -rf "$FILE" && wmctrl -a discord
 
 elif [[ "$1" == "--tr" ]]; then
 	${EWW} close-all && rm -rf "$FILE" && kitty &
@@ -19,14 +19,14 @@ elif [[ "$1" == "--tr" ]]; then
 elif [[ "$1" == "--fm" ]]; then
 	${EWW} close-all && rm -rf "$FILE" && thunar ~ &
 
-elif [[ "$1" == "--ge" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && geany &
+elif [[ "$1" == "--te" ]]; then
+	${EWW} close-all && rm -rf "$FILE" && wmctrl -a teams
 
-elif [[ "$1" == "--cd" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && code &
+elif [[ "$1" == "--sp" ]]; then
+	${EWW} close-all && rm -rf "$FILE" && wmctrl -a spotify
 
-elif [[ "$1" == "--gp" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && gimp &
+elif [[ "$1" == "--an" ]]; then
+	${EWW} close-all && rm -rf "$FILE" && wmctrl -a anki
 
 elif [[ "$1" == "--vb" ]]; then
 	${EWW} close-all && rm -rf "$FILE" && virtualbox &
