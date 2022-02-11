@@ -23,6 +23,9 @@ require('packer').startup(function()
   use 'dstein64/nvim-scrollview'
   use {'sudormrfbin/cheatsheet.nvim', requires = { {'nvim-telescope/telescope.nvim'}, {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}}
   use 'ellisonleao/glow.nvim'
+  use 'chentau/marks.nvim'
+  use 'anuvyklack/pretty-fold.nvim'
+
 -- cmp
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-path'
@@ -38,16 +41,23 @@ require('packer').startup(function()
   use 'sainnhe/everforest'
   use 'savq/melange'
   use 'sjl/badwolf'
+  use 'catppuccin/nvim'
+-- My own
+  use {'wombozo/wrun', requires = {{'akinsho/toggleterm.nvim'}}}
 end)
 
-require('plugins.telescope')
-require('plugins.nvimtree')
-require('plugins.lspconfig')
-require('plugins.cmp')
-require('plugins.dashboard')
-require('plugins.term')
-require('plugins.neoclip')
-require('plugins.lightline')
-require('plugins.treesitter')
-require('plugins.comment')
-require('plugins.vista')
+require'plugins.telescope'
+require'plugins.nvimtree'
+require'plugins.lspconfig'
+require'plugins.cmp'
+require'plugins.dashboard'
+require'plugins.term'
+require'plugins.neoclip'
+require'plugins.lightline'
+require'plugins.treesitter'
+require'plugins.comment'
+require'plugins.vista'
+require'plugins.wrun'
+require'plugins.marks'
+require'plugins.pretty-fold'
+require'plugins.catppuccin'

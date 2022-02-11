@@ -19,7 +19,6 @@ map('n','<leader>sd', '<cmd>Vista!! <CR>')
 map('n', '<leader>tt', '<cmd>lua TermToggle()<CR>')
 map('n', '<leader>tf', '<cmd>lua FloatToggle()<CR>')
 map('n', "<leader>tg", "<cmd>lua GitToggle()<CR>")
-map('n', "<leader>te", "<cmd>lua ExecToggle()<CR>")
 
 -- Telescope ---------------------
 map('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
@@ -59,3 +58,7 @@ map('n', '<leader>?', '<cmd>Telescope keymaps<CR>')
 
 -- Marks -------------------------
 map('n', '<leader>\'', '<cmd>Telescope marks<CR>')
+
+-- WRun --------------------------
+map('n', '<leader>te', '<cmd>WRedit<CR>')
+map('n', '<leader>tr', '<cmd>WRrun<CR>')

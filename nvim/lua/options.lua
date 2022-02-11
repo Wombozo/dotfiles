@@ -2,10 +2,10 @@ local options = { }
 
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
-local theme = 'onedark'
+local theme = 'catppuccin'
 -- vim.cmd [[ silent! colorscheme everforest ]]
 vim.cmd('silent! colorscheme ' .. theme)
-options.lightline_theme='onedark'
+options.lightline_theme='catppuccin'
 
 --papercolor
 --onedark
@@ -14,6 +14,7 @@ options.lightline_theme='onedark'
 --everforest
 --melange
 --badwolf
+--catppuccin
 
 --Incremental live completion (note: this is now a default on master)
 vim.o.inccommand = 'nosplit'
@@ -33,6 +34,9 @@ vim.o.mouse = 'a'
 
 --Enable break indent
 vim.o.breakindent = true
+
+--Fold to indent
+vim.opt.foldmethod = 'indent'
 
 --Save undo history
 vim.opt.undofile = true
@@ -72,5 +76,8 @@ vim.cmd [[
 ]]
 
 vim.opt.splitbelow = true
+
+vim.g.python3_host_prog = '/usr/bin/python3'
+vim.g.python_host_prog = '/usr/bin/python2'
 
 return options;

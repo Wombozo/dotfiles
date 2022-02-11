@@ -91,7 +91,7 @@ local tabtab = require'bufferline.state'
 
 function toggle_tree()
   if view.win_open() then
-    nvim_tree.close()
+    view.close()
     tabtab.set_offset(0)
   else
     nvim_tree.toggle()
