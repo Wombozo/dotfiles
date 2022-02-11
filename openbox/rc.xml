@@ -211,6 +211,31 @@
     <keybind key="S-A-Right">
       <action name="SendToDesktopRight"/>
     </keybind>
+    <keybind key="S-A-1">
+      <action name="SendToDesktop">
+          <to>1</to>
+      </action>
+    </keybind>
+    <keybind key="S-A-2">
+      <action name="SendToDesktop">
+          <to>2</to>
+      </action>
+    </keybind>
+    <keybind key="S-A-3">
+      <action name="SendToDesktop">
+          <to>3</to>
+      </action>
+    </keybind>
+    <keybind key="S-A-4">
+      <action name="SendToDesktop">
+          <to>4</to>
+      </action>
+    </keybind>
+    <keybind key="S-A-5">
+      <action name="SendToDesktop">
+          <to>5</to>
+      </action>
+    </keybind>
     <keybind key="A-1">
       <action name="GoToDesktop">
         <to>1</to>
@@ -256,7 +281,7 @@
         <command>amixer set Master toggle</command>
       </action>
     </keybind>
-    <keybind key="F5">
+    <keybind key="A-e">
       <action name="Execute">
         <!-- <command>/home/guillaume/dotfiles/openbox/eww_toggle.sh</command> -->
         <command>/home/guillaume/dotfiles/eww/launch_eww</command>
@@ -796,6 +821,12 @@
     </application>
     <application class="*">
       <maximized>no</maximized>
+    </application>
+    <application class="kitty">
+       <size>
+        <width>50%</width>
+        <height>40%</height>
+      </size>
     </application>
     <application class="firefox">
       <desktop>2</desktop>

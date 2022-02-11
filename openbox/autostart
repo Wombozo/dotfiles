@@ -20,6 +20,9 @@ numlockx &
 
 ## Turn off/on System Beep
 xset b off
+xset s off
+xset -dpms
+xset s noblank
 xset r rate 100 60
 
 ## Enable power management
@@ -35,6 +38,7 @@ xset r rate 100 60
 
 (~/dotfiles/polybar/launch.sh) &
 (picom --config ~/dotfiles/picom.conf) &
+(plank) &
 
 eww daemon &
 discord &
