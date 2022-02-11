@@ -3,19 +3,20 @@
 ## Open links in firefox
 FILE="$HOME/.cache/eww_launch.xyz"
 EWW="$HOME/.bin/eww"
-cmd="qutebrowser -target tab"
+cmd="qutebrowser --target tab"
 
 if [[ "$1" == "--mail" ]]; then
 	${EWW} close-all && rm -rf "$FILE" && ${cmd} "https://outlook.office.com/mail/"
-
+elif [[ "$1" == "--calendar" ]]; then
+	${EWW} close-all && rm -rf "$FILE" && ${cmd} "https://outlook.office.com/calendar/view/month"
 elif [[ "$1" == "--gl" ]]; then
 	${EWW} close-all && rm -rf "$FILE" && ${cmd} "https://192.168.220.10.com"
 
 elif [[ "$1" == "--rd" ]]; then
 	${EWW} close-all && rm -rf "$FILE" && ${cmd} "https://reddit.com/r/unixporn"
 
-elif [[ "$1" == "--tw" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && ${cmd} "https://twitter.com"
+elif [[ "$1" == "--ch" ]]; then
+	${EWW} close-all && rm -rf "$FILE" && ${cmd} "https://lichess.org"
 
 elif [[ "$1" == "--yt" ]]; then
 	${EWW} close-all && rm -rf "$FILE" && ${cmd} "https://youtube.com"

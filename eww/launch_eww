@@ -22,12 +22,13 @@ run_eww() {
 		   music \
 		   gitlab \
 		   reddit \
-		   twitter \
+		   chess \
 		   youtube \
 		   weather \
 		   apps \
 		   mail \
-		   logout \
+		   calendar \
+		   suspend \
 		   sleep \
 		   reboot \
 		   poweroff \

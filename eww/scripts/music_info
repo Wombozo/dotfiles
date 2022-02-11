@@ -1,13 +1,13 @@
 #!/bin/bash
 
 ## Get data
-STATUS="$(mpc status)"
+STATUS="$(playerctl -p spotify status)"
 COVER="/tmp/.music_cover.jpg"
 MUSIC_DIR="$HOME/Music"
 
 ## Get status
 get_status() {
-	if [[ $STATUS == *"[playing]"* ]]; then
+	if [[ $STATUS == "Playing" ]]; then
 		echo ""
 	else
 		echo "喇"
@@ -92,9 +92,9 @@ elif [[ "$1" == "--ttime" ]]; then
 elif [[ "$1" == "--cover" ]]; then
 	get_cover
 elif [[ "$1" == "--toggle" ]]; then
-	mpc -q toggle
+	playerctl play-pause -p spotify
 elif [[ "$1" == "--next" ]]; then
-	{ mpc -q next; get_cover; }
+	{ playerctl -p spotify next; get_cover; }
 elif [[ "$1" == "--prev" ]]; then
-	{ mpc -q prev; get_cover; }
+	{ playerctl -p spotify previous; get_cover; }
 fi

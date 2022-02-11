@@ -219,7 +219,7 @@
 }
 
 .app_fox, .app_telegram, .app_discord, .app_terminal,
-.app_files, .app_teams, .app_spotify, .app_anki, .app_vbox {
+.app_files, .app_teams, .app_spotify, .app_anki, .app_bw {
     background-repeat: no-repeat;
 	background-size: 64px;
 	min-height: 64px;
@@ -235,16 +235,25 @@
 .app_teams {}
 .app_spotify {}
 .app_anki {}
-.app_vbox {}
+.app_bw {}
 
 /** Links ***************************************/
-.iconweb, .iconmail {
+.iconweb, .iconmail, .iconcalendar {
 	font-family: Iosevka Nerd Font;
 	font-size : 70px;
 	font-weight : normal;
 }
 .iconmail {
 	color: #DF584E;
+}
+
+.iconcalendar {
+	color: #FFFFFF;
+}
+
+.iconchess {
+    color: #FFFFFF;
+    font-size: 70px;
 }
 
 .gitlab {
@@ -255,8 +264,8 @@
 	background-color: #E46231;
 	border-radius: 16px;
 }
-.twitter {
-	background-color: #61AAD6;
+.chess {
+	background-color: #8EC07C;
 	border-radius: 16px;
 }
 .youtube {
@@ -265,6 +274,11 @@
 }
 .mail {
 	background-color: #FFFFFF;
+	border-radius: 16px;
+}
+
+.calendar {
+	background-color: #81A1C1;
 	border-radius: 16px;
 }
 
@@ -281,13 +295,13 @@
 }
 
 /** Power buttons ***************************************/
-.btn_logout, .btn_sleep, .btn_reboot, .btn_poweroff {
+.btn_suspend, .btn_sleep, .btn_reboot, .btn_poweroff {
 	font-size : 48px;
 	font-weight : bold;
 }
 
-.btn_logout {
-	color: #BF616A;
+.btn_suspend {
+	color: #88C0D0;
 }
 .btn_sleep {
 	color: #A3BE8C;
@@ -296,7 +310,7 @@
 	color: #EBCB8B;
 }
 .btn_poweroff {
-	color: #88C0D0;
+	color: #BF616A;
 }
 
 /** Home folders ***************************************/

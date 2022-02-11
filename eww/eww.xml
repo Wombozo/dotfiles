@@ -102,7 +102,9 @@
 				<label class="time_hour" valign="start" wrap="true" limit-width="25" text="{{HOUR}}"/>
 				<label class="time_min" valign="end" wrap="true" limit-width="25" text="{{MIN}}"/>
 				<box orientation="v" spacing="25" space-evenly="false" vexpand="false" hexpand="false">
-					<label class="time_mer" halign="end" wrap="true" limit-width="25" text="{{MER}}"/>
+					<!-- <label class="iconweather" halign="start" style="color: {{HEX}};" text="{{ICON}}"/> -->
+					<!-- <label class="time_mer" halign="end" wrap="true" limit-width="25" text="{{MER}}"/> -->
+					<label class="time_mer" halign="end" wrap="true" limit-width="25" text="{{ICON}}"/>
 					<label class="time_day" halign="end" wrap="true" limit-width="25" text="{{DAY}}"/>
 				</box>
 			</box>
@@ -144,7 +146,7 @@
 		<!-- gitlab -->
 		<def name="gitlab">
 			<box class="gitlab" vexpand="false" hexpand="false">
-				<button class="iconweb" onclick="~/.config/eww/scripts/open_links --gl"></button>
+				<button class="iconweb" onclick="~/.config/eww/scripts/open_links --gl"></button>
 			</box>
 		</def>
 
@@ -155,10 +157,10 @@
 			</box>
 		</def>
 
-		<!-- twitter -->
-		<def name="twitter">
-			<box class="twitter" vexpand="false" hexpand="false">
-				<button class="iconweb" onclick="~/.config/eww/scripts/open_links --tw"></button>
+		<!-- chess -->
+		<def name="chess">
+			<box class="chess" vexpand="false" hexpand="false">
+				<button class="iconchess" onclick="~/.config/eww/scripts/open_links --ch"></button>
 			</box>
 		</def>
 
@@ -174,9 +176,15 @@
 			<box class="mail">
 				<box orientation="h" halign="center" spacing="20" space-evenly="false" vexpand="false" hexpand="false">
 					<button class="iconmail" onclick="~/.config/eww/scripts/open_links --mail"></button>
-					<box class="mailbox" space-evenly="false" vexpand="false" hexpand="false">
-						<button class="label_mails" onclick="~/.config/eww/scripts/open_links --mail">{{MAILS}}</button>
-					</box>
+				</box>
+			</box>
+		</def>
+
+		<!-- calendar -->
+		<def name="calendar">
+			<box class="calendar">
+				<box orientation="h" halign="center" spacing="20" space-evenly="false" vexpand="false" hexpand="false">
+					<button class="iconcalendar" onclick="~/.config/eww/scripts/open_links --calendar"></button>
 				</box>
 			</box>
 		</def>
@@ -214,15 +222,15 @@
 				<box class="appbox" orientation="h" space-evenly="false" vexpand="false" hexpand="false">
 					<button style="background-image: url('images/icons/spotify.svg');" class="app_spotify" onclick="~/.config/eww/scripts/open_apps --sp"/>
 					<button style="background-image: url('images/icons/anki.svg');" class="app_anki" onclick="~/.config/eww/scripts/open_apps --an"/>
-					<button style="background-image: url('images/icons/virtualbox.svg');" class="app_vbox" onclick="~/.config/eww/scripts/open_apps --vb"/>
+					<button style="background-image: url('images/icons/bitwarden.svg');" class="app_bw" onclick="~/.config/eww/scripts/open_apps --bw"/>
 				</box>
 			</box>
 		</def>
 
 		<!-- power buttons -->
-		<def name="logout">
+		<def name="suspend">
 			<box class="genwin" vexpand="false" hexpand="false">
-				<button class="btn_logout" onclick="openbox --exit"></button>
+				<button class="btn_suspend" onclick="slimlock&"></button>
 			</box>
 		</def>
 		<def name="sleep">
@@ -358,11 +366,11 @@
 			</widget>
 		</window>
 
-		<!-- twitter -->
-		<window name="twitter" stacking="fg" focusable="false" screen="2">
+		<!-- chess -->
+		<window name="chess" stacking="fg" focusable="false" screen="2">
 			<geometry x="827" y="785" width="141" height="145"/>
 			<widget>
-				<twitter/>
+				<chess/>
 			</widget>
 		</window>
 
@@ -392,17 +400,26 @@
 
 		<!-- mail -->
 		<window name="mail" stacking="fg" focusable="false" screen="2">
-			<geometry x="1140" y="785" width="290" height="145"/>
+			<geometry x="1140" y="785" width="140" height="145"/>
 			<widget>
 				<mail/>
 			</widget>
 		</window>
 
-		<!-- logout -->
-		<window name="logout" stacking="fg" focusable="false" screen="2">
+        <!-- calendar -->
+		<window name="calendar" stacking="fg" focusable="false" screen="2">
+			<geometry x="1290" y="785" width="140" height="145"/>
+			<widget>
+				<calendar/>
+			</widget>
+		</window>
+
+
+		<!-- poweroff -->
+		<window name="poweroff" stacking="fg" focusable="false" screen="2">
 			<geometry x="1445" y="150" width="155" height="155"/>
 			<widget>
-				<logout/>
+				<poweroff/>
 			</widget>
 		</window>
 
@@ -422,11 +439,11 @@
 			</widget>
 		</window>
 
-		<!-- poweroff -->
-		<window name="poweroff" stacking="fg" focusable="false" screen="2">
+		<!-- suspend -->
+		<window name="suspend" stacking="fg" focusable="false" screen="2">
 			<geometry x="1615" y="320" width="155" height="155"/>
 			<widget>
-				<poweroff/>
+				<suspend/>
 			</widget>
 		</window>
 

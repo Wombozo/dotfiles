@@ -4,14 +4,23 @@
 FILE="$HOME/.cache/eww_launch.xyz"
 EWW="$HOME/.bin/eww"
 
+run_or_focus() {
+  exist=$(wmctrl -l |grep -v grep |grep $1|wc -l)
+  if [[ "$exist" == 0 ]]; then
+    $1 &
+  else
+    wmctrl -a $1
+  fi
+}
+
 if [[ "$1" == "--ff" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && wmctrl -a qutebrowser
+	${EWW} close-all && rm -rf "$FILE" && run_or_focus qutebrowser
 
 elif [[ "$1" == "--tg" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && wmctrl -a telegram-desktop
+	${EWW} close-all && rm -rf "$FILE" && run_or_focus telegram-desktop
 
 elif [[ "$1" == "--dc" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && wmctrl -a discord
+	${EWW} close-all && rm -rf "$FILE" && run_or_focus -a discord
 
 elif [[ "$1" == "--tr" ]]; then
 	${EWW} close-all && rm -rf "$FILE" && kitty &
@@ -20,15 +29,15 @@ elif [[ "$1" == "--fm" ]]; then
 	${EWW} close-all && rm -rf "$FILE" && thunar ~ &
 
 elif [[ "$1" == "--te" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && wmctrl -a teams
+	${EWW} close-all && rm -rf "$FILE" && run_or_focus teams
 
 elif [[ "$1" == "--sp" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && wmctrl -a spotify
+	${EWW} close-all && rm -rf "$FILE" && run_or_focus spotify
 
 elif [[ "$1" == "--an" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && wmctrl -a anki
+	${EWW} close-all && rm -rf "$FILE" && run_or_focus anki
 
-elif [[ "$1" == "--vb" ]]; then
-	${EWW} close-all && rm -rf "$FILE" && virtualbox &
+elif [[ "$1" == "--bw" ]]; then
+	${EWW} close-all && rm -rf "$FILE" && run_or_focus bitwarden-desktop
 
 fi
