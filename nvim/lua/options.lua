@@ -2,10 +2,11 @@ local options = { }
 
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
-local theme = 'catppuccin'
+-- local theme = 'catppuccin'
+local theme = 'ayu'
 -- vim.cmd [[ silent! colorscheme everforest ]]
 vim.cmd('silent! colorscheme ' .. theme)
-options.lightline_theme='catppuccin'
+options.lightline_theme='ayu'
 
 --papercolor
 --onedark

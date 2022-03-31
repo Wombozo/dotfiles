@@ -11,9 +11,16 @@ map('n', '<C-k>', '<C-w>k')
 map('t','jk', '<C-\\><C-n>')
 map('n', '<C-t>', '<cmd>set list!<CR>')
 map('n', '<C-d>', '<cmd>q<CR>')
+map('n', '<C-s>h', '<cmd>split<CR>')
+map('n', '<C-s>v', '<cmd>vsplit<CR>')
+map('v', '<leader>c', '"+y')
+
+-- Fold -----------------------
+map('n', 'zd', '<cmd>set nofoldenable<CR>')
+map('n', 'ze', '<cmd>set foldenable<CR>')
 
 -- Vista -------------------------
-map('n','<leader>sd', '<cmd>Vista!! <CR>')
+map('n','<C-s>', '<cmd>Vista!! <CR>')
 
 -- Term --------------------------
 map('n', '<leader>tt', '<cmd>lua TermToggle()<CR>')
@@ -24,6 +31,7 @@ map('n', "<leader>tg", "<cmd>lua GitToggle()<CR>")
 map('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
 map('n', '<leader>ff', '<cmd>Telescope find_files<CR>')
 map('n', '<leader>fh', '<cmd>Telescope find_files hidden=true<CR>')
+map('n', '<leader>fi', '<cmd>Telescope git_files<CR>')
 map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 map('n', '<leader>fo', '<cmd>Telescope oldfiles<CR>')
 map('n', ';', "<cmd>lua require('telescope').extensions.neoclip.neoclip() <CR>")
@@ -60,5 +68,6 @@ map('n', '<leader>?', '<cmd>Telescope keymaps<CR>')
 map('n', '<leader>\'', '<cmd>Telescope marks<CR>')
 
 -- WRun --------------------------
-map('n', '<leader>te', '<cmd>WRedit<CR>')
-map('n', '<leader>tr', '<cmd>WRrun<CR>')
+map('n', '<leader>we', '<cmd>WRedit<CR>')
+map('n', '<leader>wr', '<cmd>WRrun<CR>')
+
