@@ -44,7 +44,7 @@ eww daemon &
 discord &
 telegram-desktop &
 spotify &
-teams &
+teams --no-sandbox &
 thunderbird &
 picom --config ~/dotfiles/picom.conf &
 sleep 3

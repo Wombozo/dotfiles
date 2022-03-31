@@ -40,7 +40,7 @@
                     'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Arc-Aqua</name>
+    <name>aquamarine</name>
     <titleLayout>DLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -52,7 +52,7 @@
       S: shade (roll up/down)
       D: omnipresent (on all desktops).
   -->
-    <keepBorder>yes</keepBorder>
+    <keepBorder>no</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
       <name>FuraCode Nerd Font Mono</name>
@@ -213,27 +213,27 @@
     </keybind>
     <keybind key="S-A-1">
       <action name="SendToDesktop">
-          <to>1</to>
+        <to>1</to>
       </action>
     </keybind>
     <keybind key="S-A-2">
       <action name="SendToDesktop">
-          <to>2</to>
+        <to>2</to>
       </action>
     </keybind>
     <keybind key="S-A-3">
       <action name="SendToDesktop">
-          <to>3</to>
+        <to>3</to>
       </action>
     </keybind>
     <keybind key="S-A-4">
       <action name="SendToDesktop">
-          <to>4</to>
+        <to>4</to>
       </action>
     </keybind>
     <keybind key="S-A-5">
       <action name="SendToDesktop">
-          <to>5</to>
+        <to>5</to>
       </action>
     </keybind>
     <keybind key="A-1">
@@ -372,11 +372,11 @@
     <keybind key="W-Down">
       <action name="UnmaximizeFull"/>
       <action name="MoveResizeTo">
-        <width>40%</width>
-        <height>40%</height>
+        <width>50%</width>
+        <height>50%</height>
       </action>
       <action name="MoveToCenter"/>
-      <action name="Decorate"/>
+      <!-- <action name="Decorate"/> -->
     </keybind>
     <keybind key="A-r">
       <action name="Resize"/>
@@ -823,10 +823,11 @@
       <maximized>no</maximized>
     </application>
     <application class="kitty">
-       <size>
+      <size>
         <width>50%</width>
         <height>40%</height>
       </size>
+      <decor>no</decor>
     </application>
     <application class="firefox">
       <desktop>2</desktop>

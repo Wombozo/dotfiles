@@ -3,7 +3,6 @@ g.nvim_tree_add_trailing = 0 -- append a trailing slash to folder names
 g.nvim_tree_git_hl = git_status
 g.nvim_tree_highlight_opened_files = 0
 g.nvim_tree_indent_markers = 1
-g.nvim_tree_quit_on_open = 0 -- closes tree when file's opened
 g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
 g.nvim_tree_show_icons = {
    folders = 1,
@@ -37,16 +36,16 @@ g.nvim_tree_icons = {
    },
 }
 
-g.nvim_tree_window_picker_exclude = {
-  filetype = {
-    'notify',
-    'packer',
-    'vista'
-    },
-  buftype = {
-    'terminal'
-    }
-}
+-- g.nvim_tree_window_picker_exclude = {
+--   filetype = {
+--     'notify',
+--     'packer',
+--     'vista'
+--     },
+--   buftype = {
+--     'terminal'
+--     }
+-- }
 require('nvim-tree').setup {
     diagnostics = {
       enable = false,
@@ -63,7 +62,6 @@ require('nvim-tree').setup {
    disable_netrw = true,
    hijack_netrw = true,
    ignore_ft_on_setup = { "dashboard" },
-   auto_close = true,
    open_on_tab = false,
    hijack_cursor = true,
    update_cwd = true,
@@ -88,8 +86,10 @@ local nvim_tree = require'nvim-tree'
 local view = require'nvim-tree.view'
 local tabtab = require'bufferline.state'
 
+vim.cmd[[ autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif ]]
+
 function toggle_tree()
-  if view.win_open() then
+  if view.is_visible() then
     view.close()
     tabtab.set_offset(0)
   else
