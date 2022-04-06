@@ -1,7 +1,7 @@
 require'wrun'.setup({
   cache_dir = os.getenv( "HOME" ) .. '/.local/share/nvim/wrun',
   interpreter = '/usr/bin/bash',
-  edit_method = '8split', -- 'edit' | 'tabedit' | 'split'| 'vsplit'
+  edit_method = '12split', -- 'edit' | 'tabedit' | 'split'| 'vsplit'
   term_settings = {
     exec_direction = 'float', -- 'vertical' | 'horizontal' | 'float'
     size = function(term)
@@ -12,8 +12,8 @@ require'wrun'.setup({
         end
       end, -- or hardcoded value
     exec_float_opts = {
-      width = 100,
-      height = 40,
+      width = 160,
+      height = 50,
       winblend = 3,
       highlights = {
         border = "Normal",

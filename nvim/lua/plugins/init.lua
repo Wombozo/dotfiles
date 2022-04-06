@@ -24,7 +24,8 @@ require('packer').startup(function()
   use {'sudormrfbin/cheatsheet.nvim', requires = { {'nvim-telescope/telescope.nvim'}, {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}}
   use 'ellisonleao/glow.nvim'
   use 'chentau/marks.nvim'
-  use 'anuvyklack/pretty-fold.nvim'
+  use 'jvgrootveld/telescope-zoxide'
+  -- use 'anuvyklack/pretty-fold.nvim'
 
 -- cmp
   use 'hrsh7th/nvim-cmp'
@@ -59,5 +60,6 @@ require'plugins.comment'
 require'plugins.vista'
 require'plugins.wrun'
 require'plugins.marks'
-require'plugins.pretty-fold'
+-- require'plugins.pretty-fold'
 require'plugins.catppuccin'
+require'plugins.zoxide'

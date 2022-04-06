@@ -12,38 +12,6 @@ local reg_term = Terminal:new({
     background = "Normal",
   }
 })
-local exec_float = Terminal:new({
-  direction = 'float',
-  --cmd = './.nvim_exec',
-  cmd = '~/.local/bin/nvim_exec.sh',
-  close_on_exit = true,
-  float_opts = {
-    width = 100,
-    height = 40,
-    winblend = 3,
-    highlights = {
-      border = "Normal",
-      background = "Normal",
-    }
-  }
-})
-
--- #~/.local/bin/nvim_exec.sh :
--- #!/bin/bash
--- 
--- path=$(pwd)
--- 
--- while [[ "${path}" != "/" ]]; do
---   if [[ -x "${path}/.nvim_exec" ]]; then
---     ${path}/.nvim_exec
---     read
---     exit 0
---   fi
---   path=$(dirname $path)
--- done
--- 
--- echo "No .nvim_exec found.. Press <Return> to exit"
--- read
 
 local git = Terminal:new({
   cmd = "gitui",

@@ -23,7 +23,7 @@ xset b off
 xset s off
 xset -dpms
 xset s noblank
-xset r rate 100 60
+xset r rate 200 60
 
 ## Enable power management
 #xfce4-power-manager &

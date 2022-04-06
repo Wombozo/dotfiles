@@ -14,8 +14,19 @@ map('n', '<C-d>', '<cmd>q<CR>')
 map('n', '<C-s>h', '<cmd>split<CR>')
 map('n', '<C-s>v', '<cmd>vsplit<CR>')
 map('v', '<leader>c', '"+y')
+map('n', '<C-w>>', '<cmd>vertical resize +20<CR>')
+map('n', '<C-w><', '<cmd>vertical resize -20<CR>')
+map("n", "<C-j>", "<cmd>m .+1<CR>==")
+map("n", "<C-k>", "<cmd>m .-2<CR>==")
+map("v", "<C-j>", "<cmd>m .+1<CR>==")
+map("v", "<C-k>", "<cmd>m .-2<CR>==")
+map("x", "<C-j>", "<cmd>move '>+1<CR>gv-gv")
+map("x", "<C-k>", "<cmd>move '<-2<CR>gv-gv")
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+map("v", "p", '"_dP')
 
--- Fold -----------------------
+-- Fold --------------------------
 map('n', 'zd', '<cmd>set nofoldenable<CR>')
 map('n', 'ze', '<cmd>set foldenable<CR>')
 
@@ -71,3 +82,5 @@ map('n', '<leader>\'', '<cmd>Telescope marks<CR>')
 map('n', '<leader>we', '<cmd>WRedit<CR>')
 map('n', '<leader>wr', '<cmd>WRrun<CR>')
 
+-- Zoxide ------------------------
+map('n', '<leader>cd', '<cmd>Telescope zoxide list<CR>')
