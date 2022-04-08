@@ -10,7 +10,7 @@ map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('t','jk', '<C-\\><C-n>')
 map('n', '<C-t>', '<cmd>set list!<CR>')
-map('n', '<C-d>', '<cmd>q<CR>')
+-- map('n', '<C-d>', '<cmd>q<CR>')
 map('n', '<C-s>h', '<cmd>split<CR>')
 map('n', '<C-s>v', '<cmd>vsplit<CR>')
 map('v', '<leader>c', '"+y')
@@ -34,8 +34,7 @@ map('n', 'ze', '<cmd>set foldenable<CR>')
 map('n','<C-s>', '<cmd>Vista!! <CR>')
 
 -- Term --------------------------
-map('n', '<leader>tt', '<cmd>lua TermToggle()<CR>')
-map('n', '<leader>tf', '<cmd>lua FloatToggle()<CR>')
+map('n', '<leader>tt', "<cmd>lua TermToggle()<CR>")
 map('n', "<leader>tg", "<cmd>lua GitToggle()<CR>")
 
 -- Telescope ---------------------

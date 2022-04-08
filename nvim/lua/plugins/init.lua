@@ -43,6 +43,10 @@ require('packer').startup(function()
   use 'savq/melange'
   use 'sjl/badwolf'
   use 'catppuccin/nvim'
+  use 'marciomazza/vim-brogrammer-theme'
+  use 'uu59/vim-herokudoc-theme'
+  use {'844196/lightline-badwolf.vim', requires = {{'itchyny/lightline.vim'}}}
+
 -- My own
   use {'wombozo/wrun', requires = {{'akinsho/toggleterm.nvim'}}}
 end)

@@ -5,11 +5,16 @@ disable_ligatures cursor
 font_features FiraCode-Retina +zero
 font_family FuraCode Nerd Font
 
+map ctrl+shift+t goto_layout tall
+map ctrl+shift+h goto_layout fat
+map ctrl+shift+s goto_layout stack
+
+
 
 window_padding_width 5
 
 
 # BEGIN_KITTY_THEME
-# Catppuccin
+# Kaolin Aurora
 include current-theme.conf
 # END_KITTY_THEME

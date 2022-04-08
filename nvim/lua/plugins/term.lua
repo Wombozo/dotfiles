@@ -43,14 +43,11 @@ local float_term = Terminal:new({
 function GitToggle()
   git:toggle()
 end
+
 function ExecToggle()
   exec_float:toggle()
 end
 
-function TermToggle()
+function TermToggle(toto)
   reg_term:toggle()
-end
-
-function FloatToggle()
-  float_term:toggle()
 end
