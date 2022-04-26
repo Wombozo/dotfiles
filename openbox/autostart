@@ -1,8 +1,6 @@
 #
 # Set background image
 nitrogen --restore
-xrandr --output HDMI1 --left-of eDP1
-xrandr --output HDMI1 --primary
 
 #(am-conky-session --autostart) &
 
@@ -36,8 +34,8 @@ xset r rate 200 60
 
 #(nm-applet) &
 
-(~/dotfiles/polybar/launch.sh) &
 (picom --config ~/dotfiles/picom.conf) &
+/home/guillaume/local/bin/setup-office.sh
 (plank) &
 
 eww daemon &
@@ -46,6 +44,5 @@ telegram-desktop &
 spotify &
 teams --no-sandbox &
 thunderbird &
-picom --config ~/dotfiles/picom.conf &
 sleep 3
 wmctrl -r Spotify -t 3

@@ -15,6 +15,6 @@ window_padding_width 5
 
 
 # BEGIN_KITTY_THEME
-# Kaolin Aurora
+# Jet Brains Darcula
 include current-theme.conf
 # END_KITTY_THEME
