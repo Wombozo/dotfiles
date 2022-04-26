@@ -1,21 +1,11 @@
 local options = { }
 
---Set colorscheme (order is important here)
 vim.o.termguicolors = true
--- local theme = 'catppuccin'
-local theme = 'badwolf'
--- vim.cmd [[ silent! colorscheme everforest ]]
-vim.cmd('silent! colorscheme ' .. theme)
-options.lightline_theme='badwolf'
 
---papercolor
---onedark
---spacecamp
---ayu
---everforest
---melange
---badwolf
---catppuccin
+-- local theme = { global = 'ayu', lightline = 'ayu' }
+local theme = require'theme'
+vim.cmd('silent! colorscheme ' .. theme.global)
+options.lightline_theme=theme.lightline
 
 --Incremental live completion (note: this is now a default on master)
 vim.o.inccommand = 'nosplit'
@@ -55,7 +45,6 @@ vim.o.shiftwidth = 2
 vim.o.smartindent = true
 vim.o.tabstop = 4
 
---vim.opt.listchars = { extends = ">", eol = "¬", trail = "~", space = "␣", tab = ">." }
 vim.opt.listchars = {
   extends = ">",
   eol = "¬",

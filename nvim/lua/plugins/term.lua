@@ -7,10 +7,6 @@ local Terminal  = require('toggleterm.terminal').Terminal
 
 local reg_term = Terminal:new({
   direction = 'horizontal',
-  highlights = {
-    border = "Normal",
-    background = "Normal",
-  }
 })
 
 local git = Terminal:new({
@@ -27,27 +23,10 @@ local git = Terminal:new({
   end,
 })
 
-local float_term = Terminal:new({
-  direction = 'float',
-  float_opts = {
-    width = 100,
-    height = 40,
-    winblend = 3,
-    highlights = {
-      border = "Normal",
-      background = "Normal",
-    }
-  }
-})
-
 function GitToggle()
   git:toggle()
 end
 
-function ExecToggle()
-  exec_float:toggle()
-end
-
-function TermToggle(toto)
+function TermToggle()
   reg_term:toggle()
 end

@@ -33,7 +33,9 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lsp'
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-cmdline"
-  use "saadparwaiz1/cmp_luasnip"
+  use "hrsh7th/cmp-vsnip"
+  use "hrsh7th/vim-vsnip"
+
 -- Themes
   use 'NLKNguyen/papercolor-theme'
   use 'joshdick/onedark.vim'
@@ -46,6 +48,7 @@ require('packer').startup(function()
   use 'marciomazza/vim-brogrammer-theme'
   use 'uu59/vim-herokudoc-theme'
   use {'844196/lightline-badwolf.vim', requires = {{'itchyny/lightline.vim'}}}
+  use {'srcery-colors/srcery-vim', as = 'srcery'}
 
 -- My own
   use {'wombozo/wrun', requires = {{'akinsho/toggleterm.nvim'}}}
@@ -67,3 +70,5 @@ require'plugins.marks'
 -- require'plugins.pretty-fold'
 require'plugins.catppuccin'
 require'plugins.zoxide'
+require'plugins.betterescape'
+-- require'plugins.hipairs'

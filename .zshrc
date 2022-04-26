@@ -24,6 +24,7 @@ alias gga="git log --graph --pretty=format:'%Cred%h%Creset %C(blue)[%cs]%Creset 
 alias l='exa -lT --icons -L 1'
 alias tree='exa -lT --icons'
 alias gs='git status'
+alias reboot='echo "Use sudo"'
 
 bindkey -e
 bindkey -s '^o' 'nvim $(fzf)^M'
