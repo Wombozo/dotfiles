@@ -2,10 +2,10 @@ local options = { }
 
 vim.o.termguicolors = true
 
--- local theme = { global = 'ayu', lightline = 'ayu' }
+-- local theme = { global = 'ayu', line = 'ayu' }
 local theme = require'theme'
 vim.cmd('silent! colorscheme ' .. theme.global)
-options.lightline_theme=theme.lightline
+options.line_theme=theme.line
 
 --Incremental live completion (note: this is now a default on master)
 vim.o.inccommand = 'nosplit'

@@ -5,14 +5,18 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   use 'tpope/vim-fugitive'
   use {'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use 'itchyny/lightline.vim'
+  -- use 'itchyny/lightline.vim'
   use 'neovim/nvim-lspconfig'
   use 'glepnir/dashboard-nvim'
   use 'terrortylor/nvim-comment'
   use 'kyazdani42/nvim-tree.lua'
   use 'nvim-treesitter/nvim-treesitter'
   use 'max397574/better-escape.nvim'
-  use 'romgrk/barbar.nvim'
+  -- use 'romgrk/barbar.nvim'
+  use 'hoob3rt/lualine.nvim'
+  -- use {'kdheepak/tabline.nvim', requires = { {'hoob3rt/lualine.nvim'}, {'kyazdani42/nvim-web-devicons'} }}
+  -- use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
+  use {'akinsho/bufferline.nvim'}
   use 'kyazdani42/nvim-web-devicons'
   use 'liuchengxu/vista.vim'
   use 'editorconfig/editorconfig-vim'
@@ -47,7 +51,7 @@ require('packer').startup(function()
   use 'catppuccin/nvim'
   use 'marciomazza/vim-brogrammer-theme'
   use 'uu59/vim-herokudoc-theme'
-  use {'844196/lightline-badwolf.vim', requires = {{'itchyny/lightline.vim'}}}
+  -- use {'844196/lightline-badwolf.vim', requires = {{'itchyny/lightline.vim'}}}
   use {'srcery-colors/srcery-vim', as = 'srcery'}
 
 -- My own
@@ -61,7 +65,7 @@ require'plugins.cmp'
 require'plugins.dashboard'
 require'plugins.term'
 require'plugins.neoclip'
-require'plugins.lightline'
+-- require'plugins.lightline'
 require'plugins.treesitter'
 require'plugins.comment'
 require'plugins.vista'
@@ -72,3 +76,6 @@ require'plugins.catppuccin'
 require'plugins.zoxide'
 require'plugins.betterescape'
 -- require'plugins.hipairs'
+-- require'plugins.tabline'
+require'plugins.lualine'
+require'plugins.bufferline'

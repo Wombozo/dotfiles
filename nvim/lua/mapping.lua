@@ -63,22 +63,20 @@ map('n', '<leader>?', '<cmd>Telescope keymaps<CR>')
 map('n', '<leader>\'', '<cmd>Telescope marks<CR>')
 
 -- Nvim-Tree ----------------------
-map('n', '<C-n>', "<cmd>lua toggle_tree()<CR>")
+map('n', '<C-n>', "<cmd>NvimTreeToggle<CR>")
 
 -- Comments -----------------------
 map('n', '<C-_>', ':CommentToggle <CR>')
 map('v', '<C-_>', ':CommentToggle <CR>')
 
--- BarBar --------------------------
-map('n', '<TAB>', '<cmd>BufferNext<CR>')
-map('n', '<S-TAB>', '<cmd>BufferPrev<CR>')
-map('n', '<C-b>h', '<cmd>BufferMovePrevious<CR>')
-map('n', '<C-b>l', '<cmd>BufferMoveNext<CR>')
-map('n', '<C-b>c', '<cmd>BufferClose<CR>')
-map('n', '<C-b>p', '<cmd>BufferPick<CR>')
---map('n', '<S-1>', '<cmd>BufferGoto 1<CR>')
---map('n', '<S-2>', '<cmd>BufferGoto 2<CR>')
---map('n', '<S-0>', '<cmd>BufferLast<CR>')
+-- Bufferline --------------------------
+map('n', '<TAB>', '<cmd>BufferLineCycleNext<CR>')
+map('n', '<S-TAB>', '<cmd>BufferLineCyclePrev<CR>')
+map('n', '<C-b>h', '<cmd>BufferLineMovePrev<CR>')
+map('n', '<C-b>l', '<cmd>BufferLineMoveNext<CR>')
+-- map('n', '<C-b>c', '<cmd>BufferLinePickClose<CR>')
+map('n', '<C-b>c', '<cmd>bdelete<CR>')
+map('n', '<C-b>p', '<cmd>BufferLinePick<CR>')
 
 -- WRun --------------------------
 map('n', '<leader>we', '<cmd>WRedit<CR>')
