@@ -43,6 +43,9 @@ map("v", "p", '"_dP')
 map('n', 'zd', '<cmd>set nofoldenable<CR>')
 map('n', 'ze', '<cmd>set foldenable<CR>')
 
+-- Session -----------------------
+map('n', '<leader>ss', '<cmd>lua require("persistence").load()<CR>')
+
 -- Vista -------------------------
 map('n','<C-a>', '<cmd>Vista!! <CR>')
 
@@ -57,7 +60,7 @@ map('n', '<leader>fh', '<cmd>Telescope find_files hidden=true<CR>')
 map('n', '<leader>fi', '<cmd>Telescope git_files<CR>')
 map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 map('n', '<leader>fo', '<cmd>Telescope oldfiles<CR>')
-map('n', ';', "<cmd>lua require('telescope').extensions.neoclip.neoclip() <CR>")
+map('n', ';', "<cmd>lua require('telescope').extensions.neoclip.neoclip()<CR>")
 map('n', '<leader>cd', '<cmd>Telescope zoxide list<CR>')
 map('n', '<leader>?', '<cmd>Telescope keymaps<CR>')
 map('n', '<leader>\'', '<cmd>Telescope marks<CR>')
@@ -74,9 +77,10 @@ map('n', '<TAB>', '<cmd>BufferLineCycleNext<CR>')
 map('n', '<S-TAB>', '<cmd>BufferLineCyclePrev<CR>')
 map('n', '<C-b>h', '<cmd>BufferLineMovePrev<CR>')
 map('n', '<C-b>l', '<cmd>BufferLineMoveNext<CR>')
--- map('n', '<C-b>c', '<cmd>BufferLinePickClose<CR>')
 map('n', '<C-b>c', '<cmd>bdelete<CR>')
 map('n', '<C-b>p', '<cmd>BufferLinePick<CR>')
+map('n', '<C-b>tn', '<cmd>tabnew %<CR>')
+map('n', '<C-b>tc', '<cmd>tabclose<CR>')
 
 -- WRun --------------------------
 map('n', '<leader>we', '<cmd>WRedit<CR>')

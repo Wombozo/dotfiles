@@ -30,6 +30,7 @@ require('packer').startup(function()
   use 'chentau/marks.nvim'
   use 'jvgrootveld/telescope-zoxide'
   -- use 'anuvyklack/pretty-fold.nvim'
+  use 'folke/persistence.nvim' -- , event = "BufReadPre", module = 'persistence'}
 
 -- cmp
   use 'hrsh7th/nvim-cmp'
@@ -79,3 +80,4 @@ require'plugins.betterescape'
 -- require'plugins.tabline'
 require'plugins.lualine'
 require'plugins.bufferline'
+require'plugins.persistence'
