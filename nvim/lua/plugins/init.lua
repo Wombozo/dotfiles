@@ -15,7 +15,6 @@ require('packer').startup(function()
   -- use 'romgrk/barbar.nvim'
   use 'hoob3rt/lualine.nvim'
   -- use {'kdheepak/tabline.nvim', requires = { {'hoob3rt/lualine.nvim'}, {'kyazdani42/nvim-web-devicons'} }}
-  -- use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
   use {'akinsho/bufferline.nvim'}
   use 'kyazdani42/nvim-web-devicons'
   use 'liuchengxu/vista.vim'
@@ -27,10 +26,11 @@ require('packer').startup(function()
   use 'dstein64/nvim-scrollview'
   use {'sudormrfbin/cheatsheet.nvim', requires = { {'nvim-telescope/telescope.nvim'}, {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}}
   use 'ellisonleao/glow.nvim'
-  use 'chentau/marks.nvim'
+  use 'chentoast/marks.nvim'
   use 'jvgrootveld/telescope-zoxide'
   -- use 'anuvyklack/pretty-fold.nvim'
   use 'folke/persistence.nvim' -- , event = "BufReadPre", module = 'persistence'}
+  use 'lukas-reineke/indent-blankline.nvim'
 
 -- cmp
   use 'hrsh7th/nvim-cmp'
@@ -81,3 +81,4 @@ require'plugins.betterescape'
 require'plugins.lualine'
 require'plugins.bufferline'
 require'plugins.persistence'
+require'plugins.indent-blankline'

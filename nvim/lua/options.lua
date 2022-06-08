@@ -38,7 +38,7 @@ vim.o.smartcase = true
 
 --Decrease update time
 vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = 'no'
 
 vim.o.expandtab = true
 vim.o.shiftwidth = 2

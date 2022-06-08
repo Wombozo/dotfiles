@@ -54,8 +54,8 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
     args = {},
   },
   diagnostics = {
-    enable = false,
-    show_on_dirs = false,
+    enable = true,
+    show_on_dirs = true,
     icons = {
       hint = "",
       info = "",
@@ -69,7 +69,7 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
     exclude = {},
   },
   git = {
-    enable = true,
+    enable = false,
     ignore = true,
     timeout = 400,
   },

@@ -341,6 +341,14 @@
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
+    <keybind key="W-o">
+      <action name="ToggleOmnipresent"/>
+    </keybind>
+    <keybind key="W-p">
+      <action name="Execute">
+        <command>"/home/guillaume/.local/bin/toggle_picom.sh"</command>
+      </action>
+    </keybind>
     <keybind key="W-l">
       <action name="Execute">
         <command>slimlock</command>
@@ -361,9 +369,6 @@
         <width>50%</width>
       </action>
       <action name="MoveToEdgeWest"/>
-    </keybind>
-    <keybind key="W-p">
-      <action name="ToggleOmnipresent"/>
     </keybind>
     <keybind key="W-Up">
       <action name="MaximizeFull"/>

@@ -9,7 +9,7 @@
 HIST_STAMPS="mm/dd/yyyy"
 
 # ZSH_CUSTOM=/path/to/new-custom-folder
-plugins=(git zoxide sudo zsh-autosuggestions colored-man-pages compleat fzf ssh-agent docker)
+plugins=(git zoxide zsh-autosuggestions colored-man-pages compleat fzf ssh-agent )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -26,6 +26,10 @@ alias tree='exa -lT --icons'
 alias gs='git status'
 alias reboot='echo "Use sudo"'
 
-bindkey -e
-bindkey -s '^o' 'nvim $(fzf)^M'
+# To define !
+alias mu_commands="mu_commands.sh --cmd|fzf --preview-window=wrap --height=10 --border=vertical --preview 'mu_commands.sh --desc {}'| bash"
+alias open_with_fzf="fzf --preview 'bat -p --wrap=never --paging=never --color=always {}' | xargs nvim"
 
+bindkey -s '' "mu_commands"
+bindkey -s '' "open_with_fzf"
+bindkey -e
