@@ -17,17 +17,13 @@ alias b='bat'
 alias bd='bat --style=changes'
 alias cat='bat -p --wrap=never --paging=never'
 alias rm='rip'
-alias t='tig'
-alias ta='tig --all'
-alias gg="git log --graph --pretty=format:'%Cred%h%Creset %C(blue)[%cs]%Creset %C(auto)%d%Creset- %s %C(bold cyan)<%an>%Creset' --abbrev-commit"
-alias gga="git log --graph --pretty=format:'%Cred%h%Creset %C(blue)[%cs]%Creset %C(auto)%d%Creset- %s %C(bold cyan)<%an>%Creset' --abbrev-commit --all"
 alias l='exa -lT --icons -L 1'
 alias tree='exa -lT --icons'
 alias gs='git status'
 alias reboot='echo "Use sudo"'
 
 # To define !
-alias mu_commands="mu_commands.sh --cmd|fzf --preview-window=wrap --height=10 --border=vertical --preview 'mu_commands.sh --desc {}'| bash"
+alias mu_commands='eval $(mu_commands.sh --cmd|fzf --preview-window=wrap --height=25 --border=vertical --preview "mu_commands.sh --desc {}")'
 alias open_with_fzf="fzf --preview 'bat -p --wrap=never --paging=never --color=always {}' | xargs nvim"
 
 bindkey -s '' "mu_commands"

@@ -53,6 +53,10 @@ map('n','<C-a>', '<cmd>Vista!! <CR>')
 map('n', '<leader>tt', "<cmd>lua TermToggle()<CR>")
 map('n', "<leader>tg", "<cmd>lua GitToggle()<CR>")
 
+-- Fugitive ---------------------
+map('n', '<leader>gs', '<cmd>Git<CR>')
+map('n', '<leader>gl', '<cmd>GV<CR>')
+
 -- Telescope ---------------------
 map('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
 map('n', '<leader>ff', '<cmd>Telescope find_files<CR>')

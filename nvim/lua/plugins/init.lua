@@ -4,6 +4,7 @@ local use = require('packer').use
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   use 'tpope/vim-fugitive'
+  use 'junegunn/gv.vim'
   use {'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- use 'itchyny/lightline.vim'
   use 'neovim/nvim-lspconfig'
