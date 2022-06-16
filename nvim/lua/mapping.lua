@@ -3,6 +3,7 @@ local function map(mode, sc, cmd)
 end
 
 -- General -----------------------
+map('n', '<C-q>', '<cmd>q<CR>')
 -- - Easier buffer pick
 map('n', '<C-h>', '<C-w>h')
 map('n', '<C-l>', '<C-w>l')
@@ -51,11 +52,16 @@ map('n','<C-a>', '<cmd>Vista!! <CR>')
 
 -- Term --------------------------
 map('n', '<leader>tt', "<cmd>lua TermToggle()<CR>")
-map('n', "<leader>tg", "<cmd>lua GitToggle()<CR>")
+-- map('n', "<leader>tg", "<cmd>lua GitToggle()<CR>")
 
 -- Fugitive ---------------------
-map('n', '<leader>gs', '<cmd>Git<CR>')
-map('n', '<leader>gl', '<cmd>GV<CR>')
+map('n', '<leader>gg', '<cmd>Git<CR>')
+map('n', '<leader>gv', '<cmd>GV --all<CR>')
+map('n', '<leader>gl', '<cmd>Gclog<CR>')
+map('n', ']h', '<cmd>GitGutterNextHunk<CR>')
+map('n', '[h', '<cmd>GitGutterPrevHunk<CR>')
+map('n', '<leader>ge', '<cmd>GitGutterPreviewHunk<CR>')
+map('n', '<leader>gf', '<cmd>GitGutterFold<CR>')
 
 -- Telescope ---------------------
 map('n', '<leader>fb', '<cmd>Telescope buffers<CR>')

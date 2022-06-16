@@ -29,6 +29,9 @@ vim.o.breakindent = true
 --Fold to indent
 vim.opt.foldmethod = 'indent'
 
+--Set sign column
+vim.o.signcolumn = 'yes'
+
 --Save undo history
 vim.opt.undofile = true
 
@@ -38,7 +41,6 @@ vim.o.smartcase = true
 
 --Decrease update time
 vim.o.updatetime = 250
-vim.wo.signcolumn = 'no'
 
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
