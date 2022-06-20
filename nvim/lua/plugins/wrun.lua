@@ -3,7 +3,8 @@ require'wrun'.setup({
   interpreter = '/usr/bin/bash',
   edit_method = '12split', -- 'edit' | 'tabedit' | 'split'| 'vsplit'
   term_settings = {
-    exec_direction = 'float', -- 'vertical' | 'horizontal' | 'float'
+    -- exec_direction = 'float', -- 'vertical' | 'horizontal' | 'float'
+    exec_direction = 'horizontal', -- 'vertical' | 'horizontal' | 'float'
     size = function(term)
         if term.direction == "horizontal" then
           return 15
