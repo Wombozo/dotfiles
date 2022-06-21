@@ -2,6 +2,22 @@ local M = { }
 
 M.config = function()
   -- LSP settings
+  -- local function lspSymbol(name, icon, color)
+  --   vim.fn.sign_define(
+  --       'DiagnosticSign' .. name,
+  --       { text = icon, numhl = 'DiagnosticDefault' .. name, texthl = color }
+  --   )
+  -- end
+  -- lspSymbol('Error', 'E', 'Error')
+  -- lspSymbol('Information', 'I', 'Information')
+  -- lspSymbol('Hint', '', 'Hint')
+  -- lspSymbol('Info', '', 'Information')
+  -- lspSymbol('Warning', '', 'Warning')
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        severity_sort = true
+    }
+  )
   local nvim_lsp = require 'lspconfig'
   local on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -104,6 +120,6 @@ M.config = function()
   })
 end
 
-M.use = { 'neovim/nvim-lspconfig' }
+M.use = { 'neovim/nvim-lspconfig', 'folke/lsp-colors.nvim' }
 
 return M

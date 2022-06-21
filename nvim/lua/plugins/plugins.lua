@@ -46,7 +46,7 @@ local plugins = {
     active = true,
   },
   ['marks'] = {
-    active = false,
+    active = true,
   },
   ['catppuccin'] = {
     active = true,
