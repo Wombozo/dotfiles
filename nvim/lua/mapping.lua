@@ -2,6 +2,12 @@ local function map(mode, sc, cmd)
   return vim.api.nvim_set_keymap(mode, sc, cmd, {})
 end
 
+local function map_if_active(plugin, mode, sc, cmd)
+  if require'plugins.plugins'.plugins[plugin].active then
+    return vim.api.nvim_set_keymap(mode, sc, cmd, {})
+  end
+end
+
 -- General -----------------------
 map('n', '<C-q>', '<cmd>q<CR>')
 -- - Easier buffer pick
@@ -45,55 +51,55 @@ map('n', 'zd', '<cmd>set nofoldenable<CR>')
 map('n', 'ze', '<cmd>set foldenable<CR>')
 
 -- Session -----------------------
-map('n', '<leader>ss', '<cmd>lua require("persistence").load()<CR>')
+map_if_active('persistence', 'n', '<leader>ss', '<cmd>lua require("persistence").load()<CR>')
 
 -- Vista -------------------------
-map('n','<C-a>', '<cmd>Vista!! <CR>')
+map_if_active('vista', 'n','<C-a>', '<cmd>Vista!! <CR>')
 
 -- Term --------------------------
 map('n', '<leader>tt', "<cmd>lua TermToggle()<CR>")
 -- map('n', "<leader>tg", "<cmd>lua GitToggle()<CR>")
 
 -- Fugitive ---------------------
-map('n', '<leader>gg', '<cmd>Git<CR>')
-map('n', '<leader>gv', '<cmd>GV --all<CR>')
-map('n', '<leader>gl', '<cmd>Gclog<CR>')
-map('n', ']h', '<cmd>GitGutterNextHunk<CR>')
-map('n', '[h', '<cmd>GitGutterPrevHunk<CR>')
-map('n', '<leader>ge', '<cmd>GitGutterPreviewHunk<CR>')
-map('n', '<leader>gf', '<cmd>GitGutterFold<CR>')
+map_if_active('git', 'n', '<leader>gg', '<cmd>Git<CR>')
+map_if_active('git', 'n', '<leader>gv', '<cmd>GV --all<CR>')
+map_if_active('git', 'n', '<leader>gl', '<cmd>Gclog<CR>')
+map_if_active('git', 'n', ']h', '<cmd>GitGutterNextHunk<CR>')
+map_if_active('git', 'n', '[h', '<cmd>GitGutterPrevHunk<CR>')
+map_if_active('git', 'n', '<leader>ge', '<cmd>GitGutterPreviewHunk<CR>')
+map_if_active('git', 'n', '<leader>gf', '<cmd>GitGutterFold<CR>')
 
 -- Telescope ---------------------
-map('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
-map('n', '<leader>ff', '<cmd>Telescope find_files<CR>')
-map('n', '<leader>fh', '<cmd>Telescope find_files hidden=true<CR>')
-map('n', '<leader>fi', '<cmd>Telescope git_files<CR>')
-map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
-map('n', '<leader>fo', '<cmd>Telescope oldfiles<CR>')
-map('n', ';', "<cmd>lua require('telescope').extensions.neoclip.neoclip()<CR>")
-map('n', '<leader>cd', '<cmd>Telescope zoxide list<CR>')
-map('n', '<leader>?', '<cmd>Telescope keymaps<CR>')
-map('n', '<leader>\'', '<cmd>Telescope marks<CR>')
+map_if_active('telescope', 'n', '<leader>fb', '<cmd>Telescope buffers<CR>')
+map_if_active('telescope', 'n', '<leader>ff', '<cmd>Telescope find_files<CR>')
+map_if_active('telescope', 'n', '<leader>fh', '<cmd>Telescope find_files hidden=true<CR>')
+map_if_active('telescope', 'n', '<leader>fi', '<cmd>Telescope git_files<CR>')
+map_if_active('telescope', 'n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
+map_if_active('telescope', 'n', '<leader>fo', '<cmd>Telescope oldfiles<CR>')
+map_if_active('telescope', 'n', ';', "<cmd>lua require('telescope').extensions.neoclip.neoclip()<CR>")
+map_if_active('telescope', 'n', '<leader>cd', '<cmd>Telescope zoxide list<CR>')
+map_if_active('telescope', 'n', '<leader>?', '<cmd>Telescope keymaps<CR>')
+map_if_active('telescope', 'n', '<leader>\'', '<cmd>Telescope marks<CR>')
 
 -- Nvim-Tree ----------------------
-map('n', '<C-n>', "<cmd>NvimTreeToggle<CR>")
+map_if_active('nvimtree', 'n', '<C-n>', "<cmd>NvimTreeToggle<CR>")
 
 -- Comments -----------------------
-map('n', '<C-_>', ':CommentToggle <CR>')
-map('v', '<C-_>', ':CommentToggle <CR>')
+map_if_active('comment', 'n', '<C-_>', ':CommentToggle <CR>')
+map_if_active('comment', 'v', '<C-_>', ':CommentToggle <CR>')
 
 -- Bufferline --------------------------
-map('n', '<TAB>', '<cmd>BufferLineCycleNext<CR>')
-map('n', '<S-TAB>', '<cmd>BufferLineCyclePrev<CR>')
-map('n', '<C-b>h', '<cmd>BufferLineMovePrev<CR>')
-map('n', '<C-b>l', '<cmd>BufferLineMoveNext<CR>')
-map('n', '<C-b>c', '<cmd>bdelete<CR>')
-map('n', '<C-b>p', '<cmd>BufferLinePick<CR>')
-map('n', '<C-b>tn', '<cmd>tabnew %<CR>')
-map('n', '<C-b>tc', '<cmd>tabclose<CR>')
+map_if_active('bufferline', 'n', '<TAB>', '<cmd>BufferLineCycleNext<CR>')
+map_if_active('bufferline', 'n', '<S-TAB>', '<cmd>BufferLineCyclePrev<CR>')
+map_if_active('bufferline', 'n', '<C-b>h', '<cmd>BufferLineMovePrev<CR>')
+map_if_active('bufferline', 'n', '<C-b>l', '<cmd>BufferLineMoveNext<CR>')
+map_if_active('bufferline', 'n', '<C-b>c', '<cmd>bdelete<CR>')
+map_if_active('bufferline', 'n', '<C-b>p', '<cmd>BufferLinePick<CR>')
+map_if_active('bufferline', 'n', '<C-b>tn', '<cmd>tabnew %<CR>')
+map_if_active('bufferline', 'n', '<C-b>tc', '<cmd>tabclose<CR>')
 
 -- WRun --------------------------
-map('n', '<leader>we', '<cmd>WRedit<CR>')
-map('n', '<leader>wr', '<cmd>WRrun<CR>')
-map('v', '<leader>wr', '<cmd>WRrun<CR>')
-map('x', '<leader>wr', '<cmd>WRrun<CR>')
+map_if_active('wrun', 'n', '<leader>we', '<cmd>WRedit<CR>')
+map_if_active('wrun', 'n', '<leader>wr', '<cmd>WRrun<CR>')
+map_if_active('wrun', 'v', '<leader>wr', '<cmd>WRrun<CR>')
+map_if_active('wrun', 'x', '<leader>wr', '<cmd>WRrun<CR>')
