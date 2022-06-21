@@ -1,15 +1,20 @@
 local function packer_startup_func()
-  for _, value in pairs(require'plugins.plugins'.plugins) do
-    for _, use in pairs(value.use) do
-      require'packer'.use(use)
+  require'packer'.use'wbthomason/packer.nvim'
+  for key, value in pairs(require'plugins.plugins'.plugins) do
+    if value.active then
+      local luafile = 'plugins.' .. key
+      for _, use in pairs(require(luafile).use) do
+        require'packer'.use(use)
+      end
     end
   end
 end
 
-for key,value in pairs(require'plugins.plugins'.plugins) do
+require'packer'.startup(packer_startup_func)
+
+for key, value in pairs(require'plugins.plugins'.plugins) do
   if value.active then
-    require('packer').startup(packer_startup_func)
     local luafile = 'plugins.' .. key
-    pcall(require, luafile)
+    require(luafile).config()
   end
 end
