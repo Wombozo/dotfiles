@@ -1,6 +1,6 @@
 local M = { }
 
-require('plugins.packer-setup')
+require'plugins.packer-setup'
 
 local plugins = {
   ['packer'] = {
@@ -95,15 +95,15 @@ local plugins = {
   },
   ['tabline'] = {
     active = false,
-    use = { 'kdheepak/tabline.nvim', },
+    use = { 'kdheepak/tabline.nvim' },
   },
   ['lualine'] = {
     active = true,
-    use = { 'hoob3rt/lualine.nvim', },
+    use = { 'hoob3rt/lualine.nvim' },
   },
   ['bufferline'] = {
     active = true,
-    use = { 'akinsho/bufferline.nvim', },
+    use = { 'akinsho/bufferline.nvim' },
   },
   ['barbar'] = {
     active = false,
