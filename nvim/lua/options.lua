@@ -5,7 +5,15 @@ vim.o.termguicolors = true
 -- local theme = { global = 'ayu', line = 'ayu' }
 local theme = require'theme'
 vim.cmd('silent! colorscheme ' .. theme.global)
-options.line_theme=theme.line
+
+if theme.line == nil or theme.line == '' then
+  options.line_theme=theme.global
+else
+  options.line_theme=theme.line
+end
+
+-- SignColumn same as LineNr
+vim.cmd('highlight! link SignColumn LineNr')
 
 --Incremental live completion (note: this is now a default on master)
 vim.o.inccommand = 'nosplit'
@@ -30,7 +38,7 @@ vim.o.breakindent = true
 vim.opt.foldmethod = 'indent'
 
 --Set sign column
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = 'auto'
 
 --Save undo history
 vim.opt.undofile = true
@@ -40,7 +48,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 --Decrease update time
-vim.o.updatetime = 250
+vim.o.updatetime = 10
 
 vim.o.expandtab = true
 vim.o.shiftwidth = 2

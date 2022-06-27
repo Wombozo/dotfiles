@@ -72,7 +72,6 @@ map_if_active('git', 'n', '<leader>gf', '<cmd>GitGutterFold<CR>')
 -- Telescope ---------------------
 map_if_active('telescope', 'n', '<leader>fb', '<cmd>Telescope buffers<CR>')
 map_if_active('telescope', 'n', '<leader>ff', '<cmd>Telescope find_files<CR>')
-map_if_active('telescope', 'n', '<leader>fh', '<cmd>Telescope find_files hidden=true<CR>')
 map_if_active('telescope', 'n', '<leader>fi', '<cmd>Telescope git_files<CR>')
 map_if_active('telescope', 'n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 map_if_active('telescope', 'n', '<leader>fo', '<cmd>Telescope oldfiles<CR>')

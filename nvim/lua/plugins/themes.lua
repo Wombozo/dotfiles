@@ -14,6 +14,7 @@ M.use =  {
       'marciomazza/vim-brogrammer-theme',
       'uu59/vim-herokudoc-theme',
       'srcery-colors/srcery-vim',
+      'ciaranm/inkpot',
 }
 
 return M

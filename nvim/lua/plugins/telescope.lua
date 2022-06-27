@@ -48,6 +48,19 @@ M.config = function()
         -- Developer configurations: Not meant for general override
         buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
      },
+     pickers = {
+       find_files = {
+          find_command = {
+            'fd',
+            '--type',
+            'f',
+            '--no-ignore-vcs',
+            '--color=never',
+            '--hidden',
+            '--follow',
+          }
+       },
+     },
      extensions = {
         fzf = {
            fuzzy = true, -- false will only do exact matching
