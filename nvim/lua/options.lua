@@ -64,6 +64,9 @@ vim.opt.listchars = {
 }
 vim.opt.listchars.tab = ">"
 
+-- Diff
+vim.opt.diffopt = 'internal,filler,closeoff,vertical'
+
 --Remap space as leader key
 vim.g.mapleader = '\\'
 
