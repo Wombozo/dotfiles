@@ -20,6 +20,7 @@ alias rm='rip'
 alias l='exa -lT --icons -L 1'
 alias tree='exa -lT --icons'
 alias gs='git status'
+alias gaw='git diff -U0 -w --no-color | git apply --cached --ignore-whitespace --unidiff-zero'
 alias reboot='echo "Use sudo"'
 
 # To define !
