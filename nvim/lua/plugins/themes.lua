@@ -15,6 +15,7 @@ M.use =  {
       'uu59/vim-herokudoc-theme',
       'srcery-colors/srcery-vim',
       'ciaranm/inkpot',
+      'yonlu/omni.vim',
 }
 
 return M

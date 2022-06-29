@@ -6,11 +6,6 @@ vim.o.termguicolors = true
 local theme = require'theme'
 vim.cmd('silent! colorscheme ' .. theme.global)
 
-if theme.line == nil or theme.line == '' then
-  options.line_theme=theme.global
-else
-  options.line_theme=theme.line
-end
 
 -- SignColumn same as LineNr
 vim.cmd('highlight! link SignColumn LineNr')
