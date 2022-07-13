@@ -287,21 +287,21 @@
         <command>/home/guillaume/dotfiles/eww/launch_eww</command>
       </action>
     </keybind>
-    <!--<keybind key="F9">
+    <keybind key="F9">
       <action name="Execute">
-        <command>playerctl play-pause</command>
+        <command>/home/guillaume/.local/bin/setup-home.sh</command>
       </action>
     </keybind>
     <keybind key="F10">
       <action name="Execute">
-        <command>playerctl previous</command>
+        <command>/home/guillaume/.local/bin/setup-office.sh</command>
       </action>
     </keybind>
-    <keybind key="F11">
-      <action name="Execute">
-        <command>playerctl next</command>
-      </action>
-    </keybind>-->
+    <!-- <keybind key="F11"> -->
+    <!--   <action name="Execute"> -->
+    <!--     <command>playerctl next</command> -->
+    <!--   </action> -->
+    <!-- </keybind> -->
     <keybind key="Print">
       <action name="Execute">
         <command>"/usr/local/bin/ss_clipboard.sh"</command>
@@ -341,10 +341,10 @@
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
-    <keybind key="W-o">
+    <keybind key="W-p">
       <action name="ToggleOmnipresent"/>
     </keybind>
-    <keybind key="W-p">
+    <keybind key="W-o">
       <action name="Execute">
         <command>"/home/guillaume/.local/bin/toggle_picom.sh"</command>
       </action>

@@ -5,18 +5,13 @@ M.config = function ()
   if not cmp_status_ok then
     return
   end
-
-  -- local snip_status_ok, luasnip = pcall(require, "luasnip")
-  -- if not snip_status_ok then
-  --   return
-  -- end
-
-  -- require("luasnip/loaders/from_vscode").lazy_load()
-
-  local check_backspace = function()
-    local col = vim.fn.col "." - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+  local snip_status_ok, luasnip = pcall(require, "luasnip")
+  if not snip_status_ok then
+    return
   end
+  require("luasnip.loaders.from_lua").lazy_load()
+  require("luasnip.loaders.from_vscode").lazy_load()
+  require("luasnip.loaders.from_snipmate").lazy_load()
 
   --   פּ ﯟ   some other good icons
   local kind_icons = {
@@ -52,23 +47,39 @@ M.config = function ()
       snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-          vim.fn["vsnip#anonymous"](args.body)
+          luasnip.lsp_expand(args.body)
         end,
       },
-      window = {
-        -- completion = cmp.config.window.bordered(),
-        -- documentation = cmp.config.window.bordered(),
-      },
       mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<CR>'] = cmp.mapping.confirm {
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = true,
+        },
+        ['<Tab>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+          if luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          elseif cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end, { 'i', 's' }),
       }),
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'vsnip' },
+        { name = 'luasnip' },
       }, {
         { name = 'buffer' },
         { name = "path" },
@@ -79,8 +90,8 @@ M.config = function ()
         vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
         -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
         vim_item.menu = ({
+          luasnip = "[Snippet]",
           nvim_lsp = "[LSP]",
-          vsnip = "[Snippet]",
           buffer = "[Buffer]",
           path = "[Path]",
         })[entry.source.name]
@@ -118,11 +129,14 @@ M.config = function ()
 end
 
 M.use = {
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-cmdline',
+      'rafamadriz/friendly-snippets'
     }
 
 return M

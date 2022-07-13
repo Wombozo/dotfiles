@@ -10,7 +10,7 @@ end
 
 -- General -----------------------
 map('n', '<C-q>', '<cmd>q<CR>')
--- - Easier buffer pick
+--- Easier buffer pick
 map('n', '<C-h>', '<C-w>h')
 map('n', '<C-l>', '<C-w>l')
 map('n', '<C-j>', '<C-w>j')
@@ -19,9 +19,11 @@ map('t', '<C-h>', [[<C-\><C-n><C-W>h]])
 map('t', '<C-l>', [[<C-\><C-n><C-W>l]])
 map('t', '<C-j>', [[<C-\><C-n><C-W>j]])
 map('t', '<C-k>', [[<C-\><C-n><C-W>k]])
+--- Cleaning
+map('n', '<BS>', '<cmd>noh<CR>')
 ---- Saving
-map("n", "<C-s>", '<cmd>w<CR>')
-map("i", "<C-s>", '<C-c><cmd>w<CR>')
+map('n', '<C-s>', '<cmd>w<CR>')
+map('i', '<C-s>', '<C-c><cmd>w<CR>')
 ---- Better Escape
 map('t','jk', '<C-\\><C-n>')
 ---- Hidden characters
@@ -35,30 +37,30 @@ map('n', '<C-w><', '<cmd>vertical resize -20<CR>')
 ---- Save selection to clipboard
 map('v', '<leader>c', '"+y')
 ---- Move text up and down
-map("n", "<C-PageDown>", "<cmd>m .+1<CR>==")
-map("n", "<C-PageUp>", "<cmd>m .-2<CR>==")
-map("v", "<C-PageDown>", "<cmd>m .+1<CR>==")
-map("v", "<C-PageUp>", "<cmd>m .-2<CR>==")
-map("x", "<C-PageDown>", "<cmd>move '>+1<CR>gv-gv")
-map("x", "<C-PageUp>", "<cmd>move '<-2<CR>gv-gv")
+map('n', '<C-PageDown>', '<cmd>m .+1<CR>==')
+map('n', '<C-PageUp>', '<cmd>m .-2<CR>==')
+map('v', '<C-PageDown>', '<cmd>m .+1<CR>==')
+map('v', '<C-PageUp>', '<cmd>m .-2<CR>==')
+map('x', '<C-PageDown>', "<cmd>move '>+1<CR>gv-gv")
+map('x', '<C-PageUp>', "<cmd>move '<-2<CR>gv-gv")
 ---- Indenting
-map("v", "<", "<gv")
-map("v", ">", ">gv")
+map('v', '<', '<gv')
+map('v', '>', '>gv')
 ---- Delete without saving in visual
-map("v", "p", '"_dP')
+map('v', 'p', '"_dP')
 ---- Fold
 map('n', 'zd', '<cmd>set nofoldenable<CR>')
 map('n', 'ze', '<cmd>set foldenable<CR>')
 
 -- Session -----------------------
-map_if_active('persistence', 'n', '<leader>ss', '<cmd>lua require("persistence").load()<CR>')
+map_if_active('persistence', 'n', '<leader>ss', "<cmd>lua require('persistence').load()<CR>")
 
 -- Vista -------------------------
 map_if_active('vista', 'n','<C-a>', '<cmd>Vista!! <CR>')
 
 -- Term --------------------------
-map('n', '<leader>tt', "<cmd>lua TermToggle()<CR>")
--- map('n', "<leader>tg", "<cmd>lua GitToggle()<CR>")
+map('n', '<leader>tt', '<cmd>lua TermToggle()<CR>')
+-- map('n', '<leader>tg', '<cmd>lua GitToggle()<CR>')
 
 -- Fugitive ---------------------
 map_if_active('git', 'n', '<leader>gg', '<cmd>Git<CR>')
@@ -75,17 +77,17 @@ map_if_active('telescope', 'n', '<leader>ff', '<cmd>Telescope find_files<CR>')
 map_if_active('telescope', 'n', '<leader>fi', '<cmd>Telescope git_files<CR>')
 map_if_active('telescope', 'n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 map_if_active('telescope', 'n', '<leader>fo', '<cmd>Telescope oldfiles<CR>')
-map_if_active('telescope', 'n', ';', "<cmd>lua require('telescope').extensions.neoclip.neoclip()<CR>")
+map_if_active('telescope', 'n', '<leader>;', "<cmd>lua require('telescope').extensions.neoclip.neoclip()<CR>")
 map_if_active('telescope', 'n', '<leader>cd', '<cmd>Telescope zoxide list<CR>')
 map_if_active('telescope', 'n', '<leader>?', '<cmd>Telescope keymaps<CR>')
 map_if_active('telescope', 'n', '<leader>\'', '<cmd>Telescope marks<CR>')
 
 -- Nvim-Tree ----------------------
-map_if_active('nvimtree', 'n', '<C-n>', "<cmd>NvimTreeToggle<CR>")
+map_if_active('nvimtree', 'n', '<C-n>', '<cmd>NvimTreeToggle<CR>')
 
 -- Comments -----------------------
-map_if_active('comment', 'n', '<C-_>', ':CommentToggle <CR>')
-map_if_active('comment', 'v', '<C-_>', ':CommentToggle <CR>')
+map_if_active('comment', 'n', '<C-/>', ':CommentToggle <CR>')
+map_if_active('comment', 'v', '<C-/>', ':CommentToggle <CR>')
 
 -- Bufferline --------------------------
 map_if_active('bufferline', 'n', '<TAB>', '<cmd>BufferLineCycleNext<CR>')

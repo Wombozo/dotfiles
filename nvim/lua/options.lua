@@ -2,10 +2,7 @@ local options = { }
 
 vim.o.termguicolors = true
 
--- local theme = { global = 'ayu', line = 'ayu' }
-local theme = require'theme'
-vim.cmd('silent! colorscheme ' .. theme.global)
-
+vim.cmd('silent! colorscheme ' .. os.getenv("VIM_THEME"))
 
 -- SignColumn same as LineNr
 vim.cmd('highlight! link SignColumn LineNr')
@@ -61,7 +58,6 @@ vim.opt.listchars.tab = ">"
 
 -- Diff
 vim.opt.diffopt = 'internal,filler,closeoff,vertical'
-
 --Remap space as leader key
 vim.g.mapleader = '\\'
 

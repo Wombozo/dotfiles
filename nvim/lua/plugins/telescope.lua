@@ -56,7 +56,6 @@ M.config = function()
             'f',
             '--no-ignore-vcs',
             '--color=never',
-            '--hidden',
             '--follow',
           }
        },

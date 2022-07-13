@@ -46,6 +46,7 @@ M.config = function()
 
   -- nvim-cmp supports additional completion capabilities
   local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
   nvim_lsp['bashls'].setup{}
@@ -61,6 +62,9 @@ M.config = function()
         diagnostics = {
           globals = {'vim'},
         },
+        completion = {
+          callSnippet = "Disable",
+        },
       },
     },
   }
@@ -71,6 +75,10 @@ M.config = function()
     flags = {
           debounce_text_changes = 150,
        },
+  }
+
+  nvim_lsp['tsserver'].setup{
+    on_attach = on_attach,
   }
 
   nvim_lsp.jdtls.setup {
