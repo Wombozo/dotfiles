@@ -27,7 +27,13 @@ local plugins = {
   ['term'] = {
     active = true,
   },
+  ['undotree'] = {
+    active = true,
+  },
   ['neoclip'] = {
+    active = true,
+  },
+  ['snippets'] = {
     active = true,
   },
   ['lightline'] = {
@@ -103,7 +109,12 @@ end
 M.get_used = function()
   for key, value in pairs(plugins) do
     if value.active == true then
-      print(key)
+      -- local use = ''
+      -- for i, val in pairs(require("plugins." .. key).use) do
+        -- use = use .. val
+      -- end
+      -- print(key, use)
+      print('toto')
     end
   end
 end

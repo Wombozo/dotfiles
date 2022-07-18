@@ -10,6 +10,7 @@ end
 
 -- General -----------------------
 map('n', '<C-q>', '<cmd>q<CR>')
+map('n', '<leader>o', 'o<C-c>k')
 --- Easier buffer pick
 map('n', '<C-h>', '<C-w>h')
 map('n', '<C-l>', '<C-w>l')

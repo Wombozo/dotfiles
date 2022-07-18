@@ -64,6 +64,7 @@ M.config = function()
         },
         completion = {
           callSnippet = "Disable",
+          keywordSnippet = "Disable",
         },
       },
     },
