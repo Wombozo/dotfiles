@@ -9,41 +9,49 @@ local func = ls.function_node
 -- local choice = ls.choice_node
 -- local dynamicn = ls.dynamic_node
 
-local date = function() return {os.date('%Y-%m-%d')} end
+-- local date = function() return {os.date('%Y-%m-%d')} end
 
 M.config = function()
-  ls.add_snippets("all", {
-    snip({
-        trig = "dateC",
-        namr = "Date",
-        dscr = "Date in the form of YYYY-MM-DD",
-      }, {
-        func(date, {}),
-        }
-    ),
-  })
-  ls.add_snippets("c", {
-    snip({
-        trig = "gui_c",
-        namr = "Debug GUI",
-        dscr = "Printout line and GUI marker"
-      }, {
-        text({"fprintf(stderr, \"<GUI> %s:%d\\n\", __func__, __LINE__);"})
-        }
-    ),
-  })
-  ls.add_snippets("lua", {
-    snip({
-        trig = "plugadd",
-        namr = "Add a plugin",
-        dscr = "Add a plugin with activable parameter"
-      }, {
-        text({"['"}), insert(1, "plugin_filename"), text({"'] = {",
-        "\tactive = "}), insert(2, "true"), text({",",
-        "},"})
-        }
-    ),
-  })
+  -- ls.add_snippets("all", {
+  --   snip({
+  --       trig = "dateC",
+  --       namr = "Date",
+  --       dscr = "Date in the form of YYYY-MM-DD",
+  --     }, {
+  --       func(date, {}),
+  --       }
+  --   ),
+  -- })
+  -- ls.add_snippets("c", {
+  --   snip({
+  --       trig = "gui_c",
+  --       namr = "Debug GUI",
+  --       dscr = "Printout line and GUI marker"
+  --     }, {
+  --       text({"fprintf(stderr, \"<GUI> %s:%d\\n\", __func__, __LINE__);"})
+  --       }
+  --   ),
+  -- })
+  -- ls.add_snippets("lua", {
+  --   snip({
+  --       trig = "plugadd",
+  --       namr = "Add a plugin",
+  --       dscr = "Add a plugin with activable parameter"
+  --     }, {
+  --       text({"['"}), insert(1, "plugin_filename"), text({"'] = {",
+  --       "\tactive = "}), insert(2, "true"), text({",",
+  --       "},"})
+  --       }
+  --   ),
+  -- })
+  --
+  require("luasnip.loaders.from_vscode").lazy_load()
+
+  ---- Using vscode : Use the lazy loader down below and copy friendly-snippets
+  require("luasnip.loaders.from_vscode").lazy_load({
+    paths = {
+      "/home/guillaume/.config/nvim/snippets",
+  }})
 end
 
 M.use = { 'rafamadriz/friendly-snippets' }

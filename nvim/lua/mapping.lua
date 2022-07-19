@@ -72,9 +72,11 @@ map_if_active('git', 'n', '<leader>gl', '<cmd>Gclog<CR>')
 map_if_active('git', 'n', '<leader>ge', '<cmd>GitGutterPreviewHunk<CR>')
 map_if_active('git', 'n', '<leader>gf', '<cmd>GitGutterFold<CR>')
 
+-- FZF ---------------------------
+map_if_active('fzf', 'n', '<leader>ff', '<cmd>FZF<CR>')
+
 -- Telescope ---------------------
 map_if_active('telescope', 'n', '<leader>fb', '<cmd>Telescope buffers<CR>')
-map_if_active('telescope', 'n', '<leader>ff', '<cmd>Telescope find_files<CR>')
 map_if_active('telescope', 'n', '<leader>fi', '<cmd>Telescope git_files<CR>')
 map_if_active('telescope', 'n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 map_if_active('telescope', 'n', '<leader>fo', '<cmd>Telescope oldfiles<CR>')

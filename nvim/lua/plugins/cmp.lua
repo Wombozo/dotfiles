@@ -9,8 +9,6 @@ M.config = function ()
   if not snip_status_ok then
     return
   end
-  require("luasnip.loaders.from_vscode").lazy_load()
-  require("luasnip.loaders.from_vscode").lazy_load({paths = "~/.config/nvim/snippets"})
 
   --   פּ ﯟ   some other good icons
   local kind_icons = {
@@ -57,14 +55,14 @@ M.config = function ()
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         },
-        ['<C-j>'] = cmp.mapping(function(fallback)
+        ['<C-l>'] = cmp.mapping(function(fallback)
           if luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
           else
             fallback()
           end
         end, { 'i', 's' }),
-        ['<C-k>'] = cmp.mapping(function(fallback)
+        ['<C-h>'] = cmp.mapping(function(fallback)
           if luasnip.jumpable(-1) then
             luasnip.jump(-1)
           else

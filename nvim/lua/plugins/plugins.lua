@@ -18,11 +18,14 @@ local plugins = {
   ['cmp'] = {
     active = true,
   },
+  ['fzf'] = {
+    active = true,
+  },
   ['dashboard'] = {
     active = false,
   },
   ['alpha'] = {
-    active = true,
+    active = false,
   },
   ['term'] = {
     active = true,
@@ -101,7 +104,13 @@ local plugins = {
 M.get_unused = function()
   for key, value in pairs(plugins) do
     if value.active == false then
-      print(key)
+      local luafile = 'plugins.' .. key
+      print(key .. " :")
+      for _, p_use in pairs(require(luafile).use) do
+        if type(p_use) == "string" then
+          print("\t" .. p_use)
+       end
+      end
     end
   end
 end
@@ -109,20 +118,24 @@ end
 M.get_used = function()
   for key, value in pairs(plugins) do
     if value.active == true then
-      -- local use = ''
-      -- for i, val in pairs(require("plugins." .. key).use) do
-        -- use = use .. val
-      -- end
-      -- print(key, use)
-      print('toto')
+      local luafile = 'plugins.' .. key
+      print(key .. " :")
+      for _, p_use in pairs(require(luafile).use) do
+        if type(p_use) == "string" then
+          print("\t" .. p_use)
+       end
+      end
     end
   end
 end
 
 M.get_all = function()
-  for key, _ in pairs(plugins) do
-    print(key)
-  end
+  print("--------------------")
+  print("USED :")
+  M.get_used()
+  print("--------------------")
+  print("UNUSED :")
+  M.get_unused()
 end
 
 M.plugins = plugins
