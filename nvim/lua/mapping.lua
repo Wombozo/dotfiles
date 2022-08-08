@@ -48,13 +48,14 @@ map('x', '<C-PageUp>', "<cmd>move '<-2<CR>gv-gv")
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 ---- Delete without saving in visual
-map('v', 'p', '"_dP')
+-- map('v', 'p', '"_dP')
 ---- Fold
 map('n', 'zd', '<cmd>set nofoldenable<CR>')
 map('n', 'ze', '<cmd>set foldenable<CR>')
 
 -- Session -----------------------
-map_if_active('persistence', 'n', '<leader>ss', "<cmd>lua require('persistence').load()<CR>")
+-- map_if_active('persistence', 'n', '<leader>ss', "<cmd>lua require('persistence').load()<CR>")
+map_if_active('persistence', 'n', '<leader>ss', "<cmd>SessionLoad<CR>")
 
 -- Vista -------------------------
 map_if_active('vista', 'n','<C-a>', '<cmd>Vista!! <CR>')
