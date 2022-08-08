@@ -58,7 +58,7 @@ local plugins = {
     active = true,
   },
   ['catppuccin'] = {
-    active = true,
+    active = false,
   },
   ['zoxide'] = {
     active = true,
