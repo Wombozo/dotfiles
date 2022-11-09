@@ -16,3 +16,4 @@ for key, value in pairs(require'plugins.plugins'.plugins) do
     require(luafile).config()
   end
 end
+

@@ -2,7 +2,6 @@ local registers = {}
 
 local function setup_whichkey()
   if require'plugins.plugins'.plugins['whichkeys'].active then
-    print(registers["<leader>fb"])
     require'which-key'.setup(
     require'which-key'.register(registers)
     )
