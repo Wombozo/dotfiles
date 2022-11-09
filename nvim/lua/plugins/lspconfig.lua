@@ -19,7 +19,7 @@ M.config = function()
     }
   )
   local nvim_lsp = require 'lspconfig'
-  local on_attach = function(_, bufnr)
+  local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     local opts = { noremap = true, silent = true }
@@ -47,7 +47,7 @@ M.config = function()
   -- nvim-cmp supports additional completion capabilities
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
   nvim_lsp['bashls'].setup{}
   --nvim_lsp['sumneko_lua'].setup{
@@ -127,8 +127,9 @@ M.config = function()
           }
       }
   })
+  require'trouble'.setup()
 end
 
-M.use = { 'neovim/nvim-lspconfig', 'folke/lsp-colors.nvim' }
+M.use = { 'neovim/nvim-lspconfig', 'folke/lsp-colors.nvim', 'folke/trouble.nvim', 'kyazdani42/nvim-web-devicons' }
 
 return M

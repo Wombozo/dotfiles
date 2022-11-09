@@ -28,6 +28,7 @@ vim.o.breakindent = true
 
 --Fold to indent
 vim.opt.foldmethod = 'indent'
+vim.opt.foldenable = false
 
 --Set sign column
 vim.o.signcolumn = 'auto'
@@ -57,7 +58,8 @@ vim.opt.listchars = {
 vim.opt.listchars.tab = ">"
 
 -- Diff
-vim.opt.diffopt = 'internal,filler,closeoff,vertical'
+-- vim.opt.diffopt = 'internal,filler,closeoff,vertical'
+vim.opt.diffopt = 'filler,closeoff,vertical'
 --Remap space as leader key
 vim.g.mapleader = '\\'
 

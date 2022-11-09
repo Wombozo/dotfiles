@@ -1,6 +1,7 @@
 local M = { }
 
 M.config = function()
+  require 'lvim-colorscheme'
 end
 
 M.use =  {
@@ -16,6 +17,7 @@ M.use =  {
       'srcery-colors/srcery-vim',
       'ciaranm/inkpot',
       'yonlu/omni.vim',
+      'lvim-tech/lvim-colorscheme'
 }
 
 return M

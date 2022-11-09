@@ -3,102 +3,123 @@ local M = { }
 require'plugins.packer-setup'
 
 local plugins = {
-  ['lspconfig'] = {
+   ['lspconfig'] = {
+     active = true,
+   },
+   ['git'] = {
+     active = true,
+   },
+   ['noice'] = {
     active = true,
-  },
-  ['git'] = {
+   },
+   ['telescope'] = {
+     active = true,
+   },
+   ['nvimtree'] = {
+     active = false,
+   },
+   ['neotree'] = {
+     active = true,
+   },
+   ['cmp'] = {
+     active = true,
+   },
+   ['fzf'] = {
+     active = true,
+   },
+   ['dashboard'] = {
+     active = false,
+   },
+   ['alpha'] = {
+     active = false,
+   },
+   ['whichkeys'] = {
     active = true,
-  },
-  ['telescope'] = {
-    active = true,
-  },
-  ['nvimtree'] = {
-    active = true,
-  },
-  ['cmp'] = {
-    active = true,
-  },
-  ['fzf'] = {
-    active = true,
-  },
-  ['dashboard'] = {
-    active = false,
-  },
-  ['alpha'] = {
-    active = false,
-  },
-  ['term'] = {
-    active = true,
-  },
-  ['undotree'] = {
-    active = true,
-  },
-  ['neoclip'] = {
-    active = true,
-  },
-  ['snippets'] = {
-    active = true,
-  },
-  ['lightline'] = {
-    active = false,
-  },
-  ['treesitter'] = {
-    active = true,
-  },
-  ['comment'] = {
-    active = true,
-  },
-  ['vista'] = {
-    active = true,
-  },
-  ['wrun'] = {
-    active = true,
-  },
-  ['marks'] = {
-    active = true,
-  },
-  ['catppuccin'] = {
-    active = false,
-  },
-  ['zoxide'] = {
-    active = true,
-  },
-  ['betterescape'] = {
-    active = true,
-  },
-  ['hipairs'] = {
-    active = false,
-  },
-  ['tabline'] = {
-    active = false,
-  },
-  ['lualine'] = {
-    active = true,
-  },
-  ['bufferline'] = {
-    active = true,
-  },
-  ['barbar'] = {
-    active = false,
-  },
-  ['persistence'] = {
-    active = true,
-  },
-  ['indent-blankline']  = {
-    active = true,
-  },
-  ['scrollview'] = {
-    active = true,
-  },
-  ['glow'] = {
-    active = true,
-  },
-  ['hlslens'] = {
-    active = true,
-  },
-  ['themes'] = {
-    active = true,
-  },
+   },
+   ['term'] = {
+     active = true,
+   },
+   ['undotree'] = {
+     active = true,
+   },
+   ['neoclip'] = {
+     active = true,
+   },
+   ['snippets'] = {
+     active = true,
+   },
+   ['delimit'] = {
+     active = true,
+   },
+   ['lightline'] = {
+     active = false,
+   },
+   ['treesitter'] = {
+     active = true,
+   },
+   ['comment'] = {
+     active = true,
+   },
+   ['markdown'] = {
+     active = true,
+   },
+   ['vista'] = {
+     active = true,
+   },
+   ['wrun'] = {
+     active = true,
+   },
+   ['marks'] = {
+     active = true,
+   },
+   ['catppuccin'] = {
+     active = false,
+   },
+   ['zoxide'] = {
+     active = true,
+   },
+   ['betterescape'] = {
+     active = true,
+   },
+   ['hipairs'] = {
+     active = false,
+   },
+   ['tabline'] = {
+     active = false,
+   },
+   ['lualine'] = {
+     active = true,
+   },
+   ['bufferline'] = {
+     active = true,
+   },
+   ['barbar'] = {
+     active = false,
+   },
+   ['persistence'] = {
+     active = true,
+   },
+   ['indent-blankline']  = {
+     active = true,
+   },
+   ['scrollview'] = {
+     active = true,
+   },
+   ['glow'] = {
+     active = true,
+   },
+   ['hlslens'] = {
+     active = false,
+   },
+   ['themes'] = {
+     active = true,
+   },
+   ['rust'] = {
+     active = true,
+   },
+   ['test'] = {
+     active = false,
+   },
 }
 
 M.get_unused = function()
@@ -122,7 +143,7 @@ M.get_used = function()
       print(key .. " :")
       for _, p_use in pairs(require(luafile).use) do
         if type(p_use) == "string" then
-          print("\t" .. p_use)
+          print("  " .. p_use)
        end
       end
     end
