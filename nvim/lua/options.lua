@@ -43,8 +43,16 @@ vim.o.smartcase = true
 --Decrease update time
 vim.o.updatetime = 10
 
+-- keep fold
+vim.cmd[[
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave *.* mkview
+  autocmd BufWinEnter *.* silent! loadview
+augroup END]]
+
 vim.o.expandtab = true
-vim.o.shiftwidth = 2
+vim.o.shiftwidth = 4
 vim.o.smartindent = true
 vim.o.tabstop = 4
 
@@ -75,5 +83,6 @@ vim.opt.splitbelow = true
 
 vim.g.python3_host_prog = '/usr/bin/python3'
 vim.g.python_host_prog = '/usr/bin/python2'
+
 
 return options;

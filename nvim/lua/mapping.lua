@@ -1,7 +1,7 @@
 local registers = {}
 
 local function setup_whichkey()
-  if require'plugins.plugins'.plugins['whichkeys'].active then
+  if require'plugins'.is_active('whichkeys') then
     require'which-key'.setup(
     require'which-key'.register(registers)
     )
@@ -25,7 +25,7 @@ local function map(mode, sc, cmd)
 end
 
 local function map_if_active(plugin, mode, sc, cmd)
-  if require'plugins.plugins'.plugins[plugin].active then
+  if require'plugins'.is_active(plugin) then
     if mode == 'n' then
       add_to_whichkey(sc,cmd,"")
     end
