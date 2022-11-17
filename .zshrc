@@ -22,8 +22,6 @@ alias tree='exa -lT --icons'
 alias gs='git status'
 alias gaw='git diff -U0 -w --no-color | git apply --cached --ignore-whitespace --unidiff-zero'
 alias reboot='echo "Use sudo"'
-# If persisted nvim plugin :
-alias vl='nvim +SessionLoad'
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .ccls-cache'
 
@@ -33,5 +31,8 @@ alias open_with_fzf="fzf --preview 'bat -p --wrap=never --paging=never --color=a
 
 bindkey -s '' "mu_commands"
 # bindkey -s '' "open_with_fzf"
-bindkey -s '' "nvim +SessionLoad"
 bindkey -e
+
+if [ "$TERM" = "alacritty" ]; then
+    source $HOME/dotfiles/alacritty/alacritty-zsh
+fi

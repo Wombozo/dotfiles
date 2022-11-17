@@ -24,19 +24,38 @@ local function map(mode, sc, cmd)
   return vim.api.nvim_set_keymap(mode, sc, cmd, {})
 end
 
-local function map_if_active(plugin, mode, sc, cmd)
-  if require'plugins'.is_active(plugin) then
-    if mode == 'n' then
-      add_to_whichkey(sc,cmd,"")
+local function map_if_active(_p, mode, sc, cmd)
+    local typeof=type(_p)
+    local plugin=_p
+    if typeof=='string' then
+        if require'plugins'.is_active(plugin) then
+            if mode == 'n' then
+                add_to_whichkey(sc,cmd,"")
+            end
+            return vim.api.nvim_set_keymap(mode, sc, cmd, {})
+        end
+    elseif typeof=='table' then
+        local plugins=_p
+        for _,value in ipairs(plugins) do
+            print(value)
+            if require'plugins'.is_active(value) then
+                if mode == 'n' then
+                    add_to_whichkey(sc,cmd,"")
+                end
+                return vim.api.nvim_set_keymap(mode, sc, cmd, {})
+            end
+        end
     end
-    return vim.api.nvim_set_keymap(mode, sc, cmd, {})
-  end
 end
 
 -- General -----------------------
 map('n', '<C-q>', '<cmd>q<CR>')
 map('n', '<leader>dd', '<cmd>bdelete<CR>')
 map('n', '<leader>o', 'o<C-c>k')
+map('n', '<Esc>', '<Esc><cmd>noh<CR>')
+map('n', '<leader>pwd', '<cmd>pwd<CR>')
+map('n', '<leader>tn', '<cmd>tabnew<CR>')
+map('n', '<leader>td', '<cmd>tabclose<CR>')
 --- Easier buffer pick
 map('n', '<C-h>', '<C-w>h')
 map('n', '<C-l>', '<C-w>l')
@@ -58,9 +77,11 @@ map('n', '<C-t>', '<cmd>set list!<CR>')
 ---- Splitting
 map('n', '<C-w>s', '<cmd>split<CR>')
 map('n', '<C-w>v', '<cmd>vsplit<CR>')
----- Resize vertical split faster
+---- Resize split faster
 map('n', '<C-w>>', '<cmd>vertical resize +20<CR>')
 map('n', '<C-w><', '<cmd>vertical resize -20<CR>')
+map('n', '<C-w>.', '<cmd>horizontal resize +10<CR>')
+map('n', '<C-w>,', '<cmd>horizontal resize -10<CR>')
 ---- Save selection to clipboard
 map('v', '<leader>c', '"+y')
 ---- Move text up and down
@@ -81,7 +102,9 @@ map('n', 'ze', '<cmd>set foldenable<CR>')
 
 -- Session -----------------------
 -- map_if_active('persistence', 'n', '<leader>ss', "<cmd>lua require('persistence').load()<CR>")
-map_if_active('persistence', 'n', '<leader>ss', "<cmd>SessionLoad<CR>")
+-- map_if_active('persistence', 'n', '<leader>ss', "<cmd>SessionLoad<CR>")
+map_if_active('persistence', 'n', '<leader>ss', '<cmd>SessionSave<CR>')
+map_if_active('persistence', 'n', '<leader>sq', ':if len(filter(getbufinfo(), "v:val.changed == 1")) == 0 | call delete("/tmp/nvim_session_lock") | qall | else | echoerr "At least one buffer is modified !"<CR>')
 
 -- Vista -------------------------
 map_if_active('vista', 'n','<C-a>', '<cmd>Vista!! <CR>')
@@ -110,7 +133,7 @@ map_if_active('telescope', 'n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 map_if_active('telescope', 'n', '<leader>ff', '<cmd>Telescope find_files<CR>')
 map_if_active('telescope', 'n', '<leader>fo', '<cmd>Telescope oldfiles<CR>')
 map_if_active('telescope', 'n', '<leader>;', "<cmd>lua require('telescope').extensions.neoclip.neoclip()<CR>")
-map_if_active('telescope', 'n', '<leader>cd', '<cmd>Telescope zoxide list<CR>')
+map_if_active({'telescope','wrun'}, 'n', '<leader>cd', '<cmd>Telescope zoxide list<CR>')
 map_if_active('telescope', 'n', '<leader>?', '<cmd>Telescope keymaps<CR>')
 map_if_active('telescope', 'n', '<leader>\'', '<cmd>Telescope marks<CR>')
 
@@ -133,12 +156,13 @@ map_if_active('bufferline', 'n', '<C-b>tn', '<cmd>tabnew %<CR>')
 map_if_active('bufferline', 'n', '<C-b>tc', '<cmd>tabclose<CR>')
 
 -- Trouble -----------------------------
-map('n', '<leader>ss', '<cmd>TroubleToggle<CR>')
+map('n', '<leader>st', '<cmd>TroubleToggle<CR>')
 
 -- WRun --------------------------
 map_if_active('wrun', 'n', '<leader>we', '<cmd>WRedit<CR>')
 map_if_active('wrun', 'n', '<leader>wr', '<cmd>WRrun<CR>')
 map_if_active('wrun', 'v', '<leader>wr', '<cmd>WRrun<CR>')
 map_if_active('wrun', 'x', '<leader>wr', '<cmd>WRrun<CR>')
+map_if_active({'wrun','telescope'}, 'n', '<leader>wi', '<cmd>Telescope zoxide list<CR>')
 
 setup_whichkey()

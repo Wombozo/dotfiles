@@ -911,20 +911,29 @@ local plugins = {
                             print("Directory changed to " .. selection.path)
                         end
                     },
-                    ["<C-s>"] = { action = z_utils.create_basic_command("split") },
-                    ["<C-v>"] = { action = z_utils.create_basic_command("vsplit") },
-                    ["<C-e>"] = { action = z_utils.create_basic_command("edit") },
-                    ["<C-b>"] = {
-                        keepinsert = true,
-                        action = function(selection)
-                            builtin.file_browser({ cwd = selection.path })
-                        end
-                    },
+                    -- ["<C-s>"] = { action = z_utils.create_basic_command("split") },
+                    -- ["<C-v>"] = { action = z_utils.create_basic_command("vsplit") },
+                    -- ["<C-e>"] = { action = z_utils.create_basic_command("edit") },
+                    -- ["<C-b>"] = {
+                    --     keepinsert = true,
+                    --     action = function(selection)
+                    --         builtin.file_browser({ cwd = selection.path })
+                    --     end
+                    -- },
                     ["<C-f>"] = {
                         keepinsert = true,
                         action = function(selection)
                             builtin.find_files({ cwd = selection.path })
                         end
+                    },
+                    ["w"] = {
+                        action = function(selection)
+                            vim.cmd("cd " .. selection.path)
+                        end,
+                        after_action = function(_)
+                            require'wrun'.run()
+                            vim.cmd('cd ' .. os.getenv'HOME')
+                        end,
                     }
                 }
             })
@@ -1043,7 +1052,7 @@ local plugins = {
                     end,
                     max_name_length = 18,
                     max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-                    tab_size = 18,
+                    tab_size = 10,
                     diagnostics =  "nvim_lsp", --false | "nvim_lsp" | "coc",
                     diagnostics_update_in_insert = false,
                     diagnostics_indicator = function(count, _level, _diagnostics_dict, _context)
@@ -1086,6 +1095,17 @@ local plugins = {
                     -- add custom logic
                     --return buffer_a.modified > buffer_b.modified
                     -- end
+                },
+                highlights = {
+                    fill = {
+                    },
+                    background = {
+                    },
+                    tab = {
+                    },
+                    tab_selected = {
+                        bg = 'red',
+                    },
                 }
             }
         end,
@@ -1104,38 +1124,23 @@ local plugins = {
                 save_dir = vim.fn.expand(vim.fn.stdpath("data") .. "/sessions/"), -- directory where session files are saved
                 command = "VimLeavePre", -- the autocommand for which the session is saved
                 use_git_branch = false, -- create session files based on the branch of the git enabled repository
-                autosave = true, -- automatically save session files when exiting Neovim
+                autosave = false, -- automatically save session files when exiting Neovim
                 autoload = false, -- automatically load the session for the cwd on Neovim startup
-                allowed_dirs = nil, -- table of dirs that the plugin will auto-save and auto-load from
+                allowed_dirs = {
+                    "~",
+                }, -- table of dirs that the plugin will auto-save and auto-load from
                 ignored_dirs = nil, -- table of dirs that are ignored when auto-saving and auto-loading
+                follow_cwd = false, -- Doesnt change current session name
                 before_save = nil, -- function to run before the session is saved to disk
-                after_save = nil, -- function to run after the session is saved to disk
+                after_save = function()
+                    print'Session Saved !'
+                end, -- function to run after the session is saved to disk
                 after_source = nil, -- function to run after the session is sourced
                 telescope = { -- options for the telescope extension
                 before_source = nil, -- function to run before the session is sourced via telescope
                 after_source = nil, -- function to run after the session is sourced via telescope
             },
         })
-        -- local persistence = require'persistence'
-        -- persistence.setup()
-        -- if autoload and (allow_dir() and not ignore_dir()) and vim.fn.argc() == 0 then
-        --   persistence.load()
-        --   vim.cmd[[ edit ]]
-        -- end
-        -- local augroup_id = vim.api.nvim_create_augroup('PersistenceZZ', {})
-        -- vim.api.nvim_create_autocmd(
-        --   {
-        --     "BufEnter",
-        --   },
-        --   {
-        --     group = augroup_id,
-        --     nested = true,
-        --     pattern = "*",
-        --     callback = function()
-        --       persistence.load()
-        --     end,
-        --   }
-        -- )
     end,
     use = {-- "folke/persistence.nvim", 
     "olimorris/persisted.nvim"}
@@ -1196,6 +1201,12 @@ local plugins = {
         config = function()
         end,
         use = { 'rust-lang/rust.vim' }
+    },
+    ['taboo'] = {
+        active = false,
+        config= function()
+        end,
+        use = { 'gcmt/taboo.vim' }
     },
     ['test'] = {
         active = false,

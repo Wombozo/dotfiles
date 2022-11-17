@@ -43,6 +43,9 @@ vim.o.smartcase = true
 --Decrease update time
 vim.o.updatetime = 10
 
+--Session
+vim.g.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,globals,terminal'
+
 -- keep fold
 vim.cmd[[
 augroup remember_folds

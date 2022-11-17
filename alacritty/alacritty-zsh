@@ -1,0 +1,19 @@
+function nvim_session() {
+    lock_file='/tmp/nvim_session_lock'
+    if [ ! -f $lock_file ]; then
+        cd $HOME
+        echo 1 > $lock_file
+        nvim +SessionLoad
+    else
+        echo 'Session is locked !'
+        if [ $# -eq 1 ] && [ "$1" = "-f" ]; then
+            echo "Forcing. Deleting lock file"
+            echo 1 > $lock_file
+            nvim +SessionLoad
+        fi
+    fi
+}
+
+
+alias vl=nvim_session
+bindkey -s '' "nvim_session"

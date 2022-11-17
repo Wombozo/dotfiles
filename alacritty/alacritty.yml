@@ -1,0 +1,7 @@
+env:
+  TERM: alacritty
+  EDITOR: nvim
+  VISUAL: nvim
+window:
+  decorations: none
+  startup_mode: Fullscreen
