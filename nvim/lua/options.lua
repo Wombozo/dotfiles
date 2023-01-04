@@ -44,7 +44,8 @@ vim.o.smartcase = true
 vim.o.updatetime = 10
 
 --Session
-vim.g.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,globals,terminal'
+vim.o.sessionoptions = 'blank,buffers,folds,help,tabpages,winsize,globals,terminal'
+vim.o.viewoptions = 'folds,cursor'
 
 -- keep fold
 vim.cmd[[
@@ -67,6 +68,9 @@ vim.opt.listchars = {
   trail = "␣",
 }
 vim.opt.listchars.tab = ">"
+
+-- tabs
+vim.g.guitablabel='%f'
 
 -- Diff
 -- vim.opt.diffopt = 'internal,filler,closeoff,vertical'

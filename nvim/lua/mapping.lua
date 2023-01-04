@@ -37,8 +37,30 @@ local function map_if_active(_p, mode, sc, cmd)
     elseif typeof=='table' then
         local plugins=_p
         for _,value in ipairs(plugins) do
-            print(value)
             if require'plugins'.is_active(value) then
+                if mode == 'n' then
+                    add_to_whichkey(sc,cmd,"")
+                end
+                return vim.api.nvim_set_keymap(mode, sc, cmd, {})
+            end
+        end
+    end
+end
+
+local function map_if_inactive(_p, mode, sc, cmd)
+    local typeof=type(_p)
+    local plugin=_p
+    if typeof=='string' then
+        if  not(require'plugins'.is_active(plugin)) then
+            if mode == 'n' then
+                add_to_whichkey(sc,cmd,"")
+            end
+            return vim.api.nvim_set_keymap(mode, sc, cmd, {})
+        end
+    elseif typeof=='table' then
+        local plugins=_p
+        for _,value in ipairs(plugins) do
+            if not(require'plugins'.is_active(value)) then
                 if mode == 'n' then
                     add_to_whichkey(sc,cmd,"")
                 end
@@ -54,6 +76,7 @@ map('n', '<leader>dd', '<cmd>bdelete<CR>')
 map('n', '<leader>o', 'o<C-c>k')
 map('n', '<Esc>', '<Esc><cmd>noh<CR>')
 map('n', '<leader>pwd', '<cmd>pwd<CR>')
+map('n', '<leader>ls', '<cmd>ls<CR>')
 map('n', '<leader>tn', '<cmd>tabnew<CR>')
 map('n', '<leader>td', '<cmd>tabclose<CR>')
 --- Easier buffer pick
@@ -127,12 +150,12 @@ map_if_active('git', 'n', '<leader>gf', '<cmd>GitGutterFold<CR>')
 -- map_if_active('fzf', 'n', '<leader>ff', '<cmd>FZF<CR>')
 
 -- Telescope ---------------------
-map_if_active('telescope', 'n', '<leader>fb', '<cmd>Telescope buffers<CR>')
-map_if_active('telescope', 'n', '<leader>fi', '<cmd>Telescope git_files<CR>')
-map_if_active('telescope', 'n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
-map_if_active('telescope', 'n', '<leader>ff', '<cmd>Telescope find_files<CR>')
-map_if_active('telescope', 'n', '<leader>fo', '<cmd>Telescope oldfiles<CR>')
-map_if_active('telescope', 'n', '<leader>;', "<cmd>lua require('telescope').extensions.neoclip.neoclip()<CR>")
+map_if_active('telescope', 'n', '<C-f>b', '<cmd>Telescope buffers<CR>')
+map_if_active('telescope', 'n', '<C-f>i', '<cmd>Telescope git_files<CR>')
+map_if_active('telescope', 'n', '<C-f>g', '<cmd>Telescope live_grep<CR>')
+map_if_active('telescope', 'n', '<C-f>f', '<cmd>Telescope find_files<CR>')
+map_if_active('telescope', 'n', '<C-f>o', '<cmd>Telescope oldfiles<CR>')
+map_if_active('telescope', 'n', '<C-f>;', "<cmd>lua require('telescope').extensions.neoclip.neoclip()<CR>")
 map_if_active({'telescope','wrun'}, 'n', '<leader>cd', '<cmd>Telescope zoxide list<CR>')
 map_if_active('telescope', 'n', '<leader>?', '<cmd>Telescope keymaps<CR>')
 map_if_active('telescope', 'n', '<leader>\'', '<cmd>Telescope marks<CR>')
@@ -142,18 +165,21 @@ map_if_active('nvimtree', 'n', '<C-n>', '<cmd>NvimTreeToggle<CR>')
 map_if_active('neotree', 'n', '<C-n>', '<cmd>NeoTreeFocusToggle<CR>')
 
 -- Comments -----------------------
-map_if_active('comment', 'n', '<C-/>', ':CommentToggle <CR>')
-map_if_active('comment', 'v', '<C-/>', ':CommentToggle <CR>')
+map_if_active('comment', 'n', '<leader>z', ':CommentToggle <CR>')
+map_if_active('comment', 'v', '<leader>z', ':CommentToggle <CR>')
 
 -- Bufferline --------------------------
 map_if_active('bufferline', 'n', '<TAB>', '<cmd>BufferLineCycleNext<CR>')
 map_if_active('bufferline', 'n', '<S-TAB>', '<cmd>BufferLineCyclePrev<CR>')
+map_if_inactive('bufferline', 'n', '<TAB>', '<cmd>bnext<CR>')
+map_if_inactive('bufferline', 'n', '<S-TAB>', '<cmd>bprevious<CR>')
 map_if_active('bufferline', 'n', '<C-b>h', '<cmd>BufferLineMovePrev<CR>')
 map_if_active('bufferline', 'n', '<C-b>l', '<cmd>BufferLineMoveNext<CR>')
 map_if_active('bufferline', 'n', '<C-b>c', '<cmd>bdelete<CR>')
 map_if_active('bufferline', 'n', '<C-b>p', '<cmd>BufferLinePick<CR>')
-map_if_active('bufferline', 'n', '<C-b>tn', '<cmd>tabnew %<CR>')
-map_if_active('bufferline', 'n', '<C-b>tc', '<cmd>tabclose<CR>')
+map_if_active('bufferline', 'n', '<C-b>s', '<cmd>BufferLineSortByDirectory<CR>')
+-- map_if_active('bufferline', 'n', '<C-b>tn', '<cmd>tabnew %<CR>')
+-- map_if_active('bufferline', 'n', '<C-b>tc', '<cmd>tabclose<CR>')
 
 -- Trouble -----------------------------
 map('n', '<leader>st', '<cmd>TroubleToggle<CR>')

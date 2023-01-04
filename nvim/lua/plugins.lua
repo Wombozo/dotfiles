@@ -136,7 +136,7 @@ local plugins = {
     },
 
     ['noice'] = {
-        active = true,
+        active = false,
         config = function()
             require'noice'.setup({
                 cmdline = {
@@ -163,7 +163,7 @@ local plugins = {
                 -- OPTIONAL:
                 --   `nvim-notify` is only needed, if you want to use the notification view.
                 --   If not available, we use `mini` as the fallback
-                "rcarriga/nvim-notify",
+                -- "rcarriga/nvim-notify",
             },
         },
     },
@@ -226,6 +226,9 @@ local plugins = {
                             '--color=never',
                             '--follow',
                         }
+                    },
+                    live_grep = {
+                        cwd = "%:p:h",
                     },
                 },
                 extensions = {
@@ -665,7 +668,7 @@ local plugins = {
         use = { 'goolord/alpha-nvim' },
     },
     ['whichkeys'] = {
-        active = true,
+        active = false,
         config = function()
             require'which-key'.setup{
                 hide_statusline = false,
@@ -926,7 +929,7 @@ local plugins = {
                             builtin.find_files({ cwd = selection.path })
                         end
                     },
-                    ["w"] = {
+                    ["<C-w>"] = {
                         action = function(selection)
                             vim.cmd("cd " .. selection.path)
                         end,
@@ -963,41 +966,28 @@ local plugins = {
         end,
         use = { 'Yggdroot/hiPairs' }
     },
+    ['airline'] = {
+        active = false,
+        config = function()
+            vim.cmd[[
+                let g:airline#extensions#tabline#enabled = 1
+                let g:airline#extensions#tabline#show_buffers = 1
+                let g:airline#extensions#tabline#alt_sep = 1
+            ]]
+        end,
+        use = { 'vim-airline/vim-airline', requires = { 'vim-airline/vim-airline-themes' }}
+    },
     ['tabline'] = {
         active = false,
         config = function()
-            -- require'tabline'.setup {
-            --     -- Defaults configuration options
-            --     enable = true,
-            --     options = {
-            --     -- If lualine is installed tabline will use separators configured in lualine by default.
-            --     -- These options can be used to override those settings.
-            --       section_separators = {'', ''},
-            --       component_separators = {'', ''},
-            --       max_bufferline_percent = 66, -- set to nil by default, and it uses vim.o.columns * 2/3
-            --       show_tabs_always = false, -- this shows tabs only when there are more than one tab or if the first tab is named
-            --       show_devicons = true, -- this shows devicons in buffer section
-            --       show_bufnr = false, -- this appends [bufnr] to buffer section,
-            --       show_filename_only = false, -- shows base filename only instead of relative path in filename
-            --       modified_icon = "+ ", -- change the default modified icon
-            --       modified_italic = false, -- set to true by default; this determines whether the filename turns italic if modified
-            --       show_tabs_only = false, -- this shows only tabs instead of tabs + buffers
-            --     }
-            -- }
-            local present, tabline = pcall(require, "tabline")
-            if not present then
-                print("Failed to load plugin: `kdheepak/tabline.nvim`.")
-                return
-            end
-
-            tabline.setup {
+            require'tabline'.setup {
                 -- Defaults configuration options
-                enable = true,
+                enable = false,
                 options = {
                     -- If lualine is installed tabline will use separators configured in lualine by default.
                     -- These options can be used to override those settings.
-                    -- section_separators = {'', ''},
-                    -- component_separators = {'', ''},
+                    section_separators = {'', ''},
+                    component_separators = {'', ''},
                     max_bufferline_percent = 66, -- set to nil by default, and it uses vim.o.columns * 2/3
                     show_tabs_always = false, -- this shows tabs only when there are more than one tab or if the first tab is named
                     show_devicons = true, -- this shows devicons in buffer section
@@ -1005,6 +995,7 @@ local plugins = {
                     show_filename_only = false, -- shows base filename only instead of relative path in filename
                     modified_icon = "+ ", -- change the default modified icon
                     modified_italic = false, -- set to true by default; this determines whether the filename turns italic if modified
+                    show_tabs_only = true, -- this shows only tabs instead of tabs + buffers
                 }
             }
             vim.cmd[[
