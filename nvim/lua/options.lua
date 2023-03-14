@@ -86,6 +86,18 @@ vim.cmd [[
   augroup end
 ]]
 
+-- Scrolloff
+vim.o.scrolloff = 8;
+
+-- Hide cursorline for inactive windows
+vim.cmd[[
+    augroup CursorLineOnlyInActiveWindow
+      autocmd!
+      autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+      autocmd WinLeave * setlocal nocursorline
+    augroup END
+]]
+
 vim.opt.splitbelow = true
 
 vim.g.python3_host_prog = '/usr/bin/python3'

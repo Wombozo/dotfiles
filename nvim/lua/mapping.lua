@@ -37,13 +37,14 @@ local function map_if_active(_p, mode, sc, cmd)
     elseif typeof=='table' then
         local plugins=_p
         for _,value in ipairs(plugins) do
-            if require'plugins'.is_active(value) then
-                if mode == 'n' then
-                    add_to_whichkey(sc,cmd,"")
-                end
-                return vim.api.nvim_set_keymap(mode, sc, cmd, {})
+            if not(require'plugins'.is_active(value)) then
+                return
             end
         end
+        if mode == 'n' then
+            add_to_whichkey(sc,cmd,"")
+        end
+        return vim.api.nvim_set_keymap(mode, sc, cmd, {})
     end
 end
 
@@ -79,6 +80,8 @@ map('n', '<leader>pwd', '<cmd>pwd<CR>')
 map('n', '<leader>ls', '<cmd>ls<CR>')
 map('n', '<leader>tn', '<cmd>tabnew<CR>')
 map('n', '<leader>td', '<cmd>tabclose<CR>')
+-- map('n', '<C-u>', '<C-u>zz')
+-- map('n', '<C-d>', '<C-d>zz')
 --- Easier buffer pick
 map('n', '<C-h>', '<C-w>h')
 map('n', '<C-l>', '<C-w>l')
@@ -126,7 +129,7 @@ map('n', 'ze', '<cmd>set foldenable<CR>')
 -- Session -----------------------
 -- map_if_active('persistence', 'n', '<leader>ss', "<cmd>lua require('persistence').load()<CR>")
 -- map_if_active('persistence', 'n', '<leader>ss', "<cmd>SessionLoad<CR>")
-map_if_active('persistence', 'n', '<leader>ss', '<cmd>SessionSave<CR>')
+map_if_active('persistence', 'n', '<leader>ss', '<cmd>cd $HOME<CR> | <cmd>SessionSave<CR>')
 map_if_active('persistence', 'n', '<leader>sq', ':if len(filter(getbufinfo(), "v:val.changed == 1")) == 0 | call delete("/tmp/nvim_session_lock") | qall | else | echoerr "At least one buffer is modified !"<CR>')
 
 -- Vista -------------------------
@@ -156,7 +159,7 @@ map_if_active('telescope', 'n', '<C-f>g', '<cmd>Telescope live_grep<CR>')
 map_if_active('telescope', 'n', '<C-f>f', '<cmd>Telescope find_files<CR>')
 map_if_active('telescope', 'n', '<C-f>o', '<cmd>Telescope oldfiles<CR>')
 map_if_active('telescope', 'n', '<C-f>;', "<cmd>lua require('telescope').extensions.neoclip.neoclip()<CR>")
-map_if_active({'telescope','wrun'}, 'n', '<leader>cd', '<cmd>Telescope zoxide list<CR>')
+map_if_active({'telescope','wrun', 'zoxide'}, 'n', '<leader>cd', '<cmd>Telescope zoxide list<CR>')
 map_if_active('telescope', 'n', '<leader>?', '<cmd>Telescope keymaps<CR>')
 map_if_active('telescope', 'n', '<leader>\'', '<cmd>Telescope marks<CR>')
 

@@ -19,8 +19,10 @@ alias cat='bat -p --wrap=never --paging=never'
 alias rm='rip'
 alias l='exa -lT --icons -L 1'
 alias tree='exa -lT --icons'
+alias pl='pgrep -l'
 alias gs='git status'
 alias gaw='git diff -U0 -w --no-color | git apply --cached --ignore-whitespace --unidiff-zero'
+alias grp='git rev-parse HEAD'
 alias reboot='echo "Use sudo"'
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .ccls-cache'
@@ -36,3 +38,5 @@ bindkey -e
 if [ "$TERM" = "alacritty" ]; then
     source $HOME/dotfiles/alacritty/alacritty-zsh
 fi
+
+export LUA_PATH="${LUA_PATH};${HOME}/.config/nvim/local/?.lua"

@@ -49,7 +49,7 @@ local plugins = {
             --  cmd = {"lua-language-server", "-E", "/usr/lib/lua-language-server"};
             --}
 
-            nvim_lsp['sumneko_lua'].setup{
+            nvim_lsp['lua_ls'].setup{
                 on_attach = on_attach,
                 cmd = {"lua-language-server", "-E", "/usr/lib/lua-language-server"},
                 settings = {
@@ -75,6 +75,7 @@ local plugins = {
 
             nvim_lsp['tsserver'].setup{
                 on_attach = on_attach,
+                cmd = { "typescript-language-server", "--stdio", "--ignored-diagnostic-codes", "80006" },
             }
 
             nvim_lsp.jdtls.setup {
@@ -179,6 +180,7 @@ local plugins = {
                         "--line-number",
                         "--column",
                         "--smart-case",
+                        "--color=never",
                     },
                     prompt_prefix = "   ",
                     selection_caret = "  ",
@@ -225,10 +227,12 @@ local plugins = {
                             '--no-ignore-vcs',
                             '--color=never',
                             '--follow',
-                        }
+                        },
+                        search_dirs = require'local_nvim'.find_files_searchdirs
                     },
                     live_grep = {
-                        cwd = "%:p:h",
+                        only_cwd = true,
+                        -- search_dirs = require'local_nvim'.live_grep_searchdirs
                     },
                 },
                 extensions = {
@@ -668,7 +672,7 @@ local plugins = {
         use = { 'goolord/alpha-nvim' },
     },
     ['whichkeys'] = {
-        active = false,
+        active = true,
         config = function()
             require'which-key'.setup{
                 hide_statusline = false,
@@ -895,7 +899,7 @@ local plugins = {
         use = { 'chentoast/marks.nvim' }
     },
     ['zoxide'] = {
-        active = true,
+        active = false,
         config = function()
             require'telescope'.load_extension('zoxide')
             local z_utils = require("telescope._extensions.zoxide.utils")
@@ -1043,7 +1047,7 @@ local plugins = {
                     end,
                     max_name_length = 18,
                     max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-                    tab_size = 10,
+                    tab_size = 18,
                     diagnostics =  "nvim_lsp", --false | "nvim_lsp" | "coc",
                     diagnostics_update_in_insert = false,
                     diagnostics_indicator = function(count, _level, _diagnostics_dict, _context)
@@ -1079,7 +1083,7 @@ local plugins = {
                     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
                     -- can also be a table containing 2 custom separators
                     -- [focused and unfocused]. eg: { '|', '|' }
-                    separator_style = "thin", -- "slant" | "thick" | "thin" | { 'any', 'any' },
+                    separator_style = "thick", -- "slant" | "thick" | "thin" | { 'any', 'any' },
                     enforce_regular_tabs = true,
                     always_show_bufferline = true,
                     sort_by = 'insert_after_current', --'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
@@ -1108,6 +1112,25 @@ local plugins = {
         end,
         use = { 'romgrk/barbar.nvim' }
     },
+    ['neoscroll'] = {
+        active = true,
+        config = function()
+            require('neoscroll').setup({
+                -- All these keys will be mapped to their corresponding default scrolling animation
+                mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
+                '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+                hide_cursor = true,          -- Hide cursor while scrolling
+                stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+                respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+                cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+                easing_function = nil,       -- Default easing function
+                pre_hook = nil,              -- Function to run before the scrolling animation starts
+                post_hook = nil,             -- Function to run after the scrolling animation ends
+                performance_mode = false,    -- Disable "Performance Mode" on all buffers.
+            })
+        end,
+        use = { 'karb94/neoscroll.nvim' }
+    },
     ['persistence'] = {
         active = true,
         config = function()
@@ -1123,9 +1146,9 @@ local plugins = {
                 ignored_dirs = nil, -- table of dirs that are ignored when auto-saving and auto-loading
                 follow_cwd = false, -- Doesnt change current session name
                 before_save = nil, -- function to run before the session is saved to disk
-                after_save = function()
-                    print'Session Saved !'
-                end, -- function to run after the session is saved to disk
+                -- after_save = function()
+                --     print'Session Saved !'
+                -- end, -- function to run after the session is saved to disk
                 after_source = nil, -- function to run after the session is sourced
                 telescope = { -- options for the telescope extension
                 before_source = nil, -- function to run before the session is sourced via telescope
@@ -1152,6 +1175,13 @@ local plugins = {
         config = function()
         end,
         use = { 'dstein64/nvim-scrollview' }
+    },
+    ['leap'] = {
+        active = true,
+        config = function()
+            require('leap').add_default_mappings()
+        end,
+        use = { 'ggandor/leap.nvim' }
     },
     ['glow'] = {
         active = true,
