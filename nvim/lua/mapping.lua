@@ -19,9 +19,13 @@ end
 --   ["<leader>fn"] = { "<cmd>enew<cr>", "New File" },
 -- })
 
-local function map(mode, sc, cmd)
-  add_to_whichkey(sc,cmd,"")
-  return vim.api.nvim_set_keymap(mode, sc, cmd, {})
+local function map(mode, lhs, rhs, opts)
+  local options = { noremap=true, silent=true }
+  add_to_whichkey(lhs, rhs, "")
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 local function map_if_active(_p, mode, sc, cmd)
@@ -137,7 +141,7 @@ map_if_active('vista', 'n','<C-a>', '<cmd>Vista!! <CR>')
 
 -- Term --------------------------
 map('n', '<leader>tt', '<cmd>lua TermToggle()<CR>')
--- map('n', '<leader>tg', '<cmd>lua GitToggle()<CR>')
+map('n', '<leader>tg', '<cmd>lua GitToggle()<CR>')
 
 -- Fugitive ---------------------
 map_if_active('git', 'n', '<leader>gg', '<cmd>Git<CR>')

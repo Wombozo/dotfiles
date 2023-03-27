@@ -5,3 +5,13 @@ env:
 window:
   decorations: none
   startup_mode: Fullscreen
+font:
+  normal:
+    family: monospace
+    style: Regular
+  bold: 
+    family: monospace
+    style: Bold
+  italic:
+    family: monospace
+    style: Italic

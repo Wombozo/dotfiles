@@ -1,8 +1,21 @@
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+-- local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
+-- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+--   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+-- end
 
 local plugins = {
     ['lspconfig'] = {
@@ -18,8 +31,9 @@ local plugins = {
                 vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
                 local opts = { noremap = true, silent = true }
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+                -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
                 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+                vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', opts)
                 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
                 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
                 -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
@@ -123,9 +137,9 @@ local plugins = {
                     }
                 }
             })
-            require'trouble'.setup()
         end,
-        use = { 'neovim/nvim-lspconfig', requires = {'folke/lsp-colors.nvim', 'folke/trouble.nvim', 'kyazdani42/nvim-web-devicons'} },
+        -- use = { 'neovim/nvim-lspconfig', requires = {'folke/lsp-colors.nvim', 'kyazdani42/nvim-web-devicons'} },
+        use = { 'neovim/nvim-lspconfig', 'folke/lsp-colors.nvim', 'kyazdani42/nvim-web-devicons' },
     },
 
     ['git'] = {
@@ -137,12 +151,12 @@ local plugins = {
     },
 
     ['noice'] = {
-        active = false,
+        active = false, -- MESSES SNIPPETS AND LSP
         config = function()
             require'noice'.setup({
                 cmdline = {
                     enabled = true,
-                    view = "cmdline",
+                    view = "cmdline_popup",
                     opts = { buf_options = { filetype = "vim" } },
                     format = {
                         cmdline = { pattern = "^:", icon = "", lang = "vim" },
@@ -154,18 +168,29 @@ local plugins = {
                         input = {},
                     },
                 },
+                lsp = {
+                    progress = { enabled = false, },
+                    signature = { enabled = false, },
+                    message = { enabled = false, },
+                    smart_move = { enabled = false, },
+                    hover = { enabled = false, },
+                    enabled = false,
+                },
+                messages = { enabled = false, },
+                popup_menu = { enabled = false, },
+                notify = { enabled = false, },
             })
         end,
         use = {
             "folke/noice.nvim",
-            requires = {
+            -- requires = {
                 -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
                 "MunifTanjim/nui.nvim",
                 -- OPTIONAL:
                 --   `nvim-notify` is only needed, if you want to use the notification view.
                 --   If not available, we use `mini` as the fallback
                 -- "rcarriga/nvim-notify",
-            },
+            -- },
         },
     },
     ['telescope'] = {
@@ -250,7 +275,8 @@ local plugins = {
                 },
             }
         end,
-        use = { 'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}},
+        -- use = { 'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}},
+        use = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
     },
     ['nvimtree'] = {
         active = false,
@@ -401,11 +427,11 @@ local plugins = {
         use = {
             "nvim-neo-tree/neo-tree.nvim",
             branch = "v2.x",
-            requires = {
+            -- requires = {
                 "nvim-lua/plenary.nvim",
                 "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
                 "MunifTanjim/nui.nvim",
-            }
+            -- }
         },
     },
     ['cmp'] = {
@@ -439,13 +465,6 @@ local plugins = {
                 Snippet = "",
                 Color = "",
                 File = "",
-                Reference = "",
-                Folder = "",
-                EnumMember = "",
-                Constant = "",
-                Struct = "",
-                Event = "",
-                Operator = "",
                 TypeParameter = "",
             }
             -- find more here: https://www.nerdfonts.com/cheat-sheet
@@ -560,10 +579,10 @@ local plugins = {
             require'lspfuzzy'.setup{}
         end,
         use = {  'ojroques/nvim-lspfuzzy',
-        requires = {
+        -- requires = {
             {'junegunn/fzf'},
             {'junegunn/fzf.vim'}}, -- to enable preview (optional)
-        },
+        -- },
     },
     ['dashboard'] = {
         active = false,
@@ -773,7 +792,8 @@ local plugins = {
                 },
             })
         end,
-        use = { 'AckslD/nvim-neoclip.lua', requires = {'tami5/sqlite.lua', module = 'sqlite'} }
+        -- use = { 'AckslD/nvim-neoclip.lua', requires = {'tami5/sqlite.lua', module = 'sqlite'} }
+        use = { 'AckslD/nvim-neoclip.lua', 'tami5/sqlite.lua' },
     },
     ['snippets'] = {
         active = true,
@@ -902,7 +922,7 @@ local plugins = {
         active = false,
         config = function()
             require'telescope'.load_extension('zoxide')
-            local z_utils = require("telescope._extensions.zoxide.utils")
+            -- local z_utils = require("telescope._extensions.zoxide.utils")
             require("telescope._extensions.zoxide.config").setup(
             {
                 prompt_title = "[ Zoxide List ]",
@@ -979,7 +999,8 @@ local plugins = {
                 let g:airline#extensions#tabline#alt_sep = 1
             ]]
         end,
-        use = { 'vim-airline/vim-airline', requires = { 'vim-airline/vim-airline-themes' }}
+        -- use = { 'vim-airline/vim-airline', requires = { 'vim-airline/vim-airline-themes' }}
+        use = { 'vim-airline/vim-airline',  'vim-airline/vim-airline-themes' },
     },
     ['tabline'] = {
         active = false,
@@ -1247,14 +1268,14 @@ local function plugins_get(active)
                     print("\t" .. p_use)
                 end
             end
-            if value.use.requires ~= nil then
-                print("\t->requires :")
-                for _, p_use in pairs(value.use.requires) do
-                    if type(p_use) == "string" then
-                        print("\t\t" .. p_use)
-                    end
-                end
-            end
+            -- if value.use.requires ~= nil then
+                -- print("\t->requires :")
+                -- for _, p_use in pairs(value.use.requires) do
+                    -- if type(p_use) == "string" then
+                        -- print("\t\t" .. p_use)
+                    -- end
+                -- end
+            -- end
         end
     end
 end
@@ -1281,21 +1302,30 @@ M.is_active = function(plugin)
     return plugins[plugin].active
 end
 
-local function packer_startup_func()
-    require'packer'.use'wbthomason/packer.nvim'
-    for _, value in pairs(plugins) do
-        if value.active then
-            require'packer'.use(value.use)
-        end
+local plugs = { }
+for _,value in pairs(plugins) do
+    if value.active then
+        table.insert(plugs, value.use)
     end
 end
+require'lazy'.setup(plugs)
 
-require'packer'.startup(packer_startup_func)
+-- local function packer_startup_func()
+--     require'packer'.use'wbthomason/packer.nvim'
+--     for _, value in pairs(plugins) do
+--         if value.active then
+--             require'packer'.use(value.use)
+--         end
+--     end
+-- end
+
+-- require'packer'.startup(packer_startup_func)
 
 for _, value in pairs(plugins) do
     if value.active then
         value.config()
     end
 end
+
 
 return M
