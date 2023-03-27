@@ -133,7 +133,7 @@ map('n', 'ze', '<cmd>set foldenable<CR>')
 -- Session -----------------------
 -- map_if_active('persistence', 'n', '<leader>ss', "<cmd>lua require('persistence').load()<CR>")
 -- map_if_active('persistence', 'n', '<leader>ss', "<cmd>SessionLoad<CR>")
-map_if_active('persistence', 'n', '<leader>ss', '<cmd>cd $HOME<CR> | <cmd>SessionSave<CR>')
+map_if_active('persistence', 'n', '<leader>ss', '<cmd>cd $HOME | SessionSave<CR>')
 map_if_active('persistence', 'n', '<leader>sq', ':if len(filter(getbufinfo(), "v:val.changed == 1")) == 0 | call delete("/tmp/nvim_session_lock") | qall | else | echoerr "At least one buffer is modified !"<CR>')
 
 -- Vista -------------------------
