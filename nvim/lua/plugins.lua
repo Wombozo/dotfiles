@@ -154,20 +154,6 @@ local plugins = {
         active = true,
         config = function()
             require'noice'.setup({
-                cmdline = {
-                    enabled = true,
-                    view = "cmdline_popup",
-                    opts = { buf_options = { filetype = "vim" } },
-                    format = {
-                        cmdline = { pattern = "^:", icon = "", lang = "vim" },
-                        search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
-                        search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
-                        filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
-                        lua = { pattern = "^:%s*lua%s+", icon = "", lang = "lua" },
-                        help = { pattern = "^:%s*h%s+", icon = "" },
-                        input = {},
-                    },
-                },
                 lsp = {
                     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
                     override = {
@@ -176,17 +162,13 @@ local plugins = {
                         ["cmp.entry.get_documentation"] = true,
                     },
                 },
-                messages = {
-                    view_history = "messages",
-                    view = "messages",
-                },
                 -- you can enable a preset for easier configuration
                 presets = {
                     bottom_search = true, -- use a classic bottom cmdline for search
                     command_palette = true, -- position the cmdline and popupmenu together
-                    long_message_to_split = false, -- long messages will be sent to a split
+                    long_message_to_split = true, -- long messages will be sent to a split
                     inc_rename = false, -- enables an input dialog for inc-rename.nvim
-                    lsp_doc_border = true, -- add a border to hover docs and signature help
+                    lsp_doc_border = false, -- add a border to hover docs and signature help
                 },
             })
         end,
@@ -267,6 +249,9 @@ local plugins = {
                     live_grep = {
                         only_cwd = true,
                         -- search_dirs = require'local_nvim'.live_grep_searchdirs
+                    },
+                    colorscheme = {
+                        enable_preview = true,
                     },
                 },
                 extensions = {
@@ -851,7 +836,13 @@ local plugins = {
     ['comment'] = {
         active = true,
         config = function()
-            require('nvim_comment').setup()
+            require('nvim_comment').setup({
+                hook = function()
+                    if vim.api.nvim_buf_get_option(0, "filetype") == "c" then
+                        vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
+                    end
+                end
+            })
         end,
         use = { 'terrortylor/nvim-comment' }
     },
@@ -862,7 +853,7 @@ local plugins = {
         use = { 'davidgranstrom/nvim-markdown-preview' }
     },
     ['vista'] = {
-        active = true,
+        active = false,
         config = function()
             vim.cmd [[
             augroup VistaAutoClose
@@ -886,6 +877,13 @@ local plugins = {
             -- ]]
         end,
         use = { 'liuchengxu/vista.vim' }
+    },
+    ['symbols-outline'] = {
+        active = true,
+        config = function()
+            require'symbols-outline'.setup()
+        end,
+        use = { 'simrat39/symbols-outline.nvim' },
     },
     ['wrun'] = {
         active = true,

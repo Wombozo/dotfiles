@@ -2,7 +2,19 @@ local options = { }
 
 vim.o.termguicolors = true
 
-vim.cmd('silent! colorscheme ' .. os.getenv("VIM_THEME"))
+-- vim.cmd('silent! colorscheme ' .. os.getenv("VIM_THEME"))
+local cs_augroup = vim.api.nvim_create_augroup('ColorSchemeSave', { clear = true })
+vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+    group = cs_augroup,
+    callback = function()
+        vim.loop.fs_open(os.getenv'HOME' .. '/.config/nvim/plugin/colorscheme.lua', "w", 432, function(_, fd)
+            vim.loop.fs_write(fd, "vim.cmd('silent! colorscheme " .. vim.g.colors_name .. "')", nil, function()
+                vim.loop.fs_close(fd)
+            end)
+        end)
+    end
+})
+
 
 -- SignColumn same as LineNr
 vim.cmd('highlight! link SignColumn LineNr')

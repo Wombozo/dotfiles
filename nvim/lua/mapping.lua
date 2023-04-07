@@ -138,6 +138,7 @@ map_if_active('persistence', 'n', '<leader>sq', ':if len(filter(getbufinfo(), "v
 
 -- Vista -------------------------
 map_if_active('vista', 'n','<C-a>', '<cmd>Vista!! <CR>')
+map_if_active('symbols-outline', 'n','<C-a>', '<cmd>SymbolsOutline<CR>')
 
 -- Term --------------------------
 map('n', '<leader>tt', '<cmd>lua TermToggle()<CR>')
@@ -163,9 +164,10 @@ map_if_active('telescope', 'n', '<C-f>g', '<cmd>Telescope live_grep<CR>')
 map_if_active('telescope', 'n', '<C-f>f', '<cmd>Telescope find_files<CR>')
 map_if_active('telescope', 'n', '<C-f>o', '<cmd>Telescope oldfiles<CR>')
 map_if_active('telescope', 'n', '<C-f>;', "<cmd>lua require('telescope').extensions.neoclip.neoclip()<CR>")
+map_if_active('telescope', 'n', '<C-f>\'', '<cmd>Telescope marks<CR>')
+map_if_active('telescope', 'n', '<C-f>?', '<cmd>Telescope keymaps<CR>')
+map_if_active('telescope', 'n', '<C-f>c', '<cmd>Telescope colorscheme<CR>')
 map_if_active({'telescope','wrun', 'zoxide'}, 'n', '<leader>cd', '<cmd>Telescope zoxide list<CR>')
-map_if_active('telescope', 'n', '<leader>?', '<cmd>Telescope keymaps<CR>')
-map_if_active('telescope', 'n', '<leader>\'', '<cmd>Telescope marks<CR>')
 
 -- Tree ----------------------
 map_if_active('nvimtree', 'n', '<C-n>', '<cmd>NvimTreeToggle<CR>')
