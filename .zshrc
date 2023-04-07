@@ -39,4 +39,7 @@ if [ "$TERM" = "alacritty" ]; then
     source $HOME/dotfiles/alacritty/alacritty-zsh
 fi
 
+kitty @ set-background-opacity 0.8
+
+
 export LUA_PATH="${LUA_PATH};${HOME}/.config/nvim/local/?.lua"
