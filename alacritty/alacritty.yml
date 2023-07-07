@@ -7,11 +7,11 @@ window:
   startup_mode: Fullscreen
 font:
   normal:
-    family: monospace
-    style: Regular
+    family: Bitstream Vera Sans Mono
+    style: normal
   bold: 
-    family: monospace
+    family: Bitstream Vera Sans Mono
     style: Bold
   italic:
-    family: monospace
+    family: Bitstream Vera Sans Mono
     style: Italic

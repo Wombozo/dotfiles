@@ -81,7 +81,8 @@ map('n', '<leader>dd', '<cmd>bdelete<CR>')
 map('n', '<leader>o', 'o<C-c>k')
 map('n', '<Esc>', '<Esc><cmd>noh<CR>')
 map('n', '<leader>pwd', '<cmd>pwd<CR>')
-map('n', '<leader>ls', '<cmd>ls<CR>')
+map('n', '<C-0>', '<cmd>e<CR>G')
+-- map('n', '<leader>ls', '<cmd>ls<CR>')
 map('n', '<leader>tn', '<cmd>tabnew<CR>')
 map('n', '<leader>td', '<cmd>tabclose<CR>')
 -- map('n', '<C-u>', '<C-u>zz')
@@ -199,5 +200,8 @@ map_if_active('wrun', 'n', '<leader>wr', '<cmd>WRrun<CR>')
 map_if_active('wrun', 'v', '<leader>wr', '<cmd>WRrun<CR>')
 map_if_active('wrun', 'x', '<leader>wr', '<cmd>WRrun<CR>')
 map_if_active({'wrun','telescope'}, 'n', '<leader>wi', '<cmd>Telescope zoxide list<CR>')
+
+-- EDevice ----------------------
+-- map('n', '<leader>l', '<cmdset autoread | au CursorHold * checktime | call feedkeys("lh")<CR>')
 
 setup_whichkey()

@@ -79,7 +79,21 @@ local plugins = {
                 },
             }
 
-            nvim_lsp['ccls'].setup {
+            nvim_lsp['pylsp'].setup {
+                on_attach = on_attach,
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            pycodestyle = {
+                                ignore = {'E501'},
+                                maxLineLength = 100
+                            }
+                        }
+                    }
+                }
+            }
+
+            nvim_lsp['clangd'].setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 flags = {
@@ -894,7 +908,7 @@ local plugins = {
                 edit_method = '12split', -- 'edit' | 'tabedit' | 'split'| 'vsplit'
                 term_settings = {
                     -- exec_direction = 'float', -- 'vertical' | 'horizontal' | 'float'
-                    exec_direction = 'horizontal', -- 'vertical' | 'horizontal' | 'float'
+                    exec_direction = 'float', -- 'vertical' | 'horizontal' | 'float'
                     size = function(term)
                         if term.direction == "horizontal" then
                             return 15
@@ -1078,7 +1092,7 @@ local plugins = {
                     tab_size = 18,
                     diagnostics =  "nvim_lsp", --false | "nvim_lsp" | "coc",
                     diagnostics_update_in_insert = false,
-                    diagnostics_indicator = function(count, _level, _diagnostics_dict, _context)
+                    diagnostics_indicator = function(count, _, _, _)
                         return "("..count..")"
                     end,
                     -- NOTE: this will be called a lot so don't do any heavy processing here
@@ -1105,7 +1119,7 @@ local plugins = {
                     color_icons = true, -- whether or not to add the filetype icon highlights
                     show_buffer_icons = true, -- disable filetype icons for buffers
                     show_buffer_close_icons = true,
-                    show_buffer_default_icon = true, -- whether or not an unrecognised filetype should show a default icon
+                    -- show_buffer_default_icon = true, -- whether or not an unrecognised filetype should show a default icon
                     show_close_icon = false,
                     show_tab_indicators = true,
                     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
