@@ -181,7 +181,6 @@ local plugins = {
         active = true,
         config = function()
             vim.g.gitgutter_sign_priority = 5
-            -- vim.g.gitlab_api_keys = { ['gitlab'] = 'glpat-cYuzmmz4tT9Qh_xxzP48' }
         end,
         use = { 'tpope/vim-fugitive', 'junegunn/gv.vim', 'airblade/vim-gitgutter'},
     },

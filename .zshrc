@@ -9,7 +9,7 @@
 HIST_STAMPS="mm/dd/yyyy"
 
 # ZSH_CUSTOM=/path/to/new-custom-folder
-plugins=(git zoxide zsh-autosuggestions colored-man-pages compleat fzf ssh-agent )
+plugins=(git zoxide zsh-autosuggestions colored-man-pages compleat fzf ssh-agent navi)
 
 source $ZSH/oh-my-zsh.sh
 
