@@ -9,12 +9,17 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
     callback = function()
         vim.loop.fs_open(os.getenv'HOME' .. '/.config/nvim/plugin/colorscheme.lua', "w", 432, function(_, fd)
             vim.loop.fs_write(fd, "vim.cmd('silent! colorscheme " .. vim.g.colors_name .. "')", nil, function()
+                print(vim.g.colors_name)
                 vim.loop.fs_close(fd)
             end)
         end)
     end
 })
 
+vim.cmd('set background=light')
+
+-- No swap files
+vim.opt.swapfile = false
 
 -- SignColumn same as LineNr
 vim.cmd('highlight! link SignColumn LineNr')

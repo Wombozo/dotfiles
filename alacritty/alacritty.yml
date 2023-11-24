@@ -2,6 +2,7 @@ env:
   TERM: alacritty
   EDITOR: nvim
   VISUAL: nvim
+fullscreen: false
 window:
   decorations: none
   startup_mode: Fullscreen

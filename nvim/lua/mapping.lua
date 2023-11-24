@@ -77,7 +77,7 @@ end
 
 -- General -----------------------
 map('n', '<C-q>', '<cmd>q<CR>')
-map('n', '<leader>dd', '<cmd>bdelete<CR>')
+-- map('n', '<leader>dd', '<cmd>bdelete<CR>')
 map('n', '<leader>o', 'o<C-c>k')
 map('n', '<Esc>', '<Esc><cmd>noh<CR>')
 map('n', '<leader>pwd', '<cmd>pwd<CR>')
@@ -162,7 +162,8 @@ map_if_active('git', 'n', '<leader>gf', '<cmd>GitGutterFold<CR>')
 map_if_active('telescope', 'n', '<C-f>b', '<cmd>Telescope buffers<CR>')
 map_if_active('telescope', 'n', '<C-f>i', '<cmd>Telescope git_files<CR>')
 map_if_active('telescope', 'n', '<C-f>g', '<cmd>Telescope live_grep<CR>')
-map_if_active('telescope', 'n', '<C-f>f', '<cmd>Telescope find_files<CR>')
+map_if_active('telescope', 'n', '<C-f>a', '<cmd>Telescope find_files<CR>')
+map_if_active('telescope', 'n', '<C-f>f', '<cmd>FZF .<CR>')
 map_if_active('telescope', 'n', '<C-f>o', '<cmd>Telescope oldfiles<CR>')
 map_if_active('telescope', 'n', '<C-f>;', "<cmd>lua require('telescope').extensions.neoclip.neoclip()<CR>")
 map_if_active('telescope', 'n', '<C-f>\'', '<cmd>Telescope marks<CR>')

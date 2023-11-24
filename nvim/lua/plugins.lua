@@ -93,6 +93,20 @@ local plugins = {
                 }
             }
 
+            local ng_project_library_path = ""
+            nvim_lsp['angularls'].setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                cmd = {"ngserver", "--stdio", "--tsProbeLocations", ng_project_library_path , "--ngProbeLocations", ng_project_library_path },
+                on_new_config = function(new_config,new_root_dir)
+                    new_config.cmd = {"ngserver", "--stdio", "--tsProbeLocations", ng_project_library_path , "--ngProbeLocations", ng_project_library_path}
+                end,
+                root_dir = function()
+                    return vim.fn.expand('%:p:h')
+                end
+
+            }
+
             nvim_lsp['clangd'].setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
@@ -103,7 +117,14 @@ local plugins = {
 
             nvim_lsp['tsserver'].setup{
                 on_attach = on_attach,
-                cmd = { "typescript-language-server", "--stdio", "--ignored-diagnostic-codes", "80006" },
+                capabilities = capabilities,
+                cmd = { "typescript-language-server", "--stdio" },
+                root_dir = function()
+                    return "/home/guillaume/ts-hello/"
+                end
+                -- root_dir = function()
+                --     return vim.fn.expand('%:p:h')
+                -- end
             }
 
             nvim_lsp.jdtls.setup {
@@ -160,8 +181,9 @@ local plugins = {
         active = true,
         config = function()
             vim.g.gitgutter_sign_priority = 5
+            -- vim.g.gitlab_api_keys = { ['gitlab'] = 'glpat-cYuzmmz4tT9Qh_xxzP48' }
         end,
-        use = { 'tpope/vim-fugitive', 'junegunn/gv.vim', 'airblade/vim-gitgutter' },
+        use = { 'tpope/vim-fugitive', 'junegunn/gv.vim', 'airblade/vim-gitgutter'},
     },
 
     ['noice'] = {
@@ -219,12 +241,15 @@ local plugins = {
                     selection_strategy = "reset",
                     sorting_strategy = "ascending",
                     layout_strategy = "horizontal",
+                    -- layout_strategy = "vertical",
                     layout_config = {
+                        -- vertical = {
                         horizontal = {
                             prompt_position = "top",
                             preview_width = 0.55,
                             results_width = 0.8,
                         },
+                        -- horizontal = {
                         vertical = {
                             mirror = false,
                         },
@@ -1204,13 +1229,13 @@ local plugins = {
     ['indent-blankline']  = {
         active = true,
         config = function()
-            require("indent_blankline").setup {
-                buftype_exclude = { "terminal", "prompt", "nofile" },
-                filetype_exclude = { "dashboard", "help", "man", "lspinfo", "alpha", "neo-tree", "notify", "noice", "nofile" },
+            require("ibl").setup {
+                -- buftype_exclude = { "terminal", "prompt", "nofile" },
+                -- filetype_exclude = { "dashboard", "help", "man", "lspinfo", "alpha", "neo-tree", "notify", "noice", "nofile" },
             }
         end,
 
-        use = { 'lukas-reineke/indent-blankline.nvim' }
+        use = { 'lukas-reineke/indent-blankline.nvim' },
     },
     ['scrollview'] = {
         active = true,
