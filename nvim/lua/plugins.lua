@@ -115,44 +115,53 @@ local plugins = {
                 },
             }
 
-            nvim_lsp['tsserver'].setup{
+            nvim_lsp['eslint'].setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
-                cmd = { "typescript-language-server", "--stdio" },
                 root_dir = function()
-                    return "/home/guillaume/ts-hello/"
-                end
-                -- root_dir = function()
-                --     return vim.fn.expand('%:p:h')
-                -- end
+                    return "/home/guillaume/medic-node"
+                end,
+                cmd = { 'eslint-lsp', '--stdio' }
             }
 
-            nvim_lsp.jdtls.setup {
-                cmd = {
-                    'java',
-                    '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-                    '-Dosgi.bundles.defaultStartLevel=4',
-                    '-Declipse.product=org.eclipse.jdt.ls.core.product',
-                    '-Dlog.protocol=true',
-                    '-Dlog.level=ALL',
-                    '-Xms1g',
-                    '--add-modules=ALL-SYSTEM',
-                    '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-                    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-                    '-jar', '/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
-                    '-configuration', '/usr/share/java/jdtls/config_linux',
-                    '-data', os.getenv "HOME" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-                },
-                -- root_dir = require'jdtls'.setup.find_root({'.git', 'mvnw', 'gradlew'}),
-                settings = {
-                    java = {
-                    }
-                },
-                init_options = {
-                    bundles = {}
-                },
-                on_attach = on_attach
-            }
+            -- nvim_lsp['tsserver'].setup{
+            --     on_attach = on_attach,
+            --     capabilities = capabilities,
+            --     cmd = { "typescript-language-server", "--stdio" },
+            --     root_dir = function()
+            --         return "/home/guillaume/medic-node/"
+            --     end
+            --     -- root_dir = function()
+            --     --     return vim.fn.expand('%:p:h')
+            --     -- end
+            -- }
+            --
+            -- nvim_lsp.jdtls.setup {
+            --     cmd = {
+            --         'java',
+            --         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+            --         '-Dosgi.bundles.defaultStartLevel=4',
+            --         '-Declipse.product=org.eclipse.jdt.ls.core.product',
+            --         '-Dlog.protocol=true',
+            --         '-Dlog.level=ALL',
+            --         '-Xms1g',
+            --         '--add-modules=ALL-SYSTEM',
+            --         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+            --         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+            --         '-jar', '/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
+            --         '-configuration', '/usr/share/java/jdtls/config_linux',
+            --         '-data', os.getenv "HOME" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+            --     },
+            --     -- root_dir = require'jdtls'.setup.find_root({'.git', 'mvnw', 'gradlew'}),
+            --     settings = {
+            --         java = {
+            --         }
+            --     },
+            --     init_options = {
+            --         bundles = {}
+            --     },
+            --     on_attach = on_attach
+            -- }
 
             nvim_lsp.rust_analyzer.setup({
                 on_attach = on_attach,
@@ -182,7 +191,7 @@ local plugins = {
         config = function()
             vim.g.gitgutter_sign_priority = 5
         end,
-        use = { 'tpope/vim-fugitive', 'junegunn/gv.vim', 'airblade/vim-gitgutter'},
+        use = { 'tpope/vim-fugitive', 'junegunn/gv.vim', 'airblade/vim-gitgutter' },
     },
 
     ['noice'] = {
@@ -259,7 +268,7 @@ local plugins = {
                     file_sorter = require("telescope.sorters").get_fuzzy_file,
                     file_ignore_patterns = { "node_modules" },
                     generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-                    path_display = { "absolute" },
+                    path_display = { "shorten" },
                     winblend = 0,
                     border = {},
                     borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
@@ -860,11 +869,14 @@ local plugins = {
         use = { 'itchyny/lightline.vim' }
     },
     ['treesitter'] = {
-        active = true,
+        active = false,
         config = function()
             require('nvim-treesitter.configs').setup {
                 highlight = {
                     enable = true, -- false will disable the whole extension
+                    disable = function(lang, bufnr)
+                        return vim.api.nvim_buf_line_count(bufnr) > 50000
+                    end,
                     use_languagetree = true,
                 },
             }
@@ -1113,7 +1125,7 @@ local plugins = {
                     end,
                     max_name_length = 18,
                     max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-                    tab_size = 18,
+                    tab_size = 14,
                     diagnostics =  "nvim_lsp", --false | "nvim_lsp" | "coc",
                     diagnostics_update_in_insert = false,
                     diagnostics_indicator = function(count, _, _, _)

@@ -64,6 +64,10 @@ vim.o.updatetime = 10
 vim.o.sessionoptions = 'blank,buffers,folds,help,tabpages,winsize,globals,terminal'
 vim.o.viewoptions = 'folds,cursor'
 
+--MatchParentheses make vim slow 
+vim.o.matchparen_timeout = 20
+vim.o.matchparen_insert_timeout = 20
+
 -- keep fold
 vim.cmd[[
 augroup remember_folds
