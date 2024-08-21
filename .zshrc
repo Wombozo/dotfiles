@@ -9,7 +9,8 @@
 HIST_STAMPS="mm/dd/yyyy"
 
 # ZSH_CUSTOM=/path/to/new-custom-folder
-plugins=(git zoxide zsh-autosuggestions colored-man-pages compleat fzf ssh-agent navi)
+plugins=(git zoxide zsh-autosuggestions colored-man-pages compleat fzf ssh-agent)
+eval "$(navi widget zsh)"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -24,6 +25,7 @@ alias gs='git status'
 alias gaw='git diff -U0 -w --no-color | git apply --cached --ignore-whitespace --unidiff-zero'
 alias grp='git rev-parse HEAD'
 alias reboot='echo "Use sudo"'
+alias vf='nvim `fd $@`'
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .ccls-cache'
 
@@ -31,17 +33,18 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclu
 alias mu_commands='eval $(mu_commands.sh --cmd|fzf --preview-window=wrap --height=25 --border=vertical --preview "mu_commands.sh --desc {}")'
 alias open_with_fzf="fzf --preview 'bat -p --wrap=never --paging=never --color=always {}' | xargs nvim"
 
-bindkey -s '' "mu_commands"
+# bindkey -s '' "mu_commands"
 # bindkey -s '' "open_with_fzf"
+bindkey -s '' "/home/guillaume/dotfiles/rofi/rofi-ssh.sh"
 bindkey -e
 
 if [ "$TERM" = "alacritty" ]; then
     source $HOME/dotfiles/alacritty/alacritty-zsh
 fi
 
-if [ "$TERM" = "xterm-kitty" ]; then
-    kitty @ set-background-opacity 0.8
-fi
+# if [ "$TERM" = "xterm-kitty" ]; then
+#     kitty @ set-background-opacity 0.8
+# fi
 
 
 export LUA_PATH="${LUA_PATH};${HOME}/.config/nvim/local/?.lua"

@@ -31,7 +31,7 @@ vim.o.inccommand = 'nosplit'
 vim.o.hlsearch = true
 
 --Make line numbers default
-vim.wo.relativenumber = true
+vim.wo.relativenumber = false
 vim.wo.number = true
 
 --Do not save when switching buffers (note: this is now a default on master)
@@ -65,8 +65,8 @@ vim.o.sessionoptions = 'blank,buffers,folds,help,tabpages,winsize,globals,termin
 vim.o.viewoptions = 'folds,cursor'
 
 --MatchParentheses make vim slow 
-vim.o.matchparen_timeout = 20
-vim.o.matchparen_insert_timeout = 20
+vim.g.matchparen_timeout = 20
+vim.g.matchparen_insert_timeout = 20
 
 -- keep fold
 vim.cmd[[

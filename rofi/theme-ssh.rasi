@@ -1,0 +1,40 @@
+configuration {
+    font: "Monospace 12";
+    show-icons: false;
+}
+
+* {
+    border: 2;
+    border-radius: 5px;
+    padding: 10px;
+    spacing: 5px;
+}
+
+window {
+    width: 30%;
+}
+
+textbox.separator {
+    text: "──────────────────────";
+    foreground: @foreground;
+    background: @background;
+    padding: 5px 0px;
+}
+
+listview {
+    lines: 10;
+    cycle: false;
+}
+
+element {
+    padding: 5px 10px;
+    background-color: inherit;
+    foreground-color: inherit;
+}
+
+element selected {
+    background-color: @selected-background;
+    foreground-color: @selected-foreground;
+}
+
+@theme "Arc-Dark"

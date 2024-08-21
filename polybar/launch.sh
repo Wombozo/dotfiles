@@ -10,7 +10,8 @@ CONNECTED=$(xrandr --query |grep " connected"|cud -d " " -f1|wc -l)
 if [[ $CONNECTED == 1 ]]; then
   MONITOR="eDP1" polybar -c ~/dotfiles/polybar/catppuccin/config.ini main &
 else
-  MONITOR="HDMI1" polybar -c ~/dotfiles/polybar/catppuccin/config.ini main &
+  # MONITOR="HDMI1" polybar -c ~/dotfiles/polybar/catppuccin/config.ini main &
+  MONITOR="DVI-I-3-2" polybar -c ~/dotfiles/polybar/catppuccin/config.ini main &
 fi
 
 #for m in `xrandr --query | grep " connected"|cut -d " " -f1`; do

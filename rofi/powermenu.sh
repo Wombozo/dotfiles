@@ -19,8 +19,8 @@ theme="card_rounded"
 dir="$HOME/dotfiles/rofi"
 
 # random colors
-styles=($(ls -p --hide="colors.rasi" $dir/styles))
-color="${styles[$(( $RANDOM % 8 ))]}"
+# styles=($(ls -p --hide="colors.rasi" $dir/styles))
+# color="${styles[$(( $RANDOM % 8 ))]}"
 
 # comment this line to disable random colors
 #sed -i -e "s/@import .*/@import \"$color\"/g" $dir/config/power_theme.rasi
@@ -34,11 +34,11 @@ uptime=$(uptime -p | sed -e 's/up //g')
 rofi_command="rofi -theme $dir/$theme"
 
 # Options
-shutdown=""
-reboot=""
-lock=""
-suspend=""
-logout=""
+shutdown=""
+reboot=""
+lock=""
+# suspend=""
+logout=""
 
 # Confirmation
 confirm_exit() {
@@ -55,7 +55,8 @@ msg() {
 }
 
 # Variable passed to rofi
-options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
+#options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
+options="$shutdown\n$reboot\n$lock\n$logout"
 
 chosen="$(echo -e "$options" | $rofi_command -p "Uptime: $uptime" -dmenu -selected-row 2)"
 case $chosen in
@@ -80,7 +81,9 @@ case $chosen in
         fi
         ;;
     $lock)
-		if [[ -f /usr/bin/i3lock ]]; then
+		if [[ -f /usr/bin/swaylock ]]; then
+            swaylock --color 555555
+		elif [[ -f /usr/bin/i3lock ]]; then
 			i3lock
 		elif [[ -f /usr/bin/betterlockscreen ]]; then
 			betterlockscreen -l
@@ -88,18 +91,18 @@ case $chosen in
             slimlock
 		fi
         ;;
-    $suspend)
-		ans=$(confirm_exit &)
-		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
-			mpc -q pause
-			amixer set Master mute
-			systemctl suspend
-		elif [[ $ans == "no" || $ans == "NO" || $ans == "n" || $ans == "N" ]]; then
-			exit 0
-        else
-			msg
-        fi
-        ;;
+		#     $suspend)
+		# ans=$(confirm_exit &)
+		# if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
+		# 	mpc -q pause
+		# 	amixer set Master mute
+		# 	systemctl suspend
+		# elif [[ $ans == "no" || $ans == "NO" || $ans == "n" || $ans == "N" ]]; then
+		# 	exit 0
+		#         else
+		# 	msg
+		#         fi
+		#         ;;
     $logout)
 		ans=$(confirm_exit &)
         echo "$ans"
@@ -110,6 +113,8 @@ case $chosen in
 				bspc quit
 			elif [[ "$DESKTOP_SESSION" == "i3" ]]; then
 				i3-msg exit
+			elif [[ "$DESKTOP_SESSION" == "hyprland" ]]; then
+				hyprctl dispatch exit
 			fi
 		elif [[ $ans == "no" || $ans == "NO" || $ans == "n" || $ans == "N" ]]; then
 			exit 0

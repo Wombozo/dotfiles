@@ -231,6 +231,18 @@ local plugins = {
     ['telescope'] = {
         active = true,
         config = function()
+            local status, local_nvim = pcall(require, 'local_nvim')
+
+            local find_files_searchdirs = {}
+            local live_grep_searchdirs = {}
+
+            if status then
+                find_files_searchdirs = local_nvim.find_files_searchdirs or {}
+                live_grep_searchdirs = local_nvim.live_grep_searchdirs or {}
+            else
+                print("Le module local_nvim n'a pas été trouvé.")
+            end
+
             require('telescope').setup {
                 defaults = {
                     vimgrep_arguments = {
@@ -249,15 +261,12 @@ local plugins = {
                     selection_strategy = "reset",
                     sorting_strategy = "ascending",
                     layout_strategy = "horizontal",
-                    -- layout_strategy = "vertical",
                     layout_config = {
-                        -- vertical = {
                         horizontal = {
                             prompt_position = "top",
                             preview_width = 0.55,
                             results_width = 0.8,
                         },
-                        -- horizontal = {
                         vertical = {
                             mirror = false,
                         },
@@ -278,7 +287,6 @@ local plugins = {
                     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
                     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
                     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-                    -- Developer configurations: Not meant for general override
                     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
                 },
                 pickers = {
@@ -291,11 +299,11 @@ local plugins = {
                             '--color=never',
                             '--follow',
                         },
-                        search_dirs = require'local_nvim'.find_files_searchdirs
+                        search_dirs = find_files_searchdirs
                     },
                     live_grep = {
                         only_cwd = true,
-                        -- search_dirs = require'local_nvim'.live_grep_searchdirs
+                        search_dirs = live_grep_searchdirs
                     },
                     colorscheme = {
                         enable_preview = true,
@@ -316,7 +324,6 @@ local plugins = {
                 },
             }
         end,
-        -- use = { 'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}},
         use = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
     },
     ['nvimtree'] = {
@@ -1025,7 +1032,7 @@ local plugins = {
         use = { 'jvgrootveld/telescope-zoxide' }
     },
     ['betterescape'] = {
-        active = true,
+        active = false,
         config = function()
             require("better_escape").setup {
                 mapping = {"jk"}, -- a table with mappings to use
@@ -1189,6 +1196,19 @@ local plugins = {
         config = function()
         end,
         use = { 'romgrk/barbar.nvim' }
+    },
+    ['scope'] = {
+        active = true,
+        config = function()
+            require("scope").setup({
+                hooks = {
+                    pre_tab_enter = function()
+                        -- Your custom logic to run before entering a tab
+                    end,
+                },
+            })
+        end,
+        use = { "tiagovla/scope.nvim" }
     },
     ['neoscroll'] = {
         active = true,
