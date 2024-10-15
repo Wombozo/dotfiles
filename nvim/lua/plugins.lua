@@ -124,17 +124,17 @@ local plugins = {
                 cmd = { 'eslint-lsp', '--stdio' }
             }
 
-            -- nvim_lsp['tsserver'].setup{
-            --     on_attach = on_attach,
-            --     capabilities = capabilities,
-            --     cmd = { "typescript-language-server", "--stdio" },
-            --     root_dir = function()
-            --         return "/home/guillaume/medic-node/"
-            --     end
-            --     -- root_dir = function()
-            --     --     return vim.fn.expand('%:p:h')
-            --     -- end
-            -- }
+            nvim_lsp['ts_ls'].setup{
+                on_attach = on_attach,
+                capabilities = capabilities,
+                cmd = { "typescript-language-server", "--stdio" },
+                root_dir = function()
+                    return "/home/guillaume/medic-node/"
+                end
+                -- root_dir = function()
+                --     return vim.fn.expand('%:p:h')
+                -- end
+            }
             --
             -- nvim_lsp.jdtls.setup {
             --     cmd = {
@@ -195,7 +195,7 @@ local plugins = {
     },
 
     ['noice'] = {
-        active = true,
+        active = false,
         config = function()
             require'noice'.setup({
                 lsp = {
@@ -739,7 +739,7 @@ local plugins = {
         use = { 'goolord/alpha-nvim' },
     },
     ['whichkeys'] = {
-        active = true,
+        active = false,
         config = function()
             require'which-key'.setup{
                 hide_statusline = false,
@@ -1211,7 +1211,7 @@ local plugins = {
         use = { "tiagovla/scope.nvim" }
     },
     ['neoscroll'] = {
-        active = true,
+        active = false,
         config = function()
             require('neoscroll').setup({
                 -- All these keys will be mapped to their corresponding default scrolling animation
@@ -1312,7 +1312,8 @@ local plugins = {
             'srcery-colors/srcery-vim',
             'ciaranm/inkpot',
             'yonlu/omni.vim',
-            'lvim-tech/lvim-colorscheme'
+            'lvim-tech/lvim-colorscheme',
+            'lancewilhelm/horizon-extended.nvim'
         }
     },
     ['rust'] = {

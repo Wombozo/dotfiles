@@ -3,16 +3,82 @@ env:
   EDITOR: nvim
   VISUAL: nvim
 fullscreen: false
-window:
-  decorations: none
-  startup_mode: Fullscreen
+# Configuration de base pour Alacritty
+
+# Couleurs (thème Nord)
+colors:
+  primary:
+    background: '0x2E3440'
+    foreground: '0xD8DEE9'
+  normal:
+    black:   '0x3B4252'
+    red:     '0xBF616A'
+    green:   '0xA3BE8C'
+    yellow:  '0xEBCB8B'
+    blue:    '0x81A1C1'
+    magenta: '0xB48EAD'
+    cyan:    '0x88C0D0'
+    white:   '0xE5E9F0'
+  bright:
+    black:   '0x4C566A'
+    red:     '0xBF616A'
+    green:   '0xA3BE8C'
+    yellow:  '0xEBCB8B'
+    blue:    '0x81A1C1'
+    magenta: '0xB48EAD'
+    cyan:    '0x8FBCBB'
+    white:   '0xECEFF4'
+
+# Curseur
+cursor:
+  style: Beam
+  unfocused_hollow: true
+  text: '0xD8DEE9'       # Couleur du texte sous le curseur
+  cursor: '0x81A1C1'     # Couleur du curseur
+  blink: true
+
+# Transparence
+background_opacity: 0.9
+
+# Polices
 font:
   normal:
-    family: Bitstream Vera Sans Mono
-    style: normal
-  bold: 
-    family: Bitstream Vera Sans Mono
-    style: Bold
+    family: "Fira Code" # Assurez-vous d'avoir installé cette police ou remplacez-la par une autre
+    size: 12.0
+  bold:
+    family: "Fira Code"
   italic:
-    family: Bitstream Vera Sans Mono
-    style: Italic
+    family: "Fira Code"
+
+# Épaisseur des bordures
+# window:
+#   padding:
+#     x: 10
+#     y: 10
+#   decorations: none
+#   dynamic_padding: false
+
+# Défilement
+scrolling:
+  history: 10000
+  multiplier: 3
+
+# Options avancées
+selection:
+  save_to_clipboard: true
+
+# Comportement de la fenêtre
+window:
+  startup_mode: Windowed # Peut aussi être Maximized ou Fullscreen
+  decorations: none
+
+# font:
+#   normal:
+#     family: Bitstream Vera Sans Mono
+#     style: normal
+#   bold: 
+#     family: Bitstream Vera Sans Mono
+#     style: Bold
+#   italic:
+#     family: Bitstream Vera Sans Mono
+#     style: Italic
