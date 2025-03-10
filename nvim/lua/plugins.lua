@@ -115,27 +115,42 @@ local plugins = {
                 },
             }
 
-            nvim_lsp['eslint'].setup {
-                on_attach = on_attach,
-                capabilities = capabilities,
-                root_dir = function()
-                    return "/home/guillaume/medic-node"
-                end,
-                cmd = { 'eslint-lsp', '--stdio' }
-            }
+            -- nvim_lsp['eslint'].setup {
+            --     on_attach = on_attach,
+            --     capabilities = capabilities,
+            --     -- root_dir = function()
+            --     --     return "/home/guillaume/medic-node"
+            --     -- end,
+            --     cmd = { 'eslint-language-server', '--stdio' }
+            -- }
 
             nvim_lsp['ts_ls'].setup{
                 on_attach = on_attach,
                 capabilities = capabilities,
                 cmd = { "typescript-language-server", "--stdio" },
-                root_dir = function()
-                    return "/home/guillaume/medic-node/"
-                end
+                handlers = {
+                    ["textDocument/publishDiagnostics"] = function(_, _, params, client_id, _, config)
+                        if params.diagnostics ~= nil then
+                            local idx = 1
+                            while idx <= #params.diagnostics do
+                                if params.diagnostics[idx].code == 80001 then
+                                    table.remove(params.diagnostics, idx)
+                                else
+                                    idx = idx + 1
+                                end
+                            end
+                        end
+                        -- vim.lsp.diagnostic.on_publish_diagnostics(_, _, params, client_id, _, config)
+                    end,
+                },
+                -- root_dir = function()
+                --     return "/home/guillaume/medic-node/"
+                -- end
                 -- root_dir = function()
                 --     return vim.fn.expand('%:p:h')
                 -- end
             }
-            --
+            
             -- nvim_lsp.jdtls.setup {
             --     cmd = {
             --         'java',
@@ -1131,8 +1146,8 @@ local plugins = {
                         end
                     end,
                     max_name_length = 18,
-                    max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-                    tab_size = 14,
+                    max_prefix_length = 25, -- prefix used when a buffer is de-duplicated
+                    tab_size = 22,
                     diagnostics =  "nvim_lsp", --false | "nvim_lsp" | "coc",
                     diagnostics_update_in_insert = false,
                     diagnostics_indicator = function(count, _, _, _)

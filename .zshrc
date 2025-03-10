@@ -9,7 +9,7 @@
 HIST_STAMPS="mm/dd/yyyy"
 
 # ZSH_CUSTOM=/path/to/new-custom-folder
-plugins=(git zoxide zsh-autosuggestions colored-man-pages compleat fzf ssh-agent)
+plugins=(git zoxide zsh-autosuggestions colored-man-pages compleat fzf ssh-agent zsh-syntax-highlighting zsh-autopair docker)
 eval "$(navi widget zsh)"
 
 source $ZSH/oh-my-zsh.sh
@@ -36,6 +36,8 @@ alias open_with_fzf="fzf --preview 'bat -p --wrap=never --paging=never --color=a
 # bindkey -s '' "mu_commands"
 # bindkey -s '' "open_with_fzf"
 bindkey -s '' "/home/guillaume/dotfiles/rofi/rofi-ssh.sh"
+bindkey -s '' "/home/guillaume/dotfiles/rofi/rofi-mariadb.sh"
+bindkey -s '' "/home/guillaume/dotfiles/rofi/rofi-gitui.sh"
 bindkey -e
 
 if [ "$TERM" = "alacritty" ]; then
@@ -48,3 +50,8 @@ fi
 
 
 export LUA_PATH="${LUA_PATH};${HOME}/.config/nvim/local/?.lua"
+
+# if ! pgrep -x devilspie > /dev/null; then
+#     devilspie &
+# fi
+
