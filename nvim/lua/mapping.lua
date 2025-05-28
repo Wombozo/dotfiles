@@ -109,8 +109,8 @@ map('n', '<C-t>', '<cmd>set list!<CR>')
 map('n', '<C-w>s', '<cmd>split<CR>')
 map('n', '<C-w>v', '<cmd>vsplit<CR>')
 ---- Resize split faster
-map('n', '<C-w>>', '<cmd>vertical resize +20<CR>')
-map('n', '<C-w><', '<cmd>vertical resize -20<CR>')
+map('n', '<C-w>>', '<cmd>vertical resize +10<CR>')
+map('n', '<C-w><', '<cmd>vertical resize -10<CR>')
 map('n', '<C-w>.', '<cmd>horizontal resize +10<CR>')
 map('n', '<C-w>,', '<cmd>horizontal resize -10<CR>')
 ---- Save selection to clipboard

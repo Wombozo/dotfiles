@@ -9,14 +9,14 @@
 HIST_STAMPS="mm/dd/yyyy"
 
 # ZSH_CUSTOM=/path/to/new-custom-folder
-plugins=(git zoxide zsh-autosuggestions colored-man-pages compleat fzf ssh-agent zsh-syntax-highlighting zsh-autopair docker)
+plugins=(git zoxide zsh-autosuggestions colored-man-pages compleat fzf ssh-agent zsh-syntax-highlighting zsh-autopair)
 eval "$(navi widget zsh)"
 
 source $ZSH/oh-my-zsh.sh
 
 alias b='bat'
 alias bd='bat --style=changes'
-alias cat='bat -p --wrap=never --paging=never'
+alias cat='bat -p --wrap=never --paging=never -f'
 alias rm='rip'
 alias l='exa -lT --icons -L 1'
 alias tree='exa -lT --icons'
@@ -26,6 +26,32 @@ alias gaw='git diff -U0 -w --no-color | git apply --cached --ignore-whitespace -
 alias grp='git rev-parse HEAD'
 alias reboot='echo "Use sudo"'
 alias vf='nvim `fd $@`'
+
+DOCKER_COLOR_OUTPUT_CF=$HOME/.docker-color-output/config.json
+alias dps='docker ps --format "table {{.Names}}\\t{{.ID}}\\t{{.Status}}\\t{{.Ports}}"|docker-color-output -c ${DOCKER_COLOR_OUTPUT_CF}'
+alias dpsa='docker ps -a --format "table {{.Names}}\\t{{.ID}}\\t{{.Status}}\\t{{.Ports}}"|docker-color-output -c ${DOCKER_COLOR_OUTPUT_CF}'
+alias dpss='docker ps --format "table {{.Names}}\\t{{.ID}}\\t{{.Image}}\\t{{.Status}}\\t{{.Ports}}" |docker-color-output -c ${DOCKER_COLOR_OUTPUT_CF}'
+alias dils='docker image ls |docker-color-output -c ${DOCKER_COLOR_OUTPUT_CF}'
+alias dcls='docker container ls |docker-color-output -c ${DOCKER_COLOR_OUTPUT_CF}'
+
+d() {
+  docker "$@" 
+}
+
+dc() {
+    docker compose "$@"
+}
+
+de() {
+    docker exec "$@"
+}
+
+# Not working
+# dcps() {
+#     docker compose ps |docker-color-output -c ${DOCKER_COLOR_OUTPUT_CF}
+# }
+
+
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .ccls-cache'
 
@@ -54,4 +80,15 @@ export LUA_PATH="${LUA_PATH};${HOME}/.config/nvim/local/?.lua"
 # if ! pgrep -x devilspie > /dev/null; then
 #     devilspie &
 # fi
+
+export NVM_DIR="$HOME/.nvm"
+lazy_nvm() {
+  unset -f node npm nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  nvm use default &> /dev/null
+  command "$@"
+}
+node() { lazy_nvm node "$@"; }
+npm()  { lazy_nvm npm "$@"; }
+nvm()  { lazy_nvm nvm "$@"; }
 
