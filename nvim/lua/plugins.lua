@@ -951,7 +951,7 @@ local plugins = {
         use = { 'liuchengxu/vista.vim' }
     },
     ['symbols-outline'] = {
-        active = true,
+        active = false,
         config = function()
             require'symbols-outline'.setup()
         end,
@@ -1328,7 +1328,8 @@ local plugins = {
             'ciaranm/inkpot',
             'yonlu/omni.vim',
             'lvim-tech/lvim-colorscheme',
-            'lancewilhelm/horizon-extended.nvim'
+            'lancewilhelm/horizon-extended.nvim',
+            'catppuccin/nvim'
         }
     },
     ['rust'] = {

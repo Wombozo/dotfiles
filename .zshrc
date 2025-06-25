@@ -1,11 +1,5 @@
 # ZSH_THEME="headline"
 
-# CASE_SENSITIVE="true"
-# HYPHEN_INSENSITIVE="true"
-# DISABLE_MAGIC_FUNCTIONS="true"
-# DISABLE_AUTO_TITLE="true"
-# ENABLE_CORRECTION="true"
-
 HIST_STAMPS="mm/dd/yyyy"
 
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -33,6 +27,7 @@ alias dpsa='docker ps -a --format "table {{.Names}}\\t{{.ID}}\\t{{.Status}}\\t{{
 alias dpss='docker ps --format "table {{.Names}}\\t{{.ID}}\\t{{.Image}}\\t{{.Status}}\\t{{.Ports}}" |docker-color-output -c ${DOCKER_COLOR_OUTPUT_CF}'
 alias dils='docker image ls |docker-color-output -c ${DOCKER_COLOR_OUTPUT_CF}'
 alias dcls='docker container ls |docker-color-output -c ${DOCKER_COLOR_OUTPUT_CF}'
+alias dcps='docker compose ps |docker-color-output -c ${DOCKER_COLOR_OUTPUT_CF}'
 
 d() {
   docker "$@" 
@@ -91,4 +86,81 @@ lazy_nvm() {
 node() { lazy_nvm node "$@"; }
 npm()  { lazy_nvm npm "$@"; }
 nvm()  { lazy_nvm nvm "$@"; }
+
+
+#####################
+# Example $HOME/.zshrc
+# export ZSH
+# export ZSH=$HOME/.oh-my-zsh
+#
+# ZSH_THEME="spaceship"
+#
+# export XDG_CONFIG_HOME="$HOME/.config"
+#
+# zstyle :omz:plugins:ssh-agent identities id_rsa_gitlab id_rsa_github id_rsa
+# source ~/dotfiles/.zshrc
+#
+# # export LS_COLORS="$(vivid generate one-dark)"
+# # di_value=$(echo $LS_COLORS | sed -n 's/.*:di=\([^:]*\).*/\1/p')
+# # json_value=$(echo $LS_COLORS | sed -n 's/.*\.json=\([^:]*\).*/\1/p')
+# # md_value=$(echo $LS_COLORS | sed -n 's/.*\*\.md=\([^:]*\).*/\1/p')
+#
+# ### EXA
+# source $HOME/dotfiles/exa/common-light.sh
+# export EXA_COLORS="$EXA_BASE:$(vivid generate catppuccin-latte)"
+# ###
+#
+#
+# export LBIN="/home/guillaume/.local/bin"
+#
+# $HOME/ed-personal/bin/export_mu_commands.sh
+#
+# PATH="$LBIN:$HOME/ed-personal/bin:$PATH"
+#
+# export TARGET="target"
+#
+# _route_ip=$(ip route|grep ^default|grep enp|cut -d ' ' -f3)
+# if [[ "${_route_ip}" == "192.168.1.254" ]]; then
+#   export TARGET="targetHome"
+# fi
+#
+# alias minicom='minicom -c on'
+# alias scp='scp -O'
+#
+# #  srcery,  catppuccin, spacecamp, ayu, everforest, melange, badwolf, papercolor, fairyfloss, cobalt, sonokai, inkpot, andromeda, omni
+# # export VIM_THEME='srcery'
+# # if [ "$TERM" = "alacritty" ]; then
+# #     # export VIM_THEME='lvim-dark'
+# #     export VIM_THEME='srcery'
+# # fi
+#
+# export EDITOR='nvim'
+# export VISUAL='nvim'
+#
+# # bindkey -s '' "TERM=xterm ssh $TARGET
+# "
+#
+# gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 20
+# gsettings set org.gnome.desktop.peripherals.keyboard delay 250
+#
+# export BOARD_ID=33751156
+#
+# alias ssht='TERM=xterm ssh'
+#
+# #export NVM_DIR="$HOME/.config/nvm"
+# #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export LANG=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8
+#
+# # source ~/.nvm/nvm.sh; nvm use 20
+#
+# #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# export SDKMAN_DIR="$HOME/.sdkman"
+# [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+#
+# _JAVA_VERSION=17
+# export JAVA_HOME=/usr/lib/jvm/java-${_JAVA_VERSION}-openjdk
+# PATH=$JAVA_HOME/bin:$PATH
+
 

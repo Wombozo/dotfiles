@@ -1,19 +1,13 @@
-# Display time
+# https://spaceship-prompt.sh/config/intro/#Create-a-config-file
+
 SPACESHIP_TIME_SHOW=true
+SPACESHIP_TIME_COLOR=#ff5859
 
-# Display username always
-# SPACESHIP_USER_SHOW=always
-
-# Do not truncate path in repos
 SPACESHIP_DIR_TRUNC_REPO=false
-
-# Add custom Ember section
-# See: https://github.com/spaceship-prompt/spaceship-ember
-#spaceship add ember
-
-# Add a custom vi-mode section to the prompt
-# See: https://github.com/spaceship-prompt/spaceship-vi-mode
-#spaceship add --before char vi_mode
 
 SPACESHIP_DIR_COLOR=magenta
 SPACESHIP_GIT_BRANCH_COLOR=#5fd787
+
+# SPACESHIP_ASYNC_SYMBOL="⏳"
+SPACESHIP_ASYNC_SYMBOL=""
+
