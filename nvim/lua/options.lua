@@ -16,7 +16,22 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
     end
 })
 
-vim.cmd('set background=light')
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.env.VIM_BACKGROUND == "light" then
+      vim.cmd('set background=light')
+    else
+      vim.cmd('set background=dark')
+    end
+  end
+})
+
+-- if vim.env.VIM_BACKGROUND == "light" then
+--   vim.cmd('set background=light')
+-- else
+--   vim.cmd('set background=dark')
+-- end
+
 
 -- No swap files
 vim.opt.swapfile = false
