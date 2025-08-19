@@ -1,57 +1,36 @@
 local options = { }
 
--- Colorscheme automatique light/dark avec persistance JSON
-
 vim.o.termguicolors = true
 
--- Détecte le background voulu
-if vim.env.VIM_BACKGROUND == "light" or vim.env.VIM_BACKGROUND == "dark" then
-  vim.o.background = vim.env.VIM_BACKGROUND
-end
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  callback = function()
-    vim.cmd [[
-      highlight LineNr guibg=NONE ctermbg=NONE
-      highlight SignColumn guibg=NONE ctermbg=NONE
-      highlight VertSplit guibg=NONE ctermbg=NONE
-      highlight Normal guibg=NONE ctermbg=NONE
-      highlight NonText guibg=NONE ctermbg=NONE
-      highlight NormalNC guibg=NONE ctermbg=NONE
-    ]]
-  end,
+-- vim.cmd('silent! colorscheme ' .. os.getenv("VIM_THEME"))
+local cs_augroup = vim.api.nvim_create_augroup('ColorSchemeSave', { clear = true })
+vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+    group = cs_augroup,
+    callback = function()
+        vim.loop.fs_open(os.getenv'HOME' .. '/.config/nvim/plugin/colorscheme.lua', "w", 432, function(_, fd)
+            vim.loop.fs_write(fd, "vim.cmd('silent! colorscheme " .. vim.g.colors_name .. "')", nil, function()
+                print(vim.g.colors_name)
+                vim.loop.fs_close(fd)
+            end)
+        end)
+    end
 })
 
--- -- Sauvegarde dans le JSON à chaque changement de colorscheme
--- local json_path = os.getenv('HOME') .. '/.config/nvim/plugin/colorscheme.json'
--- local cs_augroup = vim.api.nvim_create_augroup('ColorSchemeSave', { clear = true })
--- vim.api.nvim_create_autocmd("ColorScheme", {
---   group = cs_augroup,
---   callback = function()
---     local background = vim.o.background -- 'light' ou 'dark'
---     local theme = vim.g.colors_name or "default"
---     -- Lecture JSON existant
---     local data = {}
---     local f = io.open(json_path, "r")
---     if f then
---       local content = f:read("*a")
---       f:close()
---       if content and content ~= "" then
---         data = vim.fn.json_decode(content) or {}
---       end
---     end
---     -- Mise à jour
---     data[background] = theme
---     local f_write = io.open(json_path, "w")
---     if f_write then
---       f_write:write(vim.fn.json_encode(data))
---       f_write:close()
---     end
---     print('Saved theme for ' .. background .. ': ' .. theme)
---   end
--- })
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.env.VIM_BACKGROUND == "light" then
+      vim.cmd('set background=light')
+    else
+      vim.cmd('set background=dark')
+    end
+  end
+})
 
+-- if vim.env.VIM_BACKGROUND == "light" then
+--   vim.cmd('set background=light')
+-- else
+--   vim.cmd('set background=dark')
+-- end
 
 
 -- No swap files
@@ -65,7 +44,6 @@ vim.o.inccommand = 'nosplit'
 
 --Set highlight on search
 vim.o.hlsearch = true
-
 
 --Make line numbers default
 vim.wo.relativenumber = false
@@ -164,4 +142,3 @@ vim.g.python_host_prog = '/usr/bin/python2'
 
 
 return options;
--- Opacity

@@ -58,7 +58,9 @@ local plugins = {
             capabilities.textDocument.completion.completionItem.snippetSupport = true
             capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-            nvim_lsp['bashls'].setup{}
+            nvim_lsp['bashls'].setup{
+                cmd = {"node", "--experimental-wasm-reftypes","/usr/bin/bash-language-server"};
+            }
             --nvim_lsp['sumneko_lua'].setup{
             --  cmd = {"lua-language-server", "-E", "/usr/lib/lua-language-server"};
             --}
@@ -246,7 +248,7 @@ local plugins = {
     ['telescope'] = {
         active = true,
         config = function()
-            local status, local_nvim = pcall(require, 'local_nvim')
+            local status, local_nvim = pcall(require, 'local.local_nvim')
 
             local find_files_searchdirs = {}
             local live_grep_searchdirs = {}

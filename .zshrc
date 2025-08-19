@@ -3,7 +3,10 @@
 # Oh My Zsh Configuration
 # =============================================
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="spaceship"
+# ZSH_THEME="spaceship"
+ZSH_THEME=""
+# setopt prompt_subst
+PROMPT='%F{red}%D{%H:%M:%S}%f %F{yellow}%~%f '
 plugins=(
   git 
   zoxide 
@@ -14,7 +17,10 @@ plugins=(
   zsh-syntax-highlighting 
   zsh-autopair
 )
+DISABLE_GIT_PROMPT=true
 source $ZSH/oh-my-zsh.sh
+DISABLE_GIT_PROMPT=true
+
 
 # =============================================
 # Core Zsh Settings
@@ -45,7 +51,7 @@ PATH="$JAVA_HOME/bin:$PATH"
 alias xc='xclip -sel clipboard'
 alias b='bat'
 alias bd='bat --style=changes'
-alias cat='bat -p --wrap=never --paging=never -f'
+alias cat='bat -p --color=never --wrap=never --paging=never'
 alias rm='rip'
 alias l='exa -lT --icons -L 1'
 alias ll='exa -l --icons'
@@ -54,6 +60,7 @@ alias pl='pgrep -l'
 alias reboot='echo "Use sudo"'
 alias vf='nvim `fd $@`'
 alias ssh='TERM=xterm-256color ssh $@'
+alias ip='ip -c $@'
 
 # Git
 alias gs='git status'
@@ -101,7 +108,7 @@ nvm()  { lazy_nvm nvm "$@"; }
 # =============================================
 # Bindkeys & Shortcuts
 # =============================================
-bindkey -s '' "$HOME/dotfiles/rofi/rofi-ssh.sh\n"
+bindkey -s '' "$HOME/dotfiles/rofi/rofi-ssh-wezterm-inline.sh\n"
 bindkey -s '' "$HOME/dotfiles/rofi/rofi-mariadb.sh\n"
 bindkey -s '' "$HOME/dotfiles/rofi/rofi-gitui.sh\n"
 
@@ -115,10 +122,12 @@ update_theme() {
     export EXA_COLORS="$EXA_BASE:$(vivid generate rose-pine)"
     export BAT_THEME="Solarized (light)"
     export VIM_BACKGROUND=light
+    export BACKGROUND=light
   elif [ "$BG_THEME" = "prefer-dark" ]; then
     export EXA_COLORS="$EXA_BASE:$(vivid generate lava)"
     export BAT_THEME="Nord"
     export VIM_BACKGROUND=dark
+    export BACKGROUND=dark
   else
     echo "Unknown theme: $BG_THEME"
   fi
@@ -146,15 +155,22 @@ update_theme() {
 
 # Initialize theme
 update_theme
-#
-# =============================================
-# GNOME desktop configuration
-# =============================================
+
+#=============================================
+#GNOME desktop configuration
+#=============================================
 gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 20
 gsettings set org.gnome.desktop.peripherals.keyboard delay 250
+
+#=============================================
+#CINNAMON desktop configuration
+#=============================================
+#gsettings set org.cinnamon.desktop.peripherals.keyboard delay 250
+#gsettings set org.cinnamon.desktop.peripherals.keyboard repeat-interval 20
 
 # =============================================
 # Local Configuration (non-committed)
 # =============================================
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
+clear
