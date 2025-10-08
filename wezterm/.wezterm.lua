@@ -1,13 +1,14 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
--- Geometry
-config.initial_cols = 120
-config.initial_rows = 28
+-- -- Geometry
+-- config.initial_cols = 120
+-- config.initial_rows = 28
 
 -- Font
-config.font_size = 12
+config.font_size = 14
 config.font = wezterm.font 'JetBrains Mono NL'
+-- config.font = wezterm.font('JetBrains Mono')
 
 -- Window
 local BG = wezterm.gui.get_appearance()
@@ -22,7 +23,10 @@ local dark_themes = {
     -- "Batman",
     -- "tokyonight_storm",
     -- "Cai (Gogh)",
-    "Dracula",
+    -- "Atelier Sulphurpool (base16)",
+    "Material (terminal.sexy)",
+    -- "Geohot (Gogh)",
+    -- "Dracula",
 }
 
 local light_themes = {
@@ -95,8 +99,7 @@ config.keys = {
     {
         key = 't',
         mods = 'CTRL|SHIFT',
-        action = wezterm.action.Nop
-        -- action = wezterm.action.SpawnTab 'CurrentPaneDomain'
+        action = wezterm.action.DisableDefaultAssignment,
     },
     -- {
     --     key = '}',
