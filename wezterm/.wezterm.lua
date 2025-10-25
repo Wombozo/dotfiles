@@ -15,7 +15,8 @@ local BG = wezterm.gui.get_appearance()
 config.window_decorations = "NONE"
 
 -- Opacity
-config.window_background_opacity = 0.93
+-- config.window_background_opacity = 0.93
+config.window_background_opacity = 1
 
 -- Themes
 local dark_themes = {

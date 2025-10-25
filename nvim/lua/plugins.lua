@@ -874,7 +874,7 @@ local plugins = {
             use = { 'rafamadriz/friendly-snippets' }
     },
     ['delimit'] = {
-        active = true,
+        active = false,  -- Désactivé car freeze avec Ctrl+O
         config = function()
         end,
         use = { 'Raimondi/delimitMate' }
