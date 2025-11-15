@@ -1,167 +1,133 @@
-local options = { }
+local M = {}
 
--- Colorscheme automatique light/dark avec persistance JSON
+-- Ensure highlights stay transparent across colorscheme changes
+local function apply_transparent_background()
+  local groups = {
+    "LineNr",
+    "SignColumn",
+    "VertSplit",
+    "Normal",
+    "NonText",
+    "NormalNC",
+  }
 
-vim.o.termguicolors = true
+  for _, group in ipairs(groups) do
+    vim.cmd(("highlight %s guibg=NONE ctermbg=NONE"):format(group))
+  end
 
--- Détecte le background voulu
-if vim.env.VIM_BACKGROUND == "light" or vim.env.VIM_BACKGROUND == "dark" then
-  vim.o.background = vim.env.VIM_BACKGROUND
+  vim.cmd("highlight! link SignColumn LineNr")
 end
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  callback = function()
-    vim.cmd [[
-      highlight LineNr guibg=NONE ctermbg=NONE
-      highlight SignColumn guibg=NONE ctermbg=NONE
-      highlight VertSplit guibg=NONE ctermbg=NONE
-      highlight Normal guibg=NONE ctermbg=NONE
-      highlight NonText guibg=NONE ctermbg=NONE
-      highlight NormalNC guibg=NONE ctermbg=NONE
-    ]]
-  end,
-})
+local function setup_colorscheme_preferences()
+  local background = vim.env.VIM_BACKGROUND
+  if background == "light" or background == "dark" then
+    vim.o.background = background
+  end
 
--- -- Sauvegarde dans le JSON à chaque changement de colorscheme
--- local json_path = os.getenv('HOME') .. '/.config/nvim/plugin/colorscheme.json'
--- local cs_augroup = vim.api.nvim_create_augroup('ColorSchemeSave', { clear = true })
--- vim.api.nvim_create_autocmd("ColorScheme", {
---   group = cs_augroup,
---   callback = function()
---     local background = vim.o.background -- 'light' ou 'dark'
---     local theme = vim.g.colors_name or "default"
---     -- Lecture JSON existant
---     local data = {}
---     local f = io.open(json_path, "r")
---     if f then
---       local content = f:read("*a")
---       f:close()
---       if content and content ~= "" then
---         data = vim.fn.json_decode(content) or {}
---       end
---     end
---     -- Mise à jour
---     data[background] = theme
---     local f_write = io.open(json_path, "w")
---     if f_write then
---       f_write:write(vim.fn.json_encode(data))
---       f_write:close()
---     end
---     print('Saved theme for ' .. background .. ': ' .. theme)
---   end
--- })
+  apply_transparent_background()
 
+  local group = vim.api.nvim_create_augroup("ColorschemeOverrides", { clear = true })
+  vim.api.nvim_create_autocmd("ColorScheme", {
+    group = group,
+    pattern = "*",
+    callback = apply_transparent_background,
+  })
+end
 
+local function apply_core_options()
+  local opt = vim.opt
+  local g = vim.g
 
--- No swap files
-vim.opt.swapfile = false
+  opt.termguicolors = true
+  opt.swapfile = false
+  opt.inccommand = "nosplit"
+  opt.hlsearch = true
+  opt.hidden = true
+  opt.mouse = "a"
+  opt.breakindent = true
+  opt.foldmethod = "indent"
+  opt.foldenable = false
+  opt.signcolumn = "auto"
+  opt.undofile = true
+  opt.ignorecase = true
+  opt.smartcase = true
+  opt.updatetime = 10
+  opt.sessionoptions = { "blank", "buffers", "folds", "help", "tabpages", "winsize", "globals", "terminal" }
+  opt.viewoptions = { "folds", "cursor" }
+  opt.number = true
+  opt.relativenumber = false
+  opt.expandtab = true
+  opt.shiftwidth = 4
+  opt.smartindent = true
+  opt.tabstop = 4
+  opt.listchars = {
+    extends = ">",
+    eol = "¬",
+    tab = ">.",
+    lead = ".",
+    trail = "␣",
+  }
+  opt.diffopt = { "filler", "closeoff", "vertical" }
+  opt.scrolloff = 8
+  opt.splitbelow = true
+  opt.splitright = true
+  opt.exrc = true         -- Charger .nvim.lua local dans les projets
+  opt.secure = true       -- Sécurité pour exrc
 
--- SignColumn same as LineNr
-vim.cmd('highlight! link SignColumn LineNr')
+  g.matchparen_timeout = 20
+  g.matchparen_insert_timeout = 20
+  g.mapleader = "\\"
+  g.guitablabel = "%f"
+  g.python3_host_prog = "/usr/bin/python3"
+  g.python_host_prog = "/usr/bin/python2"
+end
 
---Incremental live completion (note: this is now a default on master)
-vim.o.inccommand = 'nosplit'
+local function setup_autocommands()
+  local remember_group = vim.api.nvim_create_augroup("RememberFolds", { clear = true })
+  vim.api.nvim_create_autocmd("BufWinLeave", {
+    group = remember_group,
+    pattern = "*.*",
+    callback = function()
+      vim.cmd("mkview")
+    end,
+  })
+  vim.api.nvim_create_autocmd("BufWinEnter", {
+    group = remember_group,
+    pattern = "*.*",
+    callback = function()
+      vim.cmd("silent! loadview")
+    end,
+  })
 
---Set highlight on search
-vim.o.hlsearch = true
+  local yank_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+  vim.api.nvim_create_autocmd("TextYankPost", {
+    group = yank_group,
+    callback = function()
+      vim.highlight.on_yank()
+    end,
+  })
 
+  local cursorline_group = vim.api.nvim_create_augroup("CursorLineOnlyInActiveWindow", { clear = true })
+  vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
+    group = cursorline_group,
+    callback = function()
+      vim.opt_local.cursorline = true
+    end,
+  })
+  vim.api.nvim_create_autocmd("WinLeave", {
+    group = cursorline_group,
+    callback = function()
+      vim.opt_local.cursorline = false
+    end,
+  })
+end
 
---Make line numbers default
-vim.wo.relativenumber = false
-vim.wo.number = true
+function M.setup()
+  apply_core_options()
+  setup_colorscheme_preferences()
+  setup_autocommands()
+end
 
---Do not save when switching buffers (note: this is now a default on master)
-vim.o.hidden = true
+M.setup()
 
---Enable mouse mode
-vim.o.mouse = 'a'
-
---Enable break indent
-vim.o.breakindent = true
-
---Fold to indent
-vim.opt.foldmethod = 'indent'
-vim.opt.foldenable = false
-
---Set sign column
-vim.o.signcolumn = 'auto'
-
---Save undo history
-vim.opt.undofile = true
-
---Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
---Decrease update time
-vim.o.updatetime = 10
-
---Session
-vim.o.sessionoptions = 'blank,buffers,folds,help,tabpages,winsize,globals,terminal'
-vim.o.viewoptions = 'folds,cursor'
-
---MatchParentheses make vim slow 
-vim.g.matchparen_timeout = 20
-vim.g.matchparen_insert_timeout = 20
-
--- keep fold
-vim.cmd[[
-augroup remember_folds
-  autocmd!
-  autocmd BufWinLeave *.* mkview
-  autocmd BufWinEnter *.* silent! loadview
-augroup END]]
-
-vim.o.expandtab = true
-vim.o.shiftwidth = 4
-vim.o.smartindent = true
-vim.o.tabstop = 4
-
-vim.opt.listchars = {
-  extends = ">",
-  eol = "¬",
-  tab = ">.",
-  lead = ".",
-  trail = "␣",
-}
-vim.opt.listchars.tab = ">"
-
--- tabs
-vim.g.guitablabel='%f'
-
--- Diff
--- vim.opt.diffopt = 'internal,filler,closeoff,vertical'
-vim.opt.diffopt = 'filler,closeoff,vertical'
---Remap space as leader key
-vim.g.mapleader = '\\'
-
--- Highlight on yank
-vim.cmd [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]]
-
--- Scrolloff
-vim.o.scrolloff = 8;
-
--- Hide cursorline for inactive windows
-vim.cmd[[
-    augroup CursorLineOnlyInActiveWindow
-      autocmd!
-      autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-      autocmd WinLeave * setlocal nocursorline
-    augroup END
-]]
-
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-
-vim.g.python3_host_prog = '/usr/bin/python3'
-vim.g.python_host_prog = '/usr/bin/python2'
-
-
-return options;
--- Opacity
+return M

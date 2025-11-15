@@ -1,1 +1,1 @@
-/home/guillaume/ed-tools/host/vim/ftdetect/edlog.vim
+/home/guillaume/embedded/hgomicro/ed-tools/host/vim/ftdetect/edlog.vim

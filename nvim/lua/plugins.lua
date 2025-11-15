@@ -1,18 +1,26 @@
--- local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local M = {}
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local function bootstrap_lazy()
+  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+  if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "https://github.com/folke/lazy.nvim.git",
+      "--branch=stable", -- latest stable release
+      lazypath,
+    })
+  end
+
+  vim.opt.rtp:prepend(lazypath)
 end
-vim.opt.rtp:prepend(lazypath)
+
+local lazy_bootstrapped = false
+local lazy_initialized = false
+
+-- local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 -- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 --   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
 -- end
@@ -21,57 +29,93 @@ local plugins = {
     ['lspconfig'] = {
         active = true,
         config = function()
-            vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-            vim.lsp.diagnostic.on_publish_diagnostics, {
-                severity_sort = true
-            }
-            )
-            local nvim_lsp = require 'lspconfig'
-            local on_attach = function(_, bufnr)
-                vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+            vim.diagnostic.config({
+                severity_sort = true,
+            })
 
-                local opts = { noremap = true, silent = true }
-                -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-                -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-                -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-                -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
-                -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-                -- vim.api.nvim_buf_set_keymap(bufnr, 'v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-                vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+            pcall(vim.api.nvim_create_user_command, "Format", function()
+                vim.lsp.buf.format({ async = true })
+            end, { desc = "Format current buffer with LSP" })
+
+            local publish_diagnostics = vim.lsp.handlers["textDocument/publishDiagnostics"]
+            local enabled_servers = {}
+
+            local function buf_map(bufnr, mode, lhs, rhs, desc)
+                vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
             end
 
-            -- nvim-cmp supports additional completion capabilities
+            local function vsplit_definition()
+                vim.cmd("vsplit")
+                vim.lsp.buf.definition()
+            end
+
+            local function telescope_call(fn)
+                return function()
+                    local ok, builtin = pcall(require, "telescope.builtin")
+                    if ok and type(builtin[fn]) == "function" then
+                        builtin[fn]()
+                    else
+                        vim.api.nvim_err_writeln("Telescope not available: " .. fn)
+                    end
+                end
+            end
+
+            local on_attach = function(_, bufnr)
+                vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+                buf_map(bufnr, "n", "gd", vim.lsp.buf.definition, "LSP definition")
+                buf_map(bufnr, "n", "gD", vsplit_definition, "LSP definition (vsplit)")
+                buf_map(bufnr, "n", "K", vim.lsp.buf.hover, "LSP hover")
+                buf_map(bufnr, "n", "gi", vim.lsp.buf.implementation, "LSP implementation")
+                buf_map(bufnr, "n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
+                buf_map(bufnr, "n", "<leader>D", vim.lsp.buf.type_definition, "Type definition")
+                buf_map(bufnr, "n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
+                buf_map(bufnr, "n", "gr", telescope_call("lsp_references"), "List references")
+                buf_map(bufnr, "n", "<leader>e", function()
+                    vim.diagnostic.open_float()
+                end, "Line diagnostics")
+                buf_map(bufnr, "n", "[d", function()
+                    vim.diagnostic.goto_prev()
+                end, "Prev diagnostic")
+                buf_map(bufnr, "n", "]d", function()
+                    vim.diagnostic.goto_next()
+                end, "Next diagnostic")
+                buf_map(bufnr, "n", "<leader>q", function()
+                    vim.diagnostic.setloclist()
+                end, "Populate loclist with diagnostics")
+                buf_map(bufnr, "n", "<leader>so", telescope_call("lsp_document_symbols"), "Document symbols")
+            end
+
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities.textDocument.completion.completionItem.snippetSupport = true
-            capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+            capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-            nvim_lsp['bashls'].setup{
-                cmd = {"node", "--experimental-wasm-reftypes","/usr/bin/bash-language-server"};
-            }
-            --nvim_lsp['sumneko_lua'].setup{
-            --  cmd = {"lua-language-server", "-E", "/usr/lib/lua-language-server"};
-            --}
+            local function setup(server, opts)
+                opts = opts or {}
+                if opts.on_attach == nil then
+                    opts.on_attach = on_attach
+                end
+                if opts.capabilities == nil then
+                    opts.capabilities = capabilities
+                end
 
-            nvim_lsp['lua_ls'].setup{
-                on_attach = on_attach,
-                cmd = {"lua-language-server", "-E", "/usr/lib/lua-language-server"},
+                vim.lsp.config(server, opts)
+                if not enabled_servers[server] then
+                    vim.lsp.enable(server)
+                    enabled_servers[server] = true
+                end
+            end
+
+            setup("bashls", {
+                cmd = { "node", "--experimental-wasm-reftypes", "/usr/bin/bash-language-server" },
+            })
+
+            setup("lua_ls", {
+                cmd = { "lua-language-server", "-E", "/usr/lib/lua-language-server" },
                 settings = {
                     Lua = {
                         diagnostics = {
-                            globals = {'vim'},
+                            globals = { "vim" },
                         },
                         completion = {
                             callSnippet = "Disable",
@@ -79,110 +123,61 @@ local plugins = {
                         },
                     },
                 },
-            }
+            })
 
-            nvim_lsp['pylsp'].setup {
-                on_attach = on_attach,
+            setup("pylsp", {
                 settings = {
                     pylsp = {
                         plugins = {
                             pycodestyle = {
-                                ignore = {'E501'},
-                                maxLineLength = 100
-                            }
-                        }
-                    }
-                }
-            }
+                                ignore = { "E501" },
+                                maxLineLength = 100,
+                            },
+                        },
+                    },
+                },
+            })
 
             local ng_project_library_path = ""
-            nvim_lsp['angularls'].setup {
-                on_attach = on_attach,
-                capabilities = capabilities,
-                cmd = {"ngserver", "--stdio", "--tsProbeLocations", ng_project_library_path , "--ngProbeLocations", ng_project_library_path },
-                on_new_config = function(new_config,new_root_dir)
-                    new_config.cmd = {"ngserver", "--stdio", "--tsProbeLocations", ng_project_library_path , "--ngProbeLocations", ng_project_library_path}
-                end,
+            setup("angularls", {
+                cmd = {
+                    "ngserver",
+                    "--stdio",
+                    "--tsProbeLocations",
+                    ng_project_library_path,
+                    "--ngProbeLocations",
+                    ng_project_library_path,
+                },
                 root_dir = function()
-                    return vim.fn.expand('%:p:h')
-                end
+                    return vim.fn.expand("%:p:h")
+                end,
+            })
 
-            }
-
-            nvim_lsp['clangd'].setup {
-                on_attach = on_attach,
-                capabilities = capabilities,
+            setup("clangd", {
                 flags = {
                     debounce_text_changes = 150,
                 },
-            }
+            })
 
-            -- nvim_lsp['eslint'].setup {
-            --     on_attach = on_attach,
-            --     capabilities = capabilities,
-            --     -- root_dir = function()
-            --     --     return "/home/guillaume/medic-node"
-            --     -- end,
-            --     cmd = { 'eslint-language-server', '--stdio' }
-            -- }
-
-            nvim_lsp['ts_ls'].setup{
-                on_attach = on_attach,
-                capabilities = capabilities,
+            setup("ts_ls", {
                 cmd = { "typescript-language-server", "--stdio" },
                 handlers = {
-                    ["textDocument/publishDiagnostics"] = function(_, _, params, client_id, _, config)
-                        if params.diagnostics ~= nil then
-                            local idx = 1
-                            while idx <= #params.diagnostics do
-                                if params.diagnostics[idx].code == 80001 then
-                                    table.remove(params.diagnostics, idx)
-                                else
-                                    idx = idx + 1
+                    ["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+                        if result and result.diagnostics then
+                            local filtered = {}
+                            for _, diagnostic in ipairs(result.diagnostics) do
+                                if diagnostic.code ~= 80001 then
+                                    table.insert(filtered, diagnostic)
                                 end
                             end
+                            result.diagnostics = filtered
                         end
-                        -- vim.lsp.diagnostic.on_publish_diagnostics(_, _, params, client_id, _, config)
+                        publish_diagnostics(err, result, ctx, config)
                     end,
                 },
-                -- root_dir = function()
-                --     return "/home/guillaume/medic-node/"
-                -- end
-                -- root_dir = function()
-                --     return vim.fn.expand('%:p:h')
-                -- end
-            }
-            
-            -- nvim_lsp.jdtls.setup {
-            --     cmd = {
-            --         'java',
-            --         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-            --         '-Dosgi.bundles.defaultStartLevel=4',
-            --         '-Declipse.product=org.eclipse.jdt.ls.core.product',
-            --         '-Dlog.protocol=true',
-            --         '-Dlog.level=ALL',
-            --         '-Xms1g',
-            --         '--add-modules=ALL-SYSTEM',
-            --         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-            --         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-            --         '-jar', '/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
-            --         '-configuration', '/usr/share/java/jdtls/config_linux',
-            --         '-data', os.getenv "HOME" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-            --     },
-            --     -- root_dir = require'jdtls'.setup.find_root({'.git', 'mvnw', 'gradlew'}),
-            --     settings = {
-            --         java = {
-            --         }
-            --     },
-            --     init_options = {
-            --         bundles = {}
-            --     },
-            --     on_attach = on_attach
-            -- }
+            })
 
-            nvim_lsp.rust_analyzer.setup({
-                on_attach = on_attach,
-                capabilities = capabilities,
+            setup("rust_analyzer", {
                 settings = {
                     ["rust-analyzer"] = {
                         assist = {
@@ -190,13 +185,13 @@ local plugins = {
                             importPrefix = "by_self",
                         },
                         cargo = {
-                            loadOutDirsFromCheck = true
+                            loadOutDirsFromCheck = true,
                         },
                         procMacro = {
-                            enable = true
+                            enable = true,
                         },
-                    }
-                }
+                    },
+                },
             })
         end,
         -- use = { 'neovim/nvim-lspconfig', requires = {'folke/lsp-colors.nvim', 'kyazdani42/nvim-web-devicons'} },
@@ -1294,9 +1289,31 @@ local plugins = {
     ['leap'] = {
         active = true,
         config = function()
-            require('leap').add_default_mappings()
+            require("leap")
+            vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap)", { desc = "Leap to target" })
+            vim.keymap.set("n", "S", "<Plug>(leap-from-window)", { desc = "Leap from window" })
         end,
         use = { 'ggandor/leap.nvim' }
+    },
+    ['markdown-preview'] = {
+        active = true,
+        config = function() end,
+        use = {
+            "iamcco/markdown-preview.nvim",
+            cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+            ft = { "markdown" },
+            init = function()
+                vim.g.mkdp_filetypes = { "markdown" }
+            end,
+            build = function(plugin)
+                local dir = plugin and plugin.dir or (vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim")
+                vim.opt.runtimepath:append(dir)
+                local ok, err = pcall(vim.fn["mkdp#util#install"])
+                if not ok then
+                    vim.api.nvim_err_writeln("markdown-preview install failed: " .. tostring(err))
+                end
+            end,
+        },
     },
     ['glow'] = {
         active = true,
@@ -1354,74 +1371,78 @@ local plugins = {
     },
 }
 
-local function plugins_get(active)
-    for key, value in pairs(plugins) do
-        if value.active == active then
+local function collect_active_specs()
+    local specs = {}
+    for _, value in pairs(plugins) do
+        if value.active and value.use ~= nil then
+            table.insert(specs, value.use)
+        end
+    end
+    return specs
+end
+
+local function configure_active_plugins()
+    for _, value in pairs(plugins) do
+        if value.active and type(value.config) == "function" then
+            value.config()
+        end
+    end
+end
+
+local function print_plugins(active)
+    for name, definition in pairs(plugins) do
+        if definition.active == active then
             print('----------------')
-            print(key .. " :")
-            for _, p_use in pairs(value.use) do
-                if type(p_use) == "string" then
-                    print("\t" .. p_use)
+            print(name .. " :")
+            if type(definition.use) == "table" then
+                for _, entry in pairs(definition.use) do
+                    if type(entry) == "string" then
+                        print("\t" .. entry)
+                    end
                 end
+            elseif type(definition.use) == "string" then
+                print("\t" .. definition.use)
             end
-            -- if value.use.requires ~= nil then
-                -- print("\t->requires :")
-                -- for _, p_use in pairs(value.use.requires) do
-                    -- if type(p_use) == "string" then
-                        -- print("\t\t" .. p_use)
-                    -- end
-                -- end
-            -- end
         end
     end
 end
 
 _G.plugins_get_unused = function()
-    plugins_get(false)
+    print_plugins(false)
 end
 
 _G.plugins_get_used = function()
-    plugins_get(true)
+    print_plugins(true)
 end
 
 _G.plugins_get_all = function()
     print("===============================================")
     print("USED :")
-    plugins_get_used()
+    _G.plugins_get_used()
     print("===============================================")
     print("UNUSED :")
-    plugins_get_unused()
+    _G.plugins_get_unused()
 end
 
-local M = { }
-M.is_active = function(plugin)
-    return plugins[plugin].active
+function M.is_active(plugin)
+    return plugins[plugin] ~= nil and plugins[plugin].active or false
 end
 
-local plugs = { }
-for _,value in pairs(plugins) do
-    if value.active then
-        table.insert(plugs, value.use)
+function M.setup()
+    if lazy_initialized then
+        return
     end
-end
-require'lazy'.setup(plugs)
 
--- local function packer_startup_func()
---     require'packer'.use'wbthomason/packer.nvim'
---     for _, value in pairs(plugins) do
---         if value.active then
---             require'packer'.use(value.use)
---         end
---     end
--- end
-
--- require'packer'.startup(packer_startup_func)
-
-for _, value in pairs(plugins) do
-    if value.active then
-        value.config()
+    if not lazy_bootstrapped then
+        bootstrap_lazy()
+        lazy_bootstrapped = true
     end
+
+    require("lazy").setup(collect_active_specs())
+    configure_active_plugins()
+    lazy_initialized = true
 end
 
+M.setup()
 
 return M

@@ -1,1 +1,1 @@
-/home/guillaume/ed-tools/host/vim/syntax/edlog.vim
+/home/guillaume/embedded/hgomicro/ed-tools/host/vim/syntax/edlog.vim

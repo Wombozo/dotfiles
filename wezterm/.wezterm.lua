@@ -25,9 +25,9 @@ local dark_themes = {
     -- "tokyonight_storm",
     -- "Cai (Gogh)",
     -- "Atelier Sulphurpool (base16)",
-    "Material (terminal.sexy)",
+    -- "Material (terminal.sexy)",
     -- "Geohot (Gogh)",
-    -- "Dracula",
+    "Dracula",
 }
 
 local light_themes = {
@@ -90,9 +90,17 @@ wezterm.on("gui-startup", function(cmd)
     config.color_scheme = selected_theme
 end)
 
+-- Format du titre de fenêtre : utiliser le titre personnalisé (stocké dans tab.tab_title) sinon "wezterm"
+wezterm.on('format-window-title', function(tab, pane, tabs, panes, config)
+    -- Si un titre personnalisé existe pour cet onglet, on l'utilise
+    if tab.tab_title and tab.tab_title ~= '' then
+        return tab.tab_title
+    end
+    -- Sinon retourner "wezterm" par défaut (ignore complètement pane.title)
+    return 'wezterm'
+end)
 
-
--- Tabbar
+-- Tabbar (caché, mais on utilise tab_title en interne pour stocker le nom)
 config.enable_tab_bar = false
 
 -- Key Bindings
@@ -134,6 +142,19 @@ config.keys = {
                         wezterm.action.SwitchToWorkspace { name = line, spawn = { args = { os.getenv("SHELL") or "zsh"}, set_environment_variables = { DEBUG = "1", WEZTERM_WORKSPACE = line,}} },
                         pane
                     )
+                end
+            end),
+        },
+    },
+    -- Renommer l'onglet WezTerm
+    {
+        key = 'R',
+        mods = 'CTRL|SHIFT',
+        action = wezterm.action.PromptInputLine {
+            description = "Renommer l'onglet:",
+            action = wezterm.action_callback(function(window, pane, line)
+                if line and line ~= '' then
+                    window:active_tab():set_title(line)
                 end
             end),
         },
